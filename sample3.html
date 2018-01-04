@@ -10,16 +10,14 @@
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <!-- ## Setup -->
-  <!-- Import the carousel component in the header. -->
+  <!-- Import the the AMP componenets we will be using in this document. -->
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
-  <!-- We will also be using the amp-fit-text component. -->
   <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
-  <!-- We will also be using the amp-selector component. -->
   <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
-  <!-- We will also be using the amp-bind component. -->
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 
-  <link rel="canonical" href="https://ampbyexample.com/advanced/image_galleries_with_amp-carousel/">
+  <!--<link rel="canonical" href="https://ampbyexample.com/advanced/image_galleries_with_amp-carousel/">-->
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <style amp-custom>
@@ -162,7 +160,7 @@
 
     This sample uses the trick described [here](/advanced/how_to_support_images_with_unknown_dimensions/) to ensure that images never overlap the caption. A positive side-effect is that image dimensions don't need to be known in advance either. This makes it a very flexible approach for an image carousel with images and captions of unknown size/length.
   -->
-  <amp-carousel class="collapsible-captions" height="332" layout="fixed-height" type="slides">
+  <amp-carousel class="collapsible-captions" height="400" layout="fixed-height" type="slides">
     <figure>
       <div class="fixed-height-container">
         <amp-img layout="fill" src="img/olivia-coleman-night-manager.jpg"></amp-img>
@@ -173,16 +171,22 @@
     </figure>
     <figure>
       <div class="fixed-height-container">
-        <amp-img layout="fill" src="https://unsplash.it/500/500"></amp-img>
+        <amp-img layout="fill" src="img/Hannah-Steel-Night-Manager.jpg"></amp-img>
       </div>
-      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Lorem ipsum<br/> dolor sit amet, consectetuer adipiscing elit. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Hannah Steel<br/>Plays Marilyn, a young divorcee who mostly just wants to ride her bicycle, but ends up figuratively and literally entangled with Jack Linden.  Or is it Jonathan Pine?  Or is it lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
         <span [text]="expanded ? '&#9660;' : '&#9650;'">&#9650;</span></figcaption>
     </figure>
     <figure>
       <div class="fixed-height-container">
-        <amp-img layout="fill" src="https://unsplash.it/200/500"></amp-img>
+        <!-- knhPvlM1lik -->
+    <amp-youtube
+      data-videoid="knhPvlM1lik"
+      layout="responsive"
+      width="512" height="288">
+    </amp-youtube>
+    </amp-youtube>
       </div>
-      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Lorem ipsum<br/> dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Series Finale<br/>Fiery explosions!  Forbidden liasions!  Also, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
         <span [text]="expanded ? '&#9660;' : '&#9650;'">&#9650;</span></figcaption>
     </figure>
   </amp-carousel>
