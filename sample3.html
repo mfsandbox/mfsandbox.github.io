@@ -1,0 +1,225 @@
+<!--
+  ## Introduction
+
+  The `amp-carousel` component works great for image galleries. The carousel requires the `height` attribute to be specified in advance. This can be tricky if the displayed images and captions vary in size. Here are two approaches to solve this problem.
+-->
+<!-- -->
+<!doctype html>
+<html ⚡>
+<head>
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <!-- ## Setup -->
+  <!-- Import the carousel component in the header. -->
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+  <!-- We will also be using the amp-fit-text component. -->
+  <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
+  <!-- We will also be using the amp-selector component. -->
+  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+  <!-- We will also be using the amp-bind component. -->
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+
+  <link rel="canonical" href="https://ampbyexample.com/advanced/image_galleries_with_amp-carousel/">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-custom>
+    #carousel-with-preview amp-img {
+      transition: opacity 1s ease-in-out;
+    }
+    .carousel-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-preview button {
+      height: 40px;
+      width: 60px;
+      min-width: 60px;
+      margin: 4px;
+      padding: 0;
+    }
+    .carousel-preview .amp-carousel-slide {
+      margin: 4px;
+      padding: 0;
+    }
+    .carousel-preview button:active {
+      opacity: 0.5;
+    }
+    .carousel1, .carousel2 {
+      background: #eee;
+      margin: 16px 0;
+    }
+    .carousel1 .slide > amp-img > img{
+      object-fit: contain;
+    }
+    .carousel2 .slide > amp-img > img{
+      object-fit: contain;
+    }
+    .carousel2 .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ddd;
+      font-size: smaller;
+      max-height: 30%;
+    }
+    .selected {
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    /* define some contants */
+    .collapsible-captions {
+      --caption-height: 32px;
+      --image-height: 300px;
+      --caption-padding: 1rem;
+      --button-size: 28px;
+      --caption-color: #f5f5f5;;
+      --caption-bg-color: #111;
+      background: var(--caption-bg-color);
+    }
+    .collapsible-captions * {
+      /* disable chrome touch highlight */
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      box-sizing: border-box;
+    }
+    /* see https://ampbyexample.com/advanced/how_to_support_images_with_unknown_dimensions/ */
+    .collapsible-captions .fixed-height-container {
+      position: relative;
+      width: 100%;
+      height: var(--image-height);
+    }
+    .collapsible-captions amp-img img {
+      object-fit: contain;
+    }
+    .collapsible-captions figure {
+      margin: 0;
+      padding: 0;
+    }
+    /* single line caption */
+    .collapsible-captions figcaption {
+      position: absolute;
+      bottom: 0;
+      margin: 0;
+      width: 100%;
+      /* inital height is one line */
+      max-height: var(--caption-height);
+      line-height: var(--caption-height);
+      padding: 0 var(--button-size);
+      /* cut text after first line and show an ellipsis */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* animate expansion */
+      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      /* overlay the carousel icons */
+      z-index: 1000;
+      /* some styling */
+      color: var(--caption-color);
+      background: var(--caption-bg-color);      
+    }
+    /* expanded caption */
+    .collapsible-captions figcaption.expanded {
+      /* add padding and show all of the text */
+      padding: var(--button-size);
+      line-height: inherit;
+      white-space: normal;
+      text-overflow: auto;
+      max-height: calc(var(--caption-height) + var(--image-height));
+      /* show scrollbar in case caption is larger than image */
+      overflow: auto;
+    }
+    /* don't show focus highlights in chrome */
+    .collapsible-captions figcaption:focus {
+      outline: none;
+      border: none;
+    }
+    /* the expand/collapse icon */
+    .collapsible-captions figcaption span {
+      display: block;
+      position: absolute;
+      top: calc((var(--caption-height) - var(--button-size)) / 2);
+      right: 2px;
+      width: var(--button-size);
+      height: var(--button-size);
+      line-height: var(--button-size);
+      text-align: center;
+      font-size: 12px;
+      color: inherit;
+      cursor: pointer; 
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ## Collapsible Image Captions with amp-bind
+
+    Here is another workaround for image captions: expandable captions. The idea is to first show only the first line of a caption (using `text-overflow: ellipsis;`). When the user clicks on the caption, the caption is expanded to show the full text. This works by using `amp-bind` to toggle a CSS class `expanded` when the caption is clicked. 
+
+    This sample uses the trick described [here](/advanced/how_to_support_images_with_unknown_dimensions/) to ensure that images never overlap the caption. A positive side-effect is that image dimensions don't need to be known in advance either. This makes it a very flexible approach for an image carousel with images and captions of unknown size/length.
+  -->
+  <amp-carousel class="collapsible-captions" height="332" layout="fixed-height" type="slides">
+    <figure>
+      <div class="fixed-height-container">
+        <amp-img layout="fill" src="https://unsplash.it/500/400"></amp-img>
+      </div>
+      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Lorem ipsum<br/> dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+        <span [text]="expanded ? '&#9660;' : '&#9650;'">&#9650;</span>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="fixed-height-container">
+        <amp-img layout="fill" src="https://unsplash.it/500/500"></amp-img>
+      </div>
+      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Lorem ipsum<br/> dolor sit amet, consectetuer adipiscing elit. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+        <span [text]="expanded ? '&#9660;' : '&#9650;'">&#9650;</span></figcaption>
+    </figure>
+    <figure>
+      <div class="fixed-height-container">
+        <amp-img layout="fill" src="https://unsplash.it/200/500"></amp-img>
+      </div>
+      <figcaption on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" [class]="expanded ? 'expanded' : ''">Lorem ipsum<br/> dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+        <span [text]="expanded ? '&#9660;' : '&#9650;'">&#9650;</span></figcaption>
+    </figure>
+  </amp-carousel>
+
+
+
+  <!-- ## Metadata
+    The Top Stories carousel requires schema.org markup for one of the following types: Article, NewsArticle, BlogPosting, or VideoObject. If your Image Gallery is also a NewsArticle, you may want to mark it up as such:
+    ```html
+    <script type="application/ld+json">
+[
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      ...
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ImageGallery",
+      "associatedMedia": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "https://unsplash.it/60/40?image=1",
+          "caption": "A cute pup"
+        },
+        {,
+          "@context": "http://schema.org",
+          "@type": "ImageObject",
+          "contentUrl": "https://unsplash.it/60/40?image=2",
+          "caption": "A doubly cute pup"
+        },
+      ],
+    }
+  ]
+    </script>
+    ```
+    -->
+</body>
+</html>
