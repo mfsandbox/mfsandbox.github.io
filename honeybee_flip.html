@@ -16,6 +16,14 @@
     src: url("fonts/Calibri.ttf") format('truetype');
 }
 
+@keyframes flipcardwiggle {
+0%  {transform: rotateY(0deg);}
+25% {transform: rotateY(5deg);)}
+50% {transform: rotateY(0deg);)}
+75% {transform: rotateY(5deg);}
+100% {transform: rotateY(0deg);} )
+
+}
 
 .container { 
   width: 80%;
@@ -23,6 +31,7 @@
   height: 100%;
   position: relative;
   perspective: 800px;
+
 
 }
 
@@ -35,7 +44,8 @@
   border-style: solid;
   border-width: 5px;
   border-color: black;
-
+  animation-name: flipcardwiggle;
+  animation-duration: 0.5s;
 }
 
 #card figure {
@@ -78,7 +88,7 @@
         1 oz Lemon Juice<br>
         .75 oz Lavender Syrup<br>
       </p>
-      <p style="font-family: Calibri; font-size: 80%; text-align: center">  ...click for recipe...</p>
+      <p style="font-family: Calibri; font-size: 80%; text-align: center"> -- click for recipe --></p>
 
     </figure>
     <figure class="back" style="font-family: Calibri">
@@ -93,6 +103,7 @@
         <br>
         For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
       </p>
+      <p style="font-family: Calibri; font-size: 80%; text-align: center"> -- flip to front --></p>
     </figure>
 		</div>	
 	</section>
