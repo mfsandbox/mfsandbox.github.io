@@ -1,0 +1,75 @@
+<html>
+  <meta name="viewport" content="initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../css/style.css" media="screen" />
+
+<style media="screen">
+
+.container { 
+  width: 560px;
+  height: 560px;
+  position: relative;
+  perspective: 800px;
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+#card figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+}
+
+#card .front {
+	background: white;
+}
+
+#card .back {
+	background: white;
+	transform:rotateY(180deg );
+
+}
+
+#card.flipped {
+  transform: rotateY( 180deg );
+}
+</style>
+
+<body>
+	<button id="flip">Flip</button>
+	<section class="container">
+		<div id="card" onclick="alert('gonzo');">
+    <figure class="front"><img src="img/honeybee.png"/></figure>
+    <figure class="back"><b>Ingredients</b>
+<br>
+2 oz Nine Banded Whiskey<br>
+1 oz Lemon Juice<br>
+.75 oz Lavender Syrup<br>
+
+Add Nine Banded, lemon juice and lavender syrup into a shaker, shake quickly, and pour over ice. Add your preference of lemon swath or wheel.
+<br>
+For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.</figure>
+		</div>	
+	</section>
+</body>	
+<script src="js/utils.js"></script>
+<script>
+	var card = document.getElementById('card');
+  	document.getElementById('flip').addEventListener( 'click', function(){
+    	card.toggleClassName('flipped')
+  	}, false);
+
+  	alert('fozzy');	
+</script>
+</html>
