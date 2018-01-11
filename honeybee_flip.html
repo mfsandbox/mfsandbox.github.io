@@ -128,6 +128,7 @@
 
 		<div id="card">
     <figure class="front">
+      <i style="position: absolute; top: 0%; right: 0%;" class="fa fa-hand-o-right" onclick="card.toggleClassName('flipped');"></i>
       <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
       <img src="img/honeybee.png" style="width:100%;height:auto;" />
       <h3 style="font-family: Calibri; margin: 20px;">Ingredients</h3>
@@ -136,7 +137,7 @@
         1 oz Lemon Juice<br>
         .75 oz Lavender Syrup<br>
       </p>
-      <p style="font-family: Calibri; font-size: 80%; text-align: center"> -- click for recipe --></p>
+      <i class="fa fa-hand-o-left" onclick="card.toggleClassName('flipped');"></i>
 
     </figure>
     <figure class="back" style="font-family: Calibri">
@@ -151,7 +152,7 @@
         <br>
         For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
       </p>
-      <p style="font-family: Calibri; font-size: 80%; text-align: center"> <- flip to front --</p>
+      <i class="fa fa-hand-o-left" onclick="card.toggleClassName('flipped');"></i>
     </figure>
 		</div>	
 	</section>
@@ -177,8 +178,6 @@
 <script src="js/utils.js"></script>
 <script>
 	var card = document.getElementById('card');
-  	document.getElementById('card').addEventListener( 'click', function(){
-    	                                                                     card.toggleClassName('flipped')
-  	                                                                     }, false);
+  	
 </script>
 </html>
