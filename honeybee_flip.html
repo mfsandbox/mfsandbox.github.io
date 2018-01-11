@@ -30,10 +30,12 @@
 
 .container { 
   width: 80%;
-  margin:auto;
-  height: 100%;
+  margin: auto;
+  height: 80%;
   position: relative;
   perspective: 800px;
+  border-width: 5px;
+  border-color:red;
 
 
 }
@@ -59,6 +61,7 @@
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  overflow: scroll;
 
 }
 
@@ -75,10 +78,39 @@
 #card.flipped {
   transform: rotateY( 180deg );
 }
+
+.footer {
+  margin:auto;
+  position: absolute;
+  height: 75px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.header {
+  margin:auto;
+  position: relative;
+  height: 75px;
+  right: 0;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+
 </style>
 
 <body>
+  <div class="header">
+    <h1>Here be some stuff.</h1>
 
+  </div>
 	<section class="container">
 
 		<div id="card">
@@ -110,7 +142,15 @@
     </figure>
 		</div>	
 	</section>
+
+  <div class="footer">
+    Yada, yada, yada.
+  </div>  
 </body>	
+
+
+
+
 <script src="js/utils.js"></script>
 <script>
 	var card = document.getElementById('card');
