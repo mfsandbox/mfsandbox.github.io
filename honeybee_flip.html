@@ -30,6 +30,12 @@
 
 }
 
+@keyframes onerotation {
+0%  {transform: rotateY(0deg);}
+50% {transform: rotateY(180deg);}
+100% {transform:rotateY(0deg);}
+}
+
 .container { 
   width: 80vw;
   margin: auto;
@@ -52,8 +58,6 @@
   border-style: solid;
   border-width: 5px;
   border-color: black;
-  animation-name: flipcardwiggle;
-  animation-duration: 1s;
 }
 
 #card figure {
@@ -123,7 +127,7 @@
 
 		<div id="card">
     <figure class="front">
-      <i class="fa fa-share" style="position: absolute; top: 5px; right: 5px;" onclick="card.toggleClassName('flipped');" aria-hidden="true"></i>
+      <i class="fa fa-share" style="position: absolute; top: 5px; right: 5px; animation-name:onerotation; animation-duration: 2s;" onclick="card.toggleClassName('flipped');" aria-hidden="true"></i>
       <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
       <img src="img/honeybee.png" style="width:auto;height:100%;" />
     </figure>
