@@ -31,9 +31,8 @@
 }
 
 .container { 
-  width: 80%;
+  height: 80%;
   margin: auto;
-  height: 70%;
   position: relative;
   perspective: 800px;
   border-width: 5px;
@@ -64,7 +63,6 @@
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  overflow: scroll;
 
 }
 
@@ -75,6 +73,7 @@
 #card .back {
 	background: white;
 	transform:rotateY(180deg );
+  overflow: scroll;
 
 }
 
@@ -84,12 +83,7 @@
 
 .footer {
   margin:auto;
-  position: absolute;
-  height: 40px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem 1rem 2rem 1rem;
+
   color:white;
   font-family: calibri;
   background-color: black;
