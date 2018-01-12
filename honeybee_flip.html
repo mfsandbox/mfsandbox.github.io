@@ -33,7 +33,7 @@
 .container { 
   width: 80vw;
   margin: auto;
-  height: 113vw;
+  height: 129vw;
   position: relative;
   perspective: 800px;
   border-width: 5px;
@@ -70,14 +70,12 @@
 #card .front {
 	background: white;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 #card .back {
 	background: white;
 	transform:rotateY(180deg );
-  overflow: scroll;
-    text-overflow: ellipsis;
+
 }
 
 #card.flipped {
@@ -125,9 +123,8 @@
 
 		<div id="card">
     <figure class="front">
-      <i style="position: absolute; right: 5px; top: 5px;" class="fa fa-info-circle" onclick="card.toggleClassName('flipped');" ></i>
+      <i class="fa fa-share" style="position: absolute; top: 5px; right: 5px;" onclick="card.toggleClassName('flipped');" aria-hidden="true"></i>
       <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
-
       <img src="img/honeybee.png" style="width:100%;height:auto;" />
       <h3 style="font-family: Calibri; margin: 20px;">Ingredients</h3>
       <p style="font-family: Calibri; margin: 20px;">
@@ -137,7 +134,6 @@
       </p>
     </figure>
     <figure class="back" style="font-family: Calibri">
-      <i class="fa fa-hand-o-left fa-2x" onclick="card.toggleClassName('flipped');"></i>
       <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
       <h3 style="font-family: Calibri; margin: 20px;">Ingredients</h3>
       <p style="font-family: Calibri; margin: 20px;">
@@ -148,13 +144,7 @@
         Add Nine Banded, lemon juice and lavender syrup into a shaker, shake quickly, and pour over ice. Add your preference of lemon swath or wheel.<br>
         <br>
         For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
-        <br>
-      The most common form of Lavender in cultivation is the common or English lavender Lavandula angustifolia (formerly named L. officinalis). A wide range of cultivars can be found. Other commonly grown ornamental species are L. stoechas, L. dentata, and L. multifida (Egyptian lavender).
-
-      Because the cultivated forms are planted in gardens worldwide, they are occasionally found growing wild as garden escapes, well beyond their natural range. Commonly such adventitious establishment is apparently harmless at best, but in some cases Lavandula species have become invasive. For example, in Australia, Lavandula stoechas has become a cause for concern; it occurs widely throughout the continent, and has been declared a noxious weed in Victoria since 1920. It also is regarded as a weed in parts of Spain.
-
-      Lavenders flourish best in dry, well-drained, sandy or gravelly soils in full sun. All types need little or no fertilizer and good air circulation. In areas of high humidity, root rot due to fungus infection can be a problem. Organic mulches can trap moisture around the plants' bases, encouraging root rot. Gravelly materials such as crushed rocks give better results.  It grows best in soils with a pH between 6 and 8.
-      <i class="fa fa-hand-o-left fa-2x" onclick="card.toggleClassName('flipped');"></i>
+      </p>
     </figure>
 		</div>	
 	</section>
@@ -167,13 +157,14 @@
       <div style="align-items:center; justify-content: center;">        
         <i class="fa fa-map-o" aria-hidden="true"></i><br>
         <a href="http://9bandedwhiskey.com" style="color:white;"><i class="fa fa-home" aria-hidden="true"></i></a>
+
       </div>  
       <div >
           <a href="https://www.facebook.com/NineBandedWhiskey/" style="color:white"><i class="fa fa-facebook-square fa" ></i></a><br>
           <a href="https://twitter.com/ninebanded?lang=en" style="color:white"><i class="fa fa-twitter fa"></i></a>
       </div>  
-  </div>
-                <p style="font-family: Calibri; font-size: 50%; text-align: center" >&copy; 2017, Nine Banded Whiskey<br>All Rights Reserved</p>
+    </div>
+    <p style="font-family: Calibri; font-size: 50%; text-align: center" >&copy; 2017, Nine Banded Whiskey<br>All Rights Reserved</p>
 </body>	
 
 
