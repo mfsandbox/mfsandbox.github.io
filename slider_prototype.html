@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slick Playground</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    @font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+    }
+
+
+    @font-face {
+        font-family: Calibri;
+        src: url("fonts/Calibri.ttf") format('truetype');
+    }
+
+    .slider {
+        width: 90%;
+        height: 90%;
+        margin: 100px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+      padding: 50px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+      height: auto;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+    
+    .slick-active {
+      opacity: .5;
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
+
+    .slider > div {
+      border-color: black;
+      border-width: 5px;
+      overflow: scroll;
+      height: 80vh;
+    }
+  </style>
+</head>
+<body>
+  <section class="slider">
+    <div>
+      <img style="position: relative; vertical-align: center;" src="./img/nineBandedBottles.jpg">
+    </div>
+      <div>
+      <img style="position: relative; vertical-align: center;" src="./img/mulekick.jpg">
+    </div>
+    <div>
+      <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
+        <img src="img/honeybee.png" style="width:auto;height:100%;" />
+
+        <h3 style="font-family: Calibri; margin: 25px;">Ingredients</h3>
+        <p style="font-family: Calibri; margin: 25px;">
+          2 oz Nine Banded Whiskey<br>
+          1 oz Lemon Juice<br>
+          .75 oz Lavender Syrup<br>
+          <br>
+          Add Nine Banded, lemon juice and lavender syrup into a shaker, shake quickly, and pour over ice. Add your preference of lemon swath or wheel.<br>
+          <br>
+          For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
+          <br>
+          <br>
+          If you can't find lavender buds in your local market, you can grow your own.
+          <br>
+          <br>
+          The most common form of lavender in cultivation is the common or English lavender Lavandula angustifolia (formerly named L. officinalis), but a wide range of cultivars can be found. Other commonly grown ornamental species are L. stoechas, L. dentata, and L. multifida (Egyptian lavender).
+          <br>
+          <br>
+          Lavenders flourish best in dry, well-drained, sandy or gravelly soils in full sun. All types need little or no fertilizer and good air circulation. In areas of high humidity, root rot due to fungus infection can be a problem. Organic mulches can trap moisture around the plants' bases, encouraging root rot. Gravelly materials such as crushed rocks give better results. It grows best in soils with a pH between 6 and 8.
+          <br><br>
+          The U.S. National Institutes of Health (NIH) states that lavender is considered likely safe in food amounts and possibly safe in medicinal amounts. NIH does not recommend the use of lavender while pregnant or breast-feeding because of lack of knowledge of its effects.
+        </p>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+
+      $(".slider").slick({
+        dots: true,
+        infinite: true,
+        swipe: true
+      });
+
+    });
+</script>
+
+</body>
+</html>
