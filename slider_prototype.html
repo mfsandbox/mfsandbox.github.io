@@ -54,7 +54,7 @@
     }
     
     .slick-active {
-      opacity: .5;
+      opacity: 0.2;
     }
 
     .slick-current {
@@ -112,7 +112,10 @@
       $(".slider").slick({
         dots: true,
         infinite: true,
-        swipe: true
+        swipe: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear'
       });
 
     });
