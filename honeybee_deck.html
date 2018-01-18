@@ -257,8 +257,8 @@
     cards.forEach(
       function (each,index){
         if (index == currentCardIndex) {
-          each.scrollTop = 0;
           each.hidden = false;
+          each.scrollTop = 0;
           navIcons[index].className = "fa fa-circle";
         }
         else {
