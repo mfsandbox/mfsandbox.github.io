@@ -65,6 +65,18 @@
   color: black;
 }
 
+.navfooter {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .deck { 
   width: 100%;
   height: 80%;
@@ -171,7 +183,7 @@
         The U.S. National Institutes of Health (NIH) states that lavender is considered likely safe in food amounts and possibly safe in medicinal amounts. NIH does not recommend the use of lavender while pregnant or breast-feeding because of lack of knowledge of its effects.
       </p>
       <div class="cardbuttons" style="margin: auto;">
-        <a href="img/honeybee.png">Save to Phone</a> 
+        <a href="img/honeybee.png">Save Recipe</a> 
       </div>
     </div>
 
@@ -179,9 +191,16 @@
         <img src="img/nineBandedBottles.jpg" style="position:absolute;width:auto;height:80vh;margin:0;">"
     </div> 
 
+    <div class="card fixedcard">
+        <img src="img/mulekick.jpg" style="position:absolute;width:auto;height:80vh;margin:0;">"
+    </div> 
 
 
 </div>
+
+<div class = "navfooter">
+</div>  
+<!--
     <div class="footer">
 
         <a href="https://ninebandedwhiskey.com/blogs/news" ><i class="fa fa-book" aria-hidden="true"></i></a>
@@ -195,16 +214,18 @@
           <a href="https://www.facebook.com/NineBandedWhiskey/" ><i class="fa fa-facebook-square fa" ></i></a>
           <a href="https://twitter.com/ninebanded?lang=en" ><i class="fa fa-twitter fa"></i></a>
     </div>
-
+-->
     <p style="font-family: Calibri; font-size: 50%; text-align: center; height: 3%;" >&copy; 2017, Nine Banded Whiskey<br>All Rights Reserved</p>
 
 </body>	
 
 <script>
-  let deck = document.querySelector(".deck");
-  let currentCardIndex = 0;
-  let cards = document.querySelectorAll(".card");
-  let cardCount = cards.length;
+  var deck = document.querySelector(".deck");
+  var currentCardIndex = 0;
+  var cards = document.querySelectorAll(".card");
+  var cardCount = cards.length;
+  var navFooter = document.querySelector(".navfooter");
+  var navIcons = [];
 
   function decrementCardIndex() {
     if (currentCardIndex <= 0) {
@@ -220,24 +241,44 @@
     currentCardIndex++;
   }
 
-  function setCardVisibility() {
-    cards.forEach(function (each,index) {
-                                          each.hidden = !(index == currentCardIndex);
-                                          if (index == currentCardIndex) {
-                                            each.scrollTop = 0;
-                                          }
-                                        }
-                  )
+  function initializeNavDots(navFooter, navIcons) {
+    cards.forEach(
+      function(each, index) {
+        navicon = document.createElement("i");
+        navicon.className = (index == currentCardIndex ? "fa fa-circle" : "fa fa-circle-o");
+        navicon.style = "font-size: 50%";
+        navFooter.appendChild(navicon);
+        navIcons[index] = (navicon);
+      }
+    )
+  }
+
+  function setCardVisibility(cards, navIcons) {
+    cards.forEach(
+      function (each,index){
+        if (index == currentCardIndex) {
+          each.scrollTop = 0;
+          each.hidden = false;
+          navIcons[index].className = "fa fa-circle";
+        }
+        else {
+          each.hidden = true;
+          navIcons[index].className = "fa fa-circle-o";
+        }  
+      }
+    )
   }
 
   var hammered = Hammer(deck);
-  hammered.on('swipeleft', function(event) {decrementCardIndex(); setCardVisibility()});
-  hammered.on('swiperight',function(event) {incrementCardIndex(); setCardVisibility()});
+  hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility()});
+  hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility()});
 
-  setCardVisibility();
+  initializeNavDots(navFooter,navIcons);
+  setCardVisibility(cards,navIcons);
 
-  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility();})
-  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility();})
+
+  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
+  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
 
   	
