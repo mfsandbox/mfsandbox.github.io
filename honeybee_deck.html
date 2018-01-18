@@ -31,7 +31,67 @@
 
 }
 
-.coupons a {
+.cardtable {
+  padding-top: 2%;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.deck { 
+  width: 100%;
+  height: 80%;
+  display: block;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: relative;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.card {
+  width: 90%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 5%;
+}
+
+.fixedcard {
+  overflow: hidden;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.cardbuttons a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,78 +106,21 @@
   background-color: black;
 }
 
-.container { 
-  width: 90%;
-  margin: auto;
-  height: 80%;
-  position: relative;
-  perspective: 800px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: black;
-}
 
-#card {
-  width: 100%;
-  height: 100%;
+.deck .cardIndexDecrementor {
   position: absolute;
-  margin-bottom: 5px;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-
+  top: 50%;
+  left: 2%;
+  font-size:150%;
 }
 
-#card figure {
-  margin: 0;
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.deck .cardIndexIncrementor {
+   position: absolute;
+  top: 50%;
+  right: 2%;
+  font-size:150%; 
 }
 
-#card .front {
-	background: white;
-  overflow: scroll;
-}
-
-#card .back {
-	background: white;
-	transform:rotateY(180deg );
-  overflow:scroll;
-}
-
-#card.flipped {
-  transform: rotateY( 180deg );
-}
-
-.footer {
-  height: 10%;
-  width: 100%;
-  padding-right: 10%;
-  padding-right: 10%;
-  font-family: calibri;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer a{
-  color: black;
-}
-
-
-
-.header {
-  position: relative;
-  height: 10%;
-  width: 100%;
-  font-family: calibri;
-  font-size: 75%;
-  background-color: white;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
 
 .buttonpanel {
   display: flex;
@@ -130,19 +133,21 @@
 
 </style>
 </head>
-<body style="margin: 5%;">
-  <div style="height: 100%; width: 100%; ">
+<body style="margin: 0;">
+  <div class="cardtable">
+
   <div class="header">
     <div>Hello Laurie!</div>
-    <div><img src="img/ninebanded_logo.png" style='width: auto; height:95%;'></img></div>
+    <div><img src="img/ninebanded_logo.png" style='width: auto; height:95%;'></div>
     <div>Sign Out</div>
   </div>
 
-	<section class="container">
-		<div id="card">
-    <figure class="front">
+	<div class="deck">
+    <i class="fa cardIndexDecrementor fa-angle-left"></i>
+    <i class="fa cardIndexIncrementor fa-angle-right"></i>
+		<div class="card scrollcard">
       <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h1>
-      <img src="img/honeybee.png" style="width:100%;height:auto%;" />
+      <img src="img/honeybee.png" style="width:100%;height:auto%;">
       <h3 style="font-family: Calibri; margin: 25px;">Ingredients</h3>
       <p style="font-family: Calibri; margin: 25px;">
         2 oz Nine Banded Whiskey<br>
@@ -164,44 +169,21 @@
         <br><br>
         The U.S. National Institutes of Health (NIH) states that lavender is considered likely safe in food amounts and possibly safe in medicinal amounts. NIH does not recommend the use of lavender while pregnant or breast-feeding because of lack of knowledge of its effects.
       </p>
-      <div class="coupons" style="margin: auto;">
+      <div class="cardbuttons" style="margin: auto;">
         <a href="img/honeybee.png">Save to Phone</a> 
       </div>
-    </figure>
-    </div>  
+    </div>
 
-    <div id="card">
-    <figure class="front">
-      <h1 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY SEE</h1>
-      <img src="img/honeybee.png" style="width:100%;height:auto%;" />
-      <h3 style="font-family: Calibri; margin: 25px;">Ingredients</h3>
-      <p style="font-family: Calibri; margin: 25px;">
-        2 oz Nine Banded Whiskey<br>
-        1 oz Lemon Juice<br>
-        .75 oz Lavender Syrup<br>
-        <br>
-        Add Nine Banded, lemon juice and lavender syrup into a shaker, shake quickly, and pour over ice. Add your preference of lemon swath or wheel.<br>
-        <br>
-        For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
-        <br>
-        <br>
-        If you can't find lavender buds in your local market, you can grow your own.
-        <br>
-        <br>
-        The most common form of lavender in cultivation is the common or English lavender Lavandula angustifolia (formerly named L. officinalis), but a wide range of cultivars can be found. Other commonly grown ornamental species are L. stoechas, L. dentata, and L. multifida (Egyptian lavender).
-        <br>
-        <br>
-        Lavenders flourish best in dry, well-drained, sandy or gravelly soils in full sun. All types need little or no fertilizer and good air circulation. In areas of high humidity, root rot due to fungus infection can be a problem. Organic mulches can trap moisture around the plants' bases, encouraging root rot. Gravelly materials such as crushed rocks give better results. It grows best in soils with a pH between 6 and 8.
-        <br><br>
-        The U.S. National Institutes of Health (NIH) states that lavender is considered likely safe in food amounts and possibly safe in medicinal amounts. NIH does not recommend the use of lavender while pregnant or breast-feeding because of lack of knowledge of its effects.
-      </p>
-      <div class="coupons" style="margin: auto;">
-        <a href="img/honeybee.png">Save to Phone</a> 
-      </div>
-    </figure>
-		</div>
-	
-	</section>
+    <div class="card fixedcard">
+        <img src="img/nineBandedBottles.jpg" style="position:absolute;width:auto;height:80vh; left: 50%;
+   top: 50%; 
+   margin-left: -50%;
+   margin-top: -50%;">
+    </div> 
+
+
+
+</div>
     <div class="footer">
 
         <a href="https://ninebandedwhiskey.com/blogs/news" ><i class="fa fa-book" aria-hidden="true"></i></a>
@@ -217,15 +199,44 @@
     </div>
 
     <p style="font-family: Calibri; font-size: 50%; text-align: center; height: 3%;" >&copy; 2017, Nine Banded Whiskey<br>All Rights Reserved</p>
-  </div>
+
 </body>	
 
-
-
-
-<script src="js/utils.js"></script>
 <script>
-	var card = document.getElementById('card');
+  let currentCardIndex = 0;
+  let cards = document.querySelectorAll(".card");
+  let cardCount = cards.length;
+
+  function decrementCardIndex() {
+    if (currentCardIndex <= 0) {
+      currentCardIndex = cardCount;
+    }
+    currentCardIndex--;
+  }
+
+  function incrementCardIndex() {
+    if (currentCardIndex >= cardCount - 1) {
+      currentCardIndex = -1;
+    }
+    currentCardIndex++;
+  }
+
+  function setCardVisibility() {
+    cards.forEach(function (each,index) {
+                                          each.hidden = !(index == currentCardIndex);
+                                          if (index == currentCardIndex) {
+                                            each.scrollTop = 0;
+                                          }
+                                        }
+                  )
+  }
+
+  setCardVisibility();
+
+  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility();})
+  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility();})
+
+
   	
 </script>
 </html>
