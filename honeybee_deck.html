@@ -270,8 +270,8 @@
   }
 
   var hammered = Hammer(deck);
-  hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility()});
-  hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility()});
+  hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons)});
+  hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons)});
 
   initializeNavDots(navFooter,navIcons);
   setCardVisibility(cards,navIcons);
