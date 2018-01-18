@@ -2,6 +2,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
 <style media="screen">
 
 * {
@@ -203,6 +204,7 @@
 </body>	
 
 <script>
+  let deck = document.querySelector(".deck");
   let currentCardIndex = 0;
   let cards = document.querySelectorAll(".card");
   let cardCount = cards.length;
@@ -230,6 +232,10 @@
                                         }
                   )
   }
+
+  var hammered = Hammer(deck);
+  hammered.on('swipeleft', function(event) {decrementCardIndex(); setCardVisibility()});
+  hammered.on('swiperight',function(event) {incrementCardIndex(); setCardVisibility()});
 
   setCardVisibility();
 
