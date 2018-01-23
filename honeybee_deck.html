@@ -86,7 +86,6 @@
   position: relative;
   perspective: 800px;
   overflow: hidden;
-  touch-action: none;
 }
 
 .card {
@@ -102,8 +101,8 @@
 }
 
 .scrollcard {
-  overflow: scroll;  
-
+  overflow-x: hidden;
+  overflow-y: scroll;  
 }
 
 .cardbuttons a {
