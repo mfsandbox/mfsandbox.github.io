@@ -108,6 +108,10 @@
   overflow: scroll;  
 }
 
+.flipcard {
+
+}
+
 .cardbuttons a {
   display: flex;
   justify-content: center;
@@ -199,7 +203,7 @@
     <div class="card fixedcard" style="background-image: url(img/SprinklesStore.png); background-position: center;background-repeat: no-repeat; background-size: auto 100%">
     </div> 
 
-    <div class="card fixedcard" style="background-image: url(img/SprinklesLoyaltyCard.png); background-position: center;background-repeat: no-repeat; background-size: auto 100%">
+    <div class="card fixedcard flipcard" style="background-image: url(img/SprinklesLoyaltyCard.png); background-position: center;background-repeat: no-repeat; background-size: auto 100%">
     </div> 
 
     <div class="card fixedcard" style="background-image: url(img/SprinklesBreakfast.png); background-position: center;background-repeat: no-repeat; background-size: auto 100%">
@@ -271,11 +275,20 @@
         if (index == currentCardIndex) {
           each.hidden = false;
           each.scrollTop = 0;
-          navIcons[index].className = "navicon fa fa-circle" ;
+          if (each.className.includes("flipcard")) {
+            navIcons[index].className = "navicon fa fa-reply";
+            navIcons[index].style = "font-size: 100%;"
+          }
+          else {  
+            navIcons[index].className = "navicon fa fa-circle" ;
+          }
         }
         else {
           each.hidden = true;
           navIcons[index].className = "navicon fa fa-circle-o";
+          if (each.className.includes("flipcard")) {
+              navIcons[index].style = "font-size: 50%;"
+          } 
         }  
       }
     )
