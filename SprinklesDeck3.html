@@ -1,0 +1,335 @@
+<html style="overflow: hidden;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+@keyframes flipcardwiggle {
+0%  {transform: rotateY(0deg);}
+40% {transform: rotateY(0deg);}
+50% {transform: rotateY(5deg);)}
+60% {transform: rotateY(0deg);)}
+70% {transform: rotateY(5deg);)}
+80% {transform: rotateY(0deg);)}
+90% {transform: rotateY(5deg);}
+100% {transform: rotateY(0deg);} )
+
+}
+
+.cardtable {
+  padding-top: 2%;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgb(215,79,78);
+}
+
+.navfooter {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  width: 100%;
+  height: 88vh;
+  position: relative;
+  display: block;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.card {
+  width: 49.5vh;
+  height: 100%;
+  margin: auto;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 150%;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%
+}
+
+.fixedcard {
+  overflow: hidden;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  font-size:150%;
+}
+
+.deck .cardIndexIncrementor {
+   position: absolute;
+  top: 50%;
+  right: 2%;
+  font-size:150%; 
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+</style>
+</head>
+<body style="margin: 0;">
+  <div class="cardtable">
+
+  <!--<div class="header">
+    <div>Hello Laurie!</div>
+    <div><img src="img/---.png" style='width: auto; height:95%;'></div>
+    <div>Sign Out</div>
+  </div>-->
+
+	<div class="deck">
+    <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
+    <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+    <!--
+		<div class="card scrollcard">
+      <h2 align="center" style="font-family: Geometr415_Blk">STEVIE'S HONEY BEE</h2>
+      <img src="img/honeybee.png" style="width:100%;height:auto%;">
+      <h3 style="font-family: Calibri; margin: 25px;">Ingredients</h3>
+      <p style="font-family: Calibri; margin: 25px;">
+        2 oz Nine Banded Whiskey<br>
+        1 oz Lemon Juice<br>
+        .75 oz Lavender Syrup<br>
+        <br>
+        Add Nine Banded, lemon juice and lavender syrup into a shaker, shake quickly, and pour over ice. Add your preference of lemon swath or wheel.<br>
+        <br>
+        For the lavender syrup: take a handful of dried lavender buds and steep them in a bottle with a 1:1 mixture of honey (sugar can be substituted) and water at room temperature.
+        <br>
+        <br>
+        If you can't find lavender buds in your local market, you can grow your own.
+        <br>
+        <br>
+        The most common form of lavender in cultivation is the common or English lavender Lavandula angustifolia (formerly named L. officinalis), but a wide range of cultivars can be found. Other commonly grown ornamental species are L. stoechas, L. dentata, and L. multifida (Egyptian lavender).
+        <br>
+        <br>
+        Lavenders flourish best in dry, well-drained, sandy or gravelly soils in full sun. All types need little or no fertilizer and good air circulation. In areas of high humidity, root rot due to fungus infection can be a problem. Organic mulches can trap moisture around the plants' bases, encouraging root rot. Gravelly materials such as crushed rocks give better results. It grows best in soils with a pH between 6 and 8.
+        <br><br>
+        The U.S. National Institutes of Health (NIH) states that lavender is considered likely safe in food amounts and possibly safe in medicinal amounts. NIH does not recommend the use of lavender while pregnant or breast-feeding because of lack of knowledge of its effects.
+      </p>
+      <div class="cardbuttons" style="margin: auto;">
+        <a href="img/honeybee.png">Save Recipe</a> 
+      </div>
+    </div>
+    -->
+
+    <div class="card fixedcard flipcard" > 
+      <img src="img/Sprinkles_loyalty_front.png" style="width:100%; height: 100%">
+        <a href="#">
+          <button style="background-color: rgb(227,161,168); width:50%; left:25%;">SAVE TO PHONE</button>
+        </a>   
+    </div>
+
+    <div class="card fixedcard">
+        <img src="img/Sprinkles_doublepoints.png" style="width:100%; height: 100%">
+    </div> 
+
+    <div class="card fixedcard">
+        <img src="img/Sprinkles_halfbirthday.png" style="width:100%; height: 100%">
+        <a href="#">
+          <button style="background-color: rgb(155,61,19); width:50%; left:25%;">SAVE TO PHONE</button>
+        </a>    
+    </div> 
+
+    <div class="card fixedcard">
+        <img src="img/Sprinkles_breakfast.png" style="width:100%; height: 100%">
+    </div> 
+
+     <div class="card fixedcard">
+        <img src="img/Sprinkles_germanchocolate.png" style="width:100%; height: 100%">
+        <a href="http://sprinkles.com/cupcakes/flavors/menu" target="_blank">
+        <button style="background-color: rgb(156,210,221); width:70%; left:15%;">VIEW ALL FLAVORS</button></a>
+
+    </div>  
+
+     <div class="card fixedcard">
+        <img src="img/Sprinkles_findstore.png" style="width:100%; height: 100%">
+    </div> 
+</div>
+
+<div class = "navfooter">
+</div>  
+<!--
+    <div class="footer">
+
+        <a href="https://ninebandedwhiskey.com/blogs/news" ><i class="fa fa-book" aria-hidden="true"></i></a>
+        <a href="https://ninebandedwhiskey.com/collections/cocktail-recipes" ><i class="fa fa-glass" aria-hidden="true"></i></a>
+
+      
+        <a href="https://ninebandedwhiskey.com/a/tasting-room#findabottle" ><i class="fa fa-map-o" aria-hidden="true"></i></a>
+        <a href="http://9bandedwhiskey.com" ><i class="fa fa-home" aria-hidden="true"></i></a>
+
+
+          <a href="https://www.facebook.com/NineBandedWhiskey/" ><i class="fa fa-facebook-square fa" ></i></a>
+          <a href="https://twitter.com/ninebanded?lang=en" ><i class="fa fa-twitter fa"></i></a>
+    </div>
+-->
+
+
+</body>	
+
+<script>
+  var deck = document.querySelector(".deck");
+  var currentCardIndex = 0;
+  var cards = document.querySelectorAll(".card");
+  var cardCount = cards.length;
+  var navFooter = document.querySelector(".navfooter");
+  var navIcons = [];
+
+  function decrementCardIndex() {
+    if (currentCardIndex <= 0) {
+      currentCardIndex = cardCount;
+    }
+    currentCardIndex--;
+  }
+
+  function incrementCardIndex() {
+    if (currentCardIndex >= cardCount - 1) {
+      currentCardIndex = -1;
+    }
+    currentCardIndex++;
+  }
+
+  function initializeNavDots(navFooter, navIcons) {
+    cards.forEach(
+      function(each, index) {
+        navicon = document.createElement("i");
+        navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
+        navicon.style = "font-size: 50%;";
+        navFooter.appendChild(navicon);
+        navIcons[index] = (navicon);
+      }
+    )
+  }
+
+  function setCardVisibility(cards, navIcons) {
+    cards.forEach(
+      function (each,index){
+        if (index == currentCardIndex) {
+          each.hidden = false;
+          each.scrollTop = 0;
+          if (each.className.includes("flipcard")) {
+            navIcons[index].className = "navicon fa fa-reply";
+            navIcons[index].style = "font-size: 100%;"
+          }
+          else {  
+            navIcons[index].className = "navicon fa fa-circle" ;
+          }
+        }
+        else {
+          each.hidden = true;
+          navIcons[index].className = "navicon fa fa-circle-o";
+          if (each.className.includes("flipcard")) {
+              navIcons[index].style = "font-size: 50%;"
+          } 
+        }  
+      }
+    )
+  }
+
+  var hammered = Hammer(deck);
+  hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons)});
+  hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons)});
+
+  initializeNavDots(navFooter,navIcons);
+  setCardVisibility(cards,navIcons);
+
+
+  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
+  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
+
+
+  	
+</script>
+</html>
