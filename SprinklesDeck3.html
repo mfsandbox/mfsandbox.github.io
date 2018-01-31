@@ -184,7 +184,7 @@
 
 </style>
 </head>
-<body scroll="no" style="margin: 0; overflow: hidden;">
+<body style="margin: 0;">
   <div class="cardtable">
 
   <!--<div class="header">
@@ -230,7 +230,9 @@
     <div class="card flipcard" > 
         <div class="cardfront">
           <img src="img/Sprinkles_loyalty_front.png" style="width:100%; height: 100%">
+            <a href="#">
               <a href="img/Sprinkles_Loyalty_IOS.pkpass" target="_blank"><button style="background-color: rgb(227,161,168);">SAVE TO PHONE</button></a>
+            </a> 
         </div>  
         <div class="cardback" style="font-style: calibri; text-overflow: ellipsis;">
           <img src="img/Sprinkles_valance.png" style="width:100%; height:auto;" >
@@ -388,11 +390,7 @@
   document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
   document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
-  document.body.addEventListener("touchmove",
-                                  function(event) {
-                                                    event.preventDefault();
-                                                  },
-                                  false)
+
   	
 </script>
 </html>
