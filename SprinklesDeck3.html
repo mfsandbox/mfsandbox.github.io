@@ -388,7 +388,12 @@
   document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
   document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
-
+  document.body.addEventListener("touchmove",
+                                  function(event) {
+                                                    event.preventDefault();
+                                                    event.stopPropagation();
+                                                  },
+                                  false)
   	
 </script>
 </html>
