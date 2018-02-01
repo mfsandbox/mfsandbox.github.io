@@ -391,15 +391,16 @@
 
   var cardbacks = document.querySelectorAll(".cardback");
 
-  cardbacks.foreach(cardback,index) {
-    cardback.addEventListener(
-      "touchmove",
-      function(event) {event.stopPropagation()},
-      false
-    );
+  cardbacks.foreach(function(cardback,index) {
+                      cardback.addEventListener(
+                        "touchmove",
+                        function(event) {event.stopPropagation()},
+                        false
+                      );
 
-  }
-
+                    }
+  );
+                    
   document.querySelector(".cardback").addEventListener("touchmove",
                                                         function(event) {
                                                                           event.stopPropagation();
