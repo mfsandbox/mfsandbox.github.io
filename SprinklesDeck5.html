@@ -389,6 +389,12 @@
   document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
 
+  document.querySelector(".cardback").addEventListener("touchmove",
+                                                        function(event) {
+                                                                          alert('gonzo');
+                                                                          event.stopPropagation();
+                                                                        },
+                                                        false);                                 
 
   document.body.addEventListener("touchmove",
                                   function(event) {
