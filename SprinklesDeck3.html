@@ -7,7 +7,7 @@
 
 * {
     box-sizing: border-box;
-  }
+  }file:///Users/zcarter/UdellDirect/mfsandbox.github.io/img/Sprinkles_loyalty_front.png
 
 @font-face {
     font-family: Geometr415_Blk;
@@ -125,7 +125,7 @@
 }
 
 .cardfront {
-  overflow: hidden;
+  overflow: inherit;
   height: inherit;
   width: inherit;
 }
@@ -184,7 +184,7 @@
 
 </style>
 </head>
-<body style="margin: 0; touch-action:none;">
+<body scroll="no" style="margin: 0; overflow: hidden; position: fixed;">
   <div class="cardtable">
 
   <!--<div class="header">
@@ -230,9 +230,7 @@
     <div class="card flipcard" > 
         <div class="cardfront">
           <img src="img/Sprinkles_loyalty_front.png" style="width:100%; height: 100%">
-            <a href="#">
               <a href="img/Sprinkles_Loyalty_IOS.pkpass" target="_blank"><button style="background-color: rgb(227,161,168);">SAVE TO PHONE</button></a>
-            </a> 
         </div>  
         <div class="cardback" style="font-style: calibri; text-overflow: ellipsis;">
           <img src="img/Sprinkles_valance.png" style="width:100%; height:auto;" >
@@ -324,24 +322,29 @@
   var cardCount = cards.length;
   var navFooter = document.querySelector(".navfooter");
   var navIcons = [];
+  var swipeEnabled = true;
 
   function decrementCardIndex() {
-    if (currentCardIndex <= 0) {
-      currentCardIndex = cardCount;
+    if (swipeEnabled) {
+      if (currentCardIndex <= 0) {
+        currentCardIndex = cardCount;
+      }
+      currentCardIndex--;
     }
-    currentCardIndex--;
   }
 
   function incrementCardIndex() {
-    if (currentCardIndex >= cardCount - 1) {
-      currentCardIndex = -1;
-    }
-    currentCardIndex++;
+    if (swipeEnabled) {
+      if (currentCardIndex >= cardCount - 1) {
+        currentCardIndex = -1;
+      }
+      currentCardIndex++;
+    }  
   }
 
   function initializeNavDots(navFooter, navIcons) {
     cards.forEach(
-      function(each, index) {
+      function(card, index) {
         navicon = document.createElement("i");
         navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
         navicon.style = "font-size: 50%;";
@@ -353,25 +356,29 @@
 
   function setCardVisibility(cards, navIcons) {
     cards.forEach(
-      function (each,index){
+      function (card,index){
         if (index == currentCardIndex) {
-          each.hidden = false;
-          each.scrollTop = 0;
-          if (each.className.includes("flipcard")) {
+          card.hidden = false;
+          card.scrollTop = 0;
+          if (card.className.includes("flipcard")) {
             navIcons[index].className = "navicon fa fa-reply";
             navIcons[index].style = "font-size: 100%;";
-            var cardBack = each.querySelector('.cardback');
-            var cardFront = each.querySelector('.cardfront');
-            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden };
+            var cardBack = card.querySelector('.cardback');
+            var cardFront = card.querySelector('.cardfront');
+            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden;
+                                                    swipeEnabled = !cardFront.hidden;
+                                                    document.querySelector('.cardIndexDecrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                    document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                  }
           }
           else {  
             navIcons[index].className = "navicon fa fa-circle" ;
           }
         }
         else {
-          each.hidden = true;
+          card.hidden = true;
           navIcons[index].className = "navicon fa fa-circle-o";
-          if (each.className.includes("flipcard")) {
+          if (card.className.includes("flipcard")) {
               navIcons[index].style = "font-size: 50%;"
           } 
         }  
@@ -391,6 +398,31 @@
   document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
 
+  var cardbacks = document.querySelectorAll(".cardback");
+
+  cardbacks.forEach(function(cardback,index) {
+                      cardback.addEventListener(
+                        "touchmove",
+                        function(event) {event.stopPropagation()},
+                        false
+                      );
+
+                    }
+  );
+                    
+  document.querySelector(".cardback").addEventListener("touchmove",
+                                                        function(event) {
+                                                                          event.stopPropagation();
+                                                                        },
+                                                        false);                                 
+
+  document.body.addEventListener("touchmove",
+                                  function(event) {
+                                                    event.preventDefault();
+                                                    event.stopPropagation();
+                                                  },
+                                  false
+                                )
   	
 </script>
 </html>
