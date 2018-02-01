@@ -7,7 +7,7 @@
 
 * {
     box-sizing: border-box;
-  }
+  }file:///Users/zcarter/UdellDirect/mfsandbox.github.io/img/Sprinkles_loyalty_front.png
 
 @font-face {
     font-family: Geometr415_Blk;
@@ -322,19 +322,24 @@
   var cardCount = cards.length;
   var navFooter = document.querySelector(".navfooter");
   var navIcons = [];
+  var swipeEnabled = true;
 
   function decrementCardIndex() {
-    if (currentCardIndex <= 0) {
-      currentCardIndex = cardCount;
+    if (swipeEnabled) {
+      if (currentCardIndex <= 0) {
+        currentCardIndex = cardCount;
+      }
+      currentCardIndex--;
     }
-    currentCardIndex--;
   }
 
   function incrementCardIndex() {
-    if (currentCardIndex >= cardCount - 1) {
-      currentCardIndex = -1;
-    }
-    currentCardIndex++;
+    if (swipeEnabled) {
+      if (currentCardIndex >= cardCount - 1) {
+        currentCardIndex = -1;
+      }
+      currentCardIndex++;
+    }  
   }
 
   function initializeNavDots(navFooter, navIcons) {
@@ -360,7 +365,11 @@
             navIcons[index].style = "font-size: 100%;";
             var cardBack = card.querySelector('.cardback');
             var cardFront = card.querySelector('.cardfront');
-            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden };
+            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden;
+                                                    swipeEnabled = !cardFront.hidden;
+                                                    document.querySelector('.cardIndexDecrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                    document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                  }
           }
           else {  
             navIcons[index].className = "navicon fa fa-circle" ;
