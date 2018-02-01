@@ -339,7 +339,7 @@
 
   function initializeNavDots(navFooter, navIcons) {
     cards.forEach(
-      function(each, index) {
+      function(card, index) {
         navicon = document.createElement("i");
         navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
         navicon.style = "font-size: 50%;";
@@ -351,11 +351,11 @@
 
   function setCardVisibility(cards, navIcons) {
     cards.forEach(
-      function (each,index){
+      function (card,index){
         if (index == currentCardIndex) {
-          each.hidden = false;
-          each.scrollTop = 0;
-          if (each.className.includes("flipcard")) {
+          card.hidden = false;
+          card.scrollTop = 0;
+          if (card.className.includes("flipcard")) {
             navIcons[index].className = "navicon fa fa-reply";
             navIcons[index].style = "font-size: 100%;";
             var cardBack = each.querySelector('.cardback');
@@ -367,9 +367,9 @@
           }
         }
         else {
-          each.hidden = true;
+          card.hidden = true;
           navIcons[index].className = "navicon fa fa-circle-o";
-          if (each.className.includes("flipcard")) {
+          if (card.className.includes("flipcard")) {
               navIcons[index].style = "font-size: 50%;"
           } 
         }  
@@ -388,6 +388,17 @@
   document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
   document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
 
+
+  var cardbacks = document.querySelectorAll(".cardback");
+
+  cardbacks.foreach(cardback,index) {
+    cardback.addEventListener(
+      "touchmove",
+      function(event) {event.stopPropagation()},
+      false
+    );
+
+  }
 
   document.querySelector(".cardback").addEventListener("touchmove",
                                                         function(event) {
