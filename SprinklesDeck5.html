@@ -391,14 +391,12 @@
 
   document.querySelector(".cardback").addEventListener("touchmove",
                                                         function(event) {
-                                                                          alert('gonzo');
                                                                           event.stopPropagation();
                                                                         },
                                                         false);                                 
 
   document.body.addEventListener("touchmove",
                                   function(event) {
-                                                    alert(event.target.className);
                                                     event.preventDefault();
                                                     event.stopPropagation();
                                                   },
