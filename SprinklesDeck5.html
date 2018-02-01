@@ -358,8 +358,8 @@
           if (card.className.includes("flipcard")) {
             navIcons[index].className = "navicon fa fa-reply";
             navIcons[index].style = "font-size: 100%;";
-            var cardBack = each.querySelector('.cardback');
-            var cardFront = each.querySelector('.cardfront');
+            var cardBack = card.querySelector('.cardback');
+            var cardFront = card.querySelector('.cardfront');
             navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden };
           }
           else {  
@@ -391,7 +391,7 @@
 
   var cardbacks = document.querySelectorAll(".cardback");
 
-  cardbacks.foreach(function(cardback,index) {
+  cardbacks.forEach(function(cardback,index) {
                       cardback.addEventListener(
                         "touchmove",
                         function(event) {event.stopPropagation()},
