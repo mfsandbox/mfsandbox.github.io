@@ -1,4 +1,4 @@
-<html style="overflow: hidden; touch-action:none;">
+<html >
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <script src="https://use.fontawesome.com/e9a878b310.js"></script>
@@ -7,7 +7,7 @@
 
 * {
     box-sizing: border-box;
-  }file:///Users/zcarter/UdellDirect/mfsandbox.github.io/img/Sprinkles_loyalty_front.png
+  }
 
 @font-face {
     font-family: Geometr415_Blk;
@@ -69,6 +69,7 @@
 
 .navicon {
   color: rgb(215,79,78);
+  cursor: url(img/swipeCursor.png);
 }
 
 .navfooter {
@@ -114,6 +115,7 @@
 
 .fixedcard {
   overflow: hidden;
+  cursor: url("img/swipeCursor.png");
 }
 
 .scrollcard {
@@ -163,6 +165,7 @@
   top: 50%;
   left: 2%;
   font-size:150%;
+  cursor: pointer;
 }
 
 .deck .cardIndexIncrementor {
@@ -170,6 +173,7 @@
   top: 50%;
   right: 2%;
   font-size:150%; 
+  cursor: pointer;
 }
 
 
@@ -184,7 +188,7 @@
 
 </style>
 </head>
-<body scroll="no" style="margin: 0; overflow: hidden; position: fixed;">
+<body style="overflow: hidden;">
   <div class="cardtable">
 
   <!--<div class="header">
@@ -230,10 +234,12 @@
     <div class="card flipcard" > 
         <div class="cardfront">
           <img src="img/Sprinkles_loyalty_front.png" style="width:100%; height: 100%">
-              <a href="img/Sprinkles_Loyalty_IOS.pkpass" target="_blank"><button style="background-color: rgb(227,161,168);">SAVE TO PHONE</button></a>
+          <a href="img/Sprinkles_Loyalty_IOS.pkpass" target="_blank"><button style="background-color: rgb(227,161,168); cursor: pointer;">SAVE TO PHONE</button></a>
+          <img class="cardflipper" src="img/infoIcon.png" style="height: 2.5vh; width: 2.5vh; position: absolute; top:96%; left: 92%;">
         </div>  
         <div class="cardback" style="font-style: calibri; text-overflow: ellipsis;">
           <img src="img/Sprinkles_valance.png" style="width:100%; height:auto;" >
+          <p class="cardflipper" style="position:absolute; top: 10%; left: 80%; color: blue; font-weight: bold">Done</p>
           <p>ABOUT SPRINKLES</p>
           <p>
               Since we opened the world's first cupcake bakery in Beverly Hills, our freshly baked treats have inspired long lines of devoted Hollywood stars and serious epicureans alike.
@@ -306,8 +312,10 @@
 
      <div class="card fixedcard">
         <img src="img/Sprinkles_findstore.png" style="width:100%; height: 100%">
-    </div> 
-  </div>
+          <input id="zipcode" type="text" pattern="[0-9]{5}" style="font-family: Calibri; font-size: 4vh; height:6vh; width: 30vh; position:absolute; top:70%; left:10%; z-index:2">
+          <a id="zipcodelink" href="#" target="_blank"><img src="img/GoButton.png" style="height:6vh; width:auto; position:absolute; z-index:2; left:80%; top: 70%;" onclick="gotoMap()"></a>
+    </div>
+  </div>  
 
   <div class = "navfooter">
   </div>  
@@ -323,6 +331,10 @@
   var navFooter = document.querySelector(".navfooter");
   var navIcons = [];
   var swipeEnabled = true;
+
+  function gotoMap() {
+    document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=sprinkles+cupcakes+near+zip+code+" + document.querySelector("#zipcode").value;
+  }
 
   function decrementCardIndex() {
     if (swipeEnabled) {
@@ -354,21 +366,47 @@
     )
   }
 
+  function flipCard(card) {
+    var cardBack = card.querySelector('.cardback');
+    var cardFront = card.querySelector('.cardfront');
+    cardFront.hidden = !cardFront.hidden;
+    cardBack.hidden = !cardFront.hidden;
+    swipeEnabled = !cardFront.hidden;
+    document.querySelector('.cardIndexDecrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+    document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+  }
+
+  function initFlipCards() {
+    flipcards = document.querySelectorAll(".flipcard");
+    flipcards.forEach(
+      function(card,index) {
+        cardBack = card.querySelector('.cardback');
+        cardBack.hidden = true;
+        flippers = card.querySelectorAll('.cardflipper');
+        flippers.forEach(
+          function(flipper,index) {
+            flipper.style.cursor = "pointer";
+            flipper.onclick = function(){
+              flipCard(card);
+            }        
+          }
+        )   
+      }
+    )
+  } 
+
   function setCardVisibility(cards, navIcons) {
     cards.forEach(
       function (card,index){
         if (index == currentCardIndex) {
           card.hidden = false;
           card.scrollTop = 0;
-          if (card.className.includes("flipcard")) {
+          /*if (card.className.includes("flipcard")) {*/
+            if (false) {
             navIcons[index].className = "navicon fa fa-reply";
             navIcons[index].style = "font-size: 100%;";
-            var cardBack = card.querySelector('.cardback');
-            var cardFront = card.querySelector('.cardfront');
-            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden;
-                                                    swipeEnabled = !cardFront.hidden;
-                                                    document.querySelector('.cardIndexDecrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
-                                                    document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+            navIcons[index].onclick = function() {  
+                                                    flipCard(card);
                                                   }
           }
           else {  
@@ -386,12 +424,15 @@
     )
   }
 
+
+
   var hammered = Hammer(deck);
   hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons)});
   hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons)});
 
   initializeNavDots(navFooter,navIcons);
   setCardVisibility(cards,navIcons);
+  initFlipCards();
 
 
   document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
