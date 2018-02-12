@@ -373,15 +373,16 @@
     var windowHeight = window.innerHeight;
     heroImages.forEach(
       function(heroImage,index){
-        scaleHero(heroImage,windowWidth,windowHeight);
+        scaleHero(heroImage,windowWidth,windowHeight,false);
       }
     )
   }
 
-  function scaleHero(heroImage,windowWidth,windowHeight) {
+  function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
           widthRatio = windowWidth/heroImage.width;
           heightRatio = windowHeight/heroImage.height;
           magnification = Math.max(widthRatio,heightRatio);
+          if (doAlert) {alert(magnification);}
           heroImage.height *= magnification;
           heroImage.width *= magnification;
           heroHeightOverflow = (heroImage.height - windowHeight)/2;
@@ -393,7 +394,7 @@
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
   document.querySelectorAll(".heroImage").forEach(function(heroImage,index) {
-      heroImage.addEventListener("load",scaleHero(heroImage,windowWidth,windowHeight));
+      heroImage.addEventListener("load",scaleHero(heroImage,windowWidth,windowHeight,true));
     }
   );  
 
