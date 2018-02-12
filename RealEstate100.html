@@ -382,7 +382,7 @@
           widthRatio = windowWidth/heroImage.naturalWidth;
           heightRatio = windowHeight/heroImage.naturalHeight;
           magnification = Math.max(widthRatio,heightRatio);
-          if (doAlert) {alert(magnification);}
+          if (doAlert) {alert(heroImage.complete);}
           heroImage.height = heroImage.naturalHeight * magnification;
           heroImage.width = heroImage.naturalWidth * magnification;
           heroHeightOverflow = (heroImage.height - windowHeight)/2;
