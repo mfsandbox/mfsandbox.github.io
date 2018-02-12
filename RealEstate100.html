@@ -367,7 +367,7 @@
                                   false
                                 )
 
-  function scaleHeroes() {   
+  function scaleHeroes(doAlerts) {   
     var heroImages = document.querySelectorAll(".heroImage");
     var windowWidth = deck.clientWidth;
     var windowHeight = deck.clientHeight;
@@ -378,6 +378,9 @@
         magnification = Math.max(widthRatio,heightRatio);
         heroImage.height *= magnification;
         heroImage.width *= magnification;
+        if (index == 1 && doAlerts) {
+          alert(magnification);
+        }
         heroHeightOverflow = (heroImage.height - windowHeight)/2;
         heroWidthOverflow = (heroImage.width - windowWidth)/2;
         heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
@@ -385,9 +388,9 @@
     )
   }
 
-window.addEventListener("resize", function(event) {scaleHeroes();});
+window.addEventListener("resize", function(event) {scaleHeroes(false);});
 
-window.onload = scaleHeroes();
+window.onload = scaleHeroes(true);
 
 
   	
