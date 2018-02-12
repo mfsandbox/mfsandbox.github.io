@@ -376,7 +376,6 @@
         widthRatio = windowWidth/heroImage.width;
         heightRatio = windowHeight/heroImage.height;
         magnification = Math.max(widthRatio,heightRatio);
-        if (index == 1) {alert(magnification);}
         heroImage.height *= magnification;
         heroImage.width *= magnification;
         heroHeightOverflow = (heroImage.height - windowHeight)/2;
@@ -388,7 +387,7 @@
 
 window.addEventListener("resize", function(event) {scaleHeroes();});
 
-document.onload = scaleHeroes();
+window.onload = scaleHeroes();
 
 
   	
