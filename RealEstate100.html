@@ -177,8 +177,39 @@
 
 
 </style>
+<script>
+  
+
+  function scaleHeroes() {   
+    var heroImages = document.querySelectorAll(".heroImage");
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+    heroImages.forEach(
+      function(heroImage,index){
+        scaleHero(heroImage,windowWidth,windowHeight,false);
+      }
+    )
+  }
+
+  function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
+          widthRatio = windowWidth/heroImage.naturalWidth;
+          heightRatio = windowHeight/heroImage.naturalHeight;
+          magnification = Math.max(widthRatio,heightRatio);
+          if (doAlert) {alert(heroImage.complete);}
+          heroImage.height = heroImage.naturalHeight * magnification;
+          heroImage.width = heroImage.naturalWidth * magnification;
+          heroHeightOverflow = (heroImage.height - windowHeight)/2;
+          heroWidthOverflow = (heroImage.width - windowWidth)/2;
+          heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
+
+  }  
+
+</script>
+
+
+
 </head>
-<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
   <div class="cardtable">
 
 
@@ -367,34 +398,6 @@
                                   false
                                 )
 
-  function scaleHeroes() {   
-    var heroImages = document.querySelectorAll(".heroImage");
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
-    heroImages.forEach(
-      function(heroImage,index){
-        scaleHero(heroImage,windowWidth,windowHeight,false);
-      }
-    )
-  }
-
-  function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
-          widthRatio = windowWidth/heroImage.naturalWidth;
-          heightRatio = windowHeight/heroImage.naturalHeight;
-          magnification = Math.max(widthRatio,heightRatio);
-          if (doAlert) {alert(heroImage.complete);}
-          heroImage.height = heroImage.naturalHeight * magnification;
-          heroImage.width = heroImage.naturalWidth * magnification;
-          heroHeightOverflow = (heroImage.height - windowHeight)/2;
-          heroWidthOverflow = (heroImage.width - windowWidth)/2;
-          heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
-
-  }  
-
-  windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight;
-
-  document.body.addEventListener("load", function(event) {scaleHeroes()})
 
   window.addEventListener("resize", function(event) {scaleHeroes();});
 
