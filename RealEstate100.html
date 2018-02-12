@@ -367,30 +367,38 @@
                                   false
                                 )
 
-  function scaleHeroes(doAlerts) {   
+  function scaleHeroes() {   
     var heroImages = document.querySelectorAll(".heroImage");
-    var windowWidth = deck.clientWidth;
-    var windowHeight = deck.clientHeight;
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
     heroImages.forEach(
       function(heroImage,index){
-        widthRatio = windowWidth/heroImage.width;
-        heightRatio = windowHeight/heroImage.height;
-        magnification = Math.max(widthRatio,heightRatio);
-        heroImage.height *= magnification;
-        heroImage.width *= magnification;
-        if (index == 1 && doAlerts) {
-          alert(magnification);
-        }
-        heroHeightOverflow = (heroImage.height - windowHeight)/2;
-        heroWidthOverflow = (heroImage.width - windowWidth)/2;
-        heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
+        scaleHero(heroImage,windowWidth,windowHeight);
       }
     )
   }
 
-window.addEventListener("resize", function(event) {scaleHeroes(false);});
+  function scaleHero(heroImage,windowWidth,windowHeight) {
+          widthRatio = windowWidth/heroImage.width;
+          heightRatio = windowHeight/heroImage.height;
+          magnification = Math.max(widthRatio,heightRatio);
+          heroImage.height *= magnification;
+          heroImage.width *= magnification;
+          heroHeightOverflow = (heroImage.height - windowHeight)/2;
+          heroWidthOverflow = (heroImage.width - windowWidth)/2;
+          heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
 
-window.onload = scaleHeroes(true);
+  }  
+
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+  document.querySelectorAll(".heroImage").forEach(function(heroImage,index) {
+      heroImage.addEventListener("load",scaleHero(heroImage,windowWidth,windowHeight));
+    }
+  );  
+
+
+  window.addEventListener("resize", function(event) {scaleHeroes();});
 
 
   	
