@@ -43,6 +43,9 @@
 </body>	
 
 <script>
+
+function scaleHeroes() {
+
   var heroImages = document.querySelectorAll(".heroImage");
   var windowWidth = window.innerWidth;
   var windowHeight = window.innerHeight;
@@ -59,6 +62,10 @@
         heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
       }
     )
+}
+
+scaleHeroes();
+window.addEventListener("resize", function(event) {scaleHeroes();})
 
 </script>
 </html>
