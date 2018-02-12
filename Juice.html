@@ -44,6 +44,7 @@
 
 <script>
 
+
 function scaleHeroes() {
 
   var heroImages = document.querySelectorAll(".heroImage");
@@ -65,7 +66,15 @@ function scaleHeroes() {
 }
 
 scaleHeroes();
-window.addEventListener("resize", function(event) {scaleHeroes();})
+window.addEventListener("resize", function(event) {scaleHeroes();});
+
+document.body.addEventListener("touchmove",
+                                function(event) {
+                                                  event.preventDefault();
+                                                  event.stopPropagation();
+                                                },
+                                false
+                              );
 
 </script>
 </html>
