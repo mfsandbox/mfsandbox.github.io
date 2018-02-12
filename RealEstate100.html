@@ -379,12 +379,12 @@
   }
 
   function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
-          widthRatio = windowWidth/heroImage.width;
-          heightRatio = windowHeight/heroImage.height;
+          widthRatio = windowWidth/heroImage.naturalWidth;
+          heightRatio = windowHeight/heroImage.naturalHeight;
           magnification = Math.max(widthRatio,heightRatio);
           if (doAlert) {alert(magnification);}
-          heroImage.height *= magnification;
-          heroImage.width *= magnification;
+          heroImage.height = heroImage.naturalHeight * magnification;
+          heroImage.width = heroImage.naturalWidth * magnification;
           heroHeightOverflow = (heroImage.height - windowHeight)/2;
           heroWidthOverflow = (heroImage.width - windowWidth)/2;
           heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
