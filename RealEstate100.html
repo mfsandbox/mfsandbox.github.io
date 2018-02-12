@@ -194,8 +194,8 @@
 
   function scaleHeroes() {   
     var heroImages = document.querySelectorAll(".heroImage");
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
+    var windowWidth = document.body.clientWidth;
+    var windowHeight = document.body.clientHeight;
     heroImages.forEach(
       function(heroImage,index){
         scaleHero(heroImage,windowWidth,windowHeight,false);
