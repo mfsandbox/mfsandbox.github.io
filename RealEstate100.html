@@ -393,11 +393,8 @@
 
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
-  document.querySelectorAll(".heroImage").forEach(function(heroImage,index) {
-      heroImage.addEventListener("load",scaleHero(heroImage,windowWidth,windowHeight,true));
-    }
-  );  
 
+  document.body.addEventListener("load", function(event) {scaleHeroes()})
 
   window.addEventListener("resize", function(event) {scaleHeroes();});
 
