@@ -38,23 +38,27 @@
 </style>
 </head>
 <body scroll="no" style="margin: 0; overflow: hidden; position: fixed;">
-<img class="img/realEstate/heroImage" src="001-259593-508 E_5967817.jpg">
+<img class="heroImage" src="img/realEstate/001-259593-508 E_5967817.jpg">
 
 </body>	
 
 <script>
   var heroImages = document.querySelectorAll(".heroImage");
-
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
   heroImages.forEach(
       function(heroImage,index){
-        widthRatio = window.innerWidth/heroImage.width;
-        heightRatio = window.innerHeight/heroImage.height;
+        widthRatio = windowWidth/heroImage.width;
+        heightRatio = windowHeight/heroImage.height;
         magnification = Math.max(widthRatio,heightRatio);
         heroImage.height *= magnification;
         heroImage.width *= magnification;
-
+        heroHeightOverflow = (heroImage.height - windowHeight)/2;
+        heroWidthOverflow = (heroImage.width - windowWidth)/2;
+        
+        heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
       }
     )
-  
+
 </script>
 </html>
