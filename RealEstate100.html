@@ -179,18 +179,6 @@
 </style>
 <script>
   
-
-  function scaleHeroes() {   
-    var heroImages = document.querySelectorAll(".heroImage");
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
-    heroImages.forEach(
-      function(heroImage,index){
-        scaleHero(heroImage,windowWidth,windowHeight,false);
-      }
-    )
-  }
-
   function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
           widthRatio = windowWidth/heroImage.naturalWidth;
           heightRatio = windowHeight/heroImage.naturalHeight;
@@ -203,6 +191,20 @@
           heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
 
   }  
+
+  function scaleHeroes() {   
+    alert('scaling');
+    var heroImages = document.querySelectorAll(".heroImage");
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+    heroImages.forEach(
+      function(heroImage,index){
+        scaleHero(heroImage,windowWidth,windowHeight,false);
+      }
+    )
+  }
+
+
 
 </script>
 
