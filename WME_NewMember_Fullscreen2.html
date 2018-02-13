@@ -1,0 +1,374 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(128,12,12,0.7);
+}
+
+.navfooter {
+  position:absolute;
+  top: 85vh;
+  height: 2vh;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  overflow: hidden;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+  border:1px solid black;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  font-size:150%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  font-size:150%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+</style>
+<script>
+  
+  function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
+          widthRatio = windowWidth/heroImage.naturalWidth;
+          heightRatio = windowHeight/heroImage.naturalHeight;
+          magnification = Math.min(widthRatio,heightRatio);
+          if (doAlert) {alert(heroImage.complete);}
+          heroImage.height = heroImage.naturalHeight * magnification;
+          heroImage.width = heroImage.naturalWidth * magnification;
+          heroHeightOverflow = -(heroImage.height - windowHeight)/2;
+          heroWidthOverflow = -(heroImage.width - windowWidth)/2;
+          heroImage.style.transform = `translate3d(${heroWidthOverflow}px,${heroHeightOverflow}px,0px)`;
+
+  }  
+
+  function scaleHeroes() {   
+    var heroImages = document.querySelectorAll(".heroImage");
+    var windowWidth = document.body.clientWidth;
+    var windowHeight = document.body.clientHeight;
+    heroImages.forEach(
+      function(heroImage,index){
+        scaleHero(heroImage,windowWidth,windowHeight,false);
+      }
+    )
+  }
+
+
+
+</script>
+
+
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
+  <div class="cardtable">
+
+
+	<div class="deck">
+    <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
+    <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-joinedwmeinstore.png"> 
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" align="center" class="heroImage" src="img/WM-memberexclusive_instore.png">
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-cornersofstore4.png">
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-cornersofstore1.png">
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-cornersofstore2.png">
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-cornersofstore3.png">
+    </div> 
+    <div class="card fixedcard">
+        <img draggable="false" class="heroImage" src="img/WM-notwme.png">
+    </div> 
+  </div>  
+
+  <div class = "navfooter">
+  </div>  
+</div>
+
+</body>	
+
+<script>
+  var deck = document.querySelector(".deck");
+  var currentCardIndex = 0;
+  var cards = document.querySelectorAll(".card");
+  var cardCount = cards.length;
+  var navFooter = document.querySelector(".navfooter");
+  var navIcons = [];
+  var swipeEnabled = true;
+
+  var url = new URL(document.location.href);
+  var urlCardNumber = Number(url.searchParams.get("card"));
+  if (Number.isInteger(urlCardNumber)) {
+    if (urlCardNumber >0 && urlCardNumber <= cardCount){
+      currentCardIndex = urlCardNumber - 1;
+    }
+  }
+
+
+  url.searchParams.get("card")
+
+  function gotoMap() {
+    document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=world+market+zip+code+" + document.querySelector("#zipcode").value;
+  }
+
+  function decrementCardIndex() {
+    if (swipeEnabled) {
+      if (currentCardIndex <= 0) {
+        currentCardIndex = cardCount;
+      }
+      currentCardIndex--;
+    }
+  }
+
+  function incrementCardIndex() {
+    if (swipeEnabled) {
+      if (currentCardIndex >= cardCount - 1) {
+        currentCardIndex = -1;
+      }
+      currentCardIndex++;
+    }  
+  }
+
+  function initializeNavDots(navFooter, navIcons) {
+    cards.forEach(
+      function(card, index) {
+        navicon = document.createElement("i");
+        navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
+        navicon.style = "font-size: 50%;";
+        navFooter.appendChild(navicon);
+        navIcons[index] = (navicon);
+      }
+    )
+  }
+
+  function setCardVisibility(cards, navIcons) {
+    cards.forEach(
+      function (card,index){
+        if (index == currentCardIndex) {
+          card.hidden = false;
+          card.scrollTop = 0;
+          if (card.className.includes("flipcard")) {
+            navIcons[index].className = "navicon fa fa-reply";
+            navIcons[index].style = "font-size: 100%;";
+            var cardBack = card.querySelector('.cardback');
+            var cardFront = card.querySelector('.cardfront');
+            navIcons[index].onclick = function() {cardFront.hidden = !cardFront.hidden;
+                                                    swipeEnabled = !cardFront.hidden;
+                                                    document.querySelector('.cardIndexDecrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                    document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
+                                                  }
+          }
+          else {  
+            navIcons[index].className = "navicon fa fa-circle" ;
+          }
+        }
+        else {
+          card.hidden = true;
+          navIcons[index].className = "navicon fa fa-circle-o";
+          if (card.className.includes("flipcard")) {
+              navIcons[index].style = "font-size: 50%;"
+          } 
+        }  
+      }
+    )
+  }
+
+  var hammered = Hammer(deck);
+  hammered.on('swiperight', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons)});
+  hammered.on('swipeleft',function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons)});
+
+  initializeNavDots(navFooter,navIcons);
+  setCardVisibility(cards,navIcons);
+
+
+  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
+  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
+
+
+  var cardbacks = document.querySelectorAll(".cardback");
+
+  cardbacks.forEach(function(cardback,index) {
+                      cardback.addEventListener(
+                        "touchmove",
+                        function(event) {event.stopPropagation()},
+                        false
+                      );
+
+                    }
+  );                               
+
+  document.body.addEventListener("touchmove",
+                                  function(event) {
+                                                    event.preventDefault();
+                                                    event.stopPropagation();
+                                                  },
+                                  false
+                                )
+
+
+  window.addEventListener("resize", function(event) {scaleHeroes();});
+
+
+  	
+</script>
+</html>
