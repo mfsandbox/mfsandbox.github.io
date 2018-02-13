@@ -186,9 +186,9 @@
           if (doAlert) {alert(heroImage.complete);}
           heroImage.height = heroImage.naturalHeight * magnification;
           heroImage.width = heroImage.naturalWidth * magnification;
-          heroHeightOverflow = (heroImage.height - windowHeight)/2;
-          heroWidthOverflow = (heroImage.width - windowWidth)/2;
-          heroImage.style.transform = `translate3d(-${heroWidthOverflow}px,-${heroHeightOverflow}px,0px)`;
+          heroHeightOverflow = -(heroImage.height - windowHeight)/2;
+          heroWidthOverflow = -(heroImage.width - windowWidth)/2;
+          heroImage.style.transform = `translate3d(${heroWidthOverflow}px,${heroHeightOverflow}px,0px)`;
 
   }  
 
