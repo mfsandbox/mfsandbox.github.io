@@ -64,7 +64,6 @@
 
 .navfooter {
   position:absolute;
-  top: 85vh;
   height: 2vh;
   width: 100%;
   padding-right: 33%;
@@ -197,6 +196,9 @@
     var heroImages = document.querySelectorAll(".heroImage");
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
+    navfooter = document.body.querySelector(".navfooter");
+    navTop = Math.round(windowHeight * 0.97);
+    navfooter.style.top = `${navTop}px`;
     heroImages.forEach(
       function(heroImage,index){
         scaleHero(heroImage,windowWidth,windowHeight,false);
@@ -218,27 +220,23 @@
 	<div class="deck">
     <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
     <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+    
     <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-joinedwmeinstore.png"> 
+        <img draggable="false" class="heroImage" src="img/WM_joinwme_85pixbottom.png"> 
     </div> 
+    
     <div class="card fixedcard">
-        <img draggable="false" align="center" class="heroImage" src="img/WM-memberexclusive_instore.png">
-    </div> 
+        <img draggable="false" class="heroImage" src="img/WM_prod1_85pixelbottom.png"> 
+    </div>
+    
     <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-cornersofstore4.png">
-    </div> 
+        <img draggable="false" class="heroImage" src="img/WM_prod2_85pixelbottom.png"> 
+    </div>
+    
     <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-cornersofstore1.png">
-    </div> 
-    <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-cornersofstore2.png">
-    </div> 
-    <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-cornersofstore3.png">
-    </div> 
-    <div class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/WM-notwme.png">
-    </div> 
+        <img draggable="false" class="heroImage" src="img/WM_wmedashboard_85pix bottom.png"> 
+    </div>
+
   </div>  
 
   <div class = "navfooter">
