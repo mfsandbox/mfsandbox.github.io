@@ -183,7 +183,8 @@
           widthRatio = windowWidth/heroImage.naturalWidth;
           heightRatio = windowHeight/heroImage.naturalHeight;
           magnification = Math.min(widthRatio,heightRatio);
-          if (doAlert) {alert(`${windowWidth}, ${windowHeight}`);}
+
+          if (doAlert) {alert(`${navigator.userAgent},${windowWidth}, ${windowHeight}`);}
           heroImage.height = heroImage.naturalHeight * magnification;
           heroImage.width = heroImage.naturalWidth * magnification;
           heroHeightOverflow = -(heroImage.height - windowHeight)/2;
