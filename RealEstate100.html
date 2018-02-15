@@ -190,12 +190,15 @@
           heroWidthOverflow = -(heroImage.width - windowWidth)/2;
           heroImage.style.transform = `translate3d(${heroWidthOverflow}px,${heroHeightOverflow}px,0px)`;
 
-  }  
+  } 
 
   function scaleHeroes() {   
     var heroImages = document.querySelectorAll(".heroImage");
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
+    navfooter = document.body.querySelector(".navfooter");
+    navTop = Math.round(windowHeight * 0.96);
+    navfooter.style.top = `${navTop}px`; 
     heroImages.forEach(
       function(heroImage,index){
         scaleHero(heroImage,windowWidth,windowHeight,false);
