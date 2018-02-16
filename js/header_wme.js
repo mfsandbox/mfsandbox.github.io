@@ -16,7 +16,7 @@
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
     navfooter = document.body.querySelector(".navfooter");
-    navTop = Math.round(windowHeight * 0.97);
+    navTop = Math.round(windowHeight * 0.95);
     navfooter.style.top = `${navTop}px`;
     heroImages.forEach(
       function(heroImage,index){
