@@ -1,10 +1,15 @@
   function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
           widthRatio = windowWidth/heroImage.naturalWidth;
           heightRatio = windowHeight/heroImage.naturalHeight;
-          magnification = Math.min(widthRatio,heightRatio);
+
+          magX = Math.min(widthRatio,heightRatio * 1.2);
+          magY = Math.min(heightRatio,widthRatio * 1.2);
+
+
           if (doAlert) {alert(heroImage.complete);}
-          heroImage.height = heroImage.naturalHeight * magnification;
-          heroImage.width = heroImage.naturalWidth * magnification;
+          heroImage.height = heroImage.naturalHeight * magY;
+          heroImage.width = heroImage.naturalWidth * magX;
+
           heroHeightOverflow = -(heroImage.height - windowHeight)/2;
           heroWidthOverflow = -(heroImage.width - windowWidth)/2;
           heroImage.style.transform = `translate3d(${heroWidthOverflow}px,${heroHeightOverflow}px,0px)`;
