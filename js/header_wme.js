@@ -1,10 +1,15 @@
   function scaleHero(heroImage,windowWidth,windowHeight,doAlert) {
-          widthRatio = windowWidth/heroImage.naturalWidth;
+          maxStretch = 1.2;
+          maxWidth = windowHeight * maxStretch * (800/1300);
+
+          displayedWidth = (windowWidth > maxWidth) ? maxWidth : windowWidth;
+
+          widthRatio = displayedWidth/heroImage.naturalWidth;
           heightRatio = windowHeight/heroImage.naturalHeight;
           heroParentOverflow = window.getComputedStyle(heroImage.parentElement).overflow;
 
-          magX = Math.min(widthRatio,heightRatio * 1.2);
-          magY = Math.min(heightRatio,widthRatio * 1.2);
+          magX = Math.min(widthRatio,heightRatio * maxStretch);
+          magY = Math.min(heightRatio,widthRatio * maxStretch);
           
           if (heroParentOverflow == "scroll") {
             magX = widthRatio;
