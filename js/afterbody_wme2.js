@@ -93,8 +93,8 @@
         if (index == currentCardIndex) {
           card.hidden = false;
           card.scrollTop = 0;
-          /*if (card.className.includes("flipcard")) {*/
-            if (false) {
+          if (card.className.includes("flipcard")) {
+            /*if (false) {*/
             navIcons[index].className = "navicon fa fa-reply";
             navIcons[index].style = "font-size: 100%;";
             navIcons[index].onclick = function() {  
