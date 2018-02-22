@@ -33,9 +33,9 @@
     var heroImages = document.querySelectorAll(".heroImage");
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
-    /*var ct = document.querySelector(".cardtable");
+    var ct = document.querySelector(".cardtable");
     ct.style.height = `${windowHeight}px`;
-    ct.style.width = `${windowWidth}px`;*/
+    ct.style.width = `${windowWidth}px`;
     navfooter = document.body.querySelector(".navfooter");
     navTop = Math.round(windowHeight * 0.95);
     navfooter.style.top = `${navTop}px`;
