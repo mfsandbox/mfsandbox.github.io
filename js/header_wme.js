@@ -11,7 +11,7 @@
           magX = Math.min(widthRatio,heightRatio * maxStretch);
           magY = Math.min(heightRatio,widthRatio * maxStretch);
           
-          if (heroParentOverflow == "scroll") {
+          if (heroParentOverflow == "scroll" || heroParentOverflow == "auto") {
             magX = widthRatio;
             magY = magX;
           }
@@ -33,6 +33,9 @@
     var heroImages = document.querySelectorAll(".heroImage");
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
+    var ct = document.querySelector(".cardtable");
+    ct.clientWidth = windowWidth;
+    ct.clientHeight = windowHeight;
     navfooter = document.body.querySelector(".navfooter");
     navTop = Math.round(windowHeight * 0.95);
     navfooter.style.top = `${navTop}px`;
