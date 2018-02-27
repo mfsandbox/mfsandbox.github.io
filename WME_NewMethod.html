@@ -1,0 +1,221 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(128,12,12,0.7);
+}
+
+.navfooter {
+  position:absolute;
+  height: 2vh;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  font-size:150%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  font-size:150%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+</style>
+<script src="./js/header_wme3.js"></script>
+
+
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed; background-color: grey" onload="scaleHeroes()">
+  <div class="cardtable">
+
+
+	<div class="deck" style="background-color: black">
+    <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
+    <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+
+
+
+  
+
+    <div class="card fixedcard" naturalWidth = "900" naturalHeight="1300" style="background-color: green;">
+      <img draggable="false" style="height: 50%; width: 50%; background-color: yellow;" class="heroImage" src="img/wme/Alissa/alissa_1.png">
+      <a href="http://www.cnn.com">What's new?!?</a>
+    </div> 
+    <!--
+     <div class="card flipcard" > 
+        <div class="cardfront"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_2.png"><i class="cardflipper fa fa-reply" style="z-index:10; position:absolute; top: 5%; left: 92%; color:rgba(128,12,12,0.7); font-weight: bold"></i></div>
+        <div class="cardback"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_2_back_withrule.png"><i class="cardflipper fa fa-reply" style="z-index:10; position:absolute; top: 5%; left: 92%; color:rgba(128,12,12,0.7); font-weight: bold"></i></div>
+    </div>   
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_3.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_4.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_5.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_6.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_7.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_8.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Alissa/alissa_9.png"></div> 
+    -->
+  </div>  
+
+  <div class = "navfooter">
+  </div>  
+</div>
+
+</body>	
+<script src="./js/afterbody_wme3.js"></script>
+</html>
