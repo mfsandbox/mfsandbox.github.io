@@ -40,15 +40,17 @@
   }
 
   function initializeNavDots(navFooter, navIcons) {
-    cards.forEach(
-      function(card, index) {
-        navicon = document.createElement("i");
-        navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
-        navicon.style = "font-size: 50%;";
-        navFooter.appendChild(navicon);
-        navIcons[index] = (navicon);
-      }
-    )
+    if (cards.length > 1) {
+      cards.forEach(
+        function(card, index) {
+          navicon = document.createElement("i");
+          navicon.className = (index == currentCardIndex ? "navicon fa fa-circle" : "navicon fa fa-circle-o");
+          navicon.style = "font-size: 50%;";
+          navFooter.appendChild(navicon);
+          navIcons[index] = (navicon);
+        }
+      )
+    }
   }
 
   
