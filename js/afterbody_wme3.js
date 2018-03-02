@@ -93,6 +93,8 @@
     cards.forEach(
       function (card,index){
         if (index == currentCardIndex) {
+          url.searchParams.set("card",`${index + 1}`);
+          history.replaceState(null,null,url.href);
           card.hidden = false;
           card.scrollTop = 0;
           if (card.className.includes("flipcard")) {
