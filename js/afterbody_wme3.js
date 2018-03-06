@@ -55,6 +55,8 @@
 
   
   function flipCard(card) {
+    url.searchParams.set("card",`${currentCardIndex + 1}`);
+    history.pushState(null,null,url.href);
     var cardBack = card.querySelector('.cardback');
     var cardFront = card.querySelector('.cardfront');
     cardFront.hidden = !cardFront.hidden;
@@ -97,17 +99,20 @@
           history.replaceState(null,null,url.href);
           card.hidden = false;
           card.scrollTop = 0;
-          if (card.className.includes("flipcard")) {
-            /*if (false) {*/
-            navIcons[index].className = "navicon fa fa-reply";
-            navIcons[index].style = "font-size: 100%;";
-            navIcons[index].onclick = function() {  
-                                                    flipCard(card);
-                                                  }
-          }
-          else {  
-            navIcons[index].className = "navicon fa fa-circle" ;
-          }
+          /*if (card.className.includes("flipcard")) {*/
+          if (cardCount > 1)
+          {  
+            if (false) {
+              navIcons[index].className = "navicon fa fa-reply";
+              navIcons[index].style = "font-size: 100%;";
+              navIcons[index].onclick = function() {  
+                                                      flipCard(card);
+                                                    }
+            }
+            else {  
+              navIcons[index].className = "navicon fa fa-circle" ;
+            }
+          }  
         }
         else {
           card.hidden = true;
@@ -131,9 +136,11 @@
   initFlipCards();
 
 
-  document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
-  document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
-
+  if (cardCount > 1)
+  {  
+    document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
+    document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
+  }
 
   var cardbacks = document.querySelectorAll(".cardback");
 

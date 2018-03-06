@@ -15,17 +15,11 @@
           magX = Math.min(widthRatio,heightRatio * maxStretch);
           magY = Math.min(heightRatio,widthRatio * maxStretch);
           
-          if (heroOverflow == "scroll" || heroOverflow == "auto") {
-            magX = widthRatio;
-            magY = magX;
-          }
-
-
           if (doAlert) {alert(heroImage.complete);}
           //heroImage.height = heroImage.naturalHeight * magY;
           //heroImage.width = heroImage.naturalWidth * magX;
 
-          heroHeightOverflow = (heroOverflow == "scroll" ? 0 : -(heroHeight - windowHeight)/2);
+          heroHeightOverflow = -(heroHeight - windowHeight)/2;
           heroWidthOverflow = -(heroWidth - windowWidth)/2;
 
           translateString = `translate3d(${heroWidthOverflow}px,${heroHeightOverflow}px,0px)`;
@@ -37,7 +31,7 @@
   }  
 
   function scaleHeroes() {   
-    var heroImages = document.querySelectorAll(".fixedcard");
+    var heroImages = document.querySelectorAll(".fixedcard, .flipcard, .scrollcard");
     var windowWidth = document.body.clientWidth;
     var windowHeight = document.body.clientHeight;
     var ct = document.querySelector(".cardtable");
