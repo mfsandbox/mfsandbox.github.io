@@ -142,7 +142,7 @@
     document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
   }
 
-  var cardbacks = document.querySelectorAll(".cardback");
+  var cardbacks = document.querySelectorAll(".cardback, .scrollcard");
 
   cardbacks.forEach(function(cardback,index) {
                       cardback.addEventListener(
