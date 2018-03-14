@@ -6,6 +6,8 @@
   var navIcons = [];
   var swipeEnabled = true;
 
+
+//polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 15%)
   var topLeftClip = "polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%)";
   var bottomRightClip = "polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%)";
   var noClip = "polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%)";
@@ -113,7 +115,7 @@
           backsideAttr = card.attributes.backside;
           if (backsideAttr != undefined) {
             document.querySelector(".cardflipper").href = backsideAttr.value;
-            card.style.transitionDuration = "1s";
+            card.style.transitionDuration = "2s";
             card.style.webkitClipPath = bottomRightClip;
             card.style.clipPath = bottomRightClip;
           }
