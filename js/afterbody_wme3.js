@@ -6,6 +6,11 @@
   var navIcons = [];
   var swipeEnabled = true;
 
+  var topLeftClip = "polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%)";
+  var bottomRightClip = "polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%)";
+  var noClip = "polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%)";
+  //var leftCornerUp = "-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%); clip-path: polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%);"
+
   var url = new URL(document.location.href);
   var urlCardNumber = Number(url.searchParams.get("card"));
   if (Number.isInteger(urlCardNumber)) {
@@ -95,16 +100,24 @@
   function setCardVisibility(cards, navIcons) {
     cards.forEach(
       function (card,index){
+        card.style.webkitClipPath = noClip;
+        card.style.clipPath = noClip;
+
         if (index == currentCardIndex) {
-          backsideAttr = card.attributes.backside;
-          if (backsideAttr != undefined) {
-            document.querySelector(".cardflipper").href = backsideAttr.value;
-          }
 
           url.searchParams.set("card",`${index + 1}`);
           history.replaceState(null,null,url.href);
           card.hidden = false;
           card.scrollTop = 0;
+
+          backsideAttr = card.attributes.backside;
+          if (backsideAttr != undefined) {
+            document.querySelector(".cardflipper").href = backsideAttr.value;
+            card.style.transitionDuration = "1s";
+            card.style.webkitClipPath = bottomRightClip;
+            card.style.clipPath = bottomRightClip;
+          }
+
           /*if (card.className.includes("flipcard")) {*/
           if (cardCount > 1)
           {  
