@@ -115,7 +115,7 @@
           backsideAttr = card.attributes.backside;
           if (backsideAttr != undefined) {
             document.querySelector(".cardflipper").href = backsideAttr.value;
-            card.style.transitionDuration = "2s";
+            card.style.transitionDuration = "1s";
             card.style.webkitClipPath = bottomRightClip;
             card.style.clipPath = bottomRightClip;
           }
