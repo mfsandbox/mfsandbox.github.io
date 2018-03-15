@@ -31,8 +31,12 @@
 
     <div style="width: 100%; height: auto; overflow: scroll;">
       <img draggable="false" style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_back.png">
-      <img style="width:17%; height:auto; position: fixed; top:1%; left: 0%; cursor: pointer;" onclick="history.back()" src="img/flip1_for front and back.png">
-    </div> 
+      <svg style="position:absolute; top: 0; left: 0; cursor: pointer;" width="75" height="75" onclick="history.back()">
+        <polygon points="50,0 50,50 0,50" style="fill:rgba(0,0,0,0.5)"/>
+        <polygon points="0,0 50,0 0,50" style="fill:rgba(0,0,0,1)"/>
+        <text x="5" y="15" font-family="Verdana" font-size="10" fill="white" font-weight="bold">Back</text>
+      </svg>
+   </div> 
 
 </body>	
 </html>
