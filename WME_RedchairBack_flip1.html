@@ -29,12 +29,17 @@
 </head>
 <body style="margin:0;background-color: black">
 
-    <div style="width: 100%; height: auto; overflow: scroll;">
+    <div style="width: 100%; height: auto; overflow: scroll; margin:0; position: absolute;">
       <img draggable="false" style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_back.png">
-      <svg style="position:absolute; top: 0; left: 0; cursor: pointer;" width="75" height="75" onclick="history.back()">
-        <polygon points="50,0 50,50 0,50" style="fill:rgba(0,0,0,0.3)"/>
-        <polygon points="0,0 50,0 0,50" style="fill:rgba(0,0,0,1)"/>
-        <text x="5" y="15" font-family="Verdana" font-size="10" fill="white" font-weight="bold">Back</text>
+      <svg style="position:absolute; top: 0; right: 0; cursor: pointer;" width="50" height="50" onclick="history.back()">
+        <polygon points="0,0 50,50 0,50" style="fill:rgba(0,0,0,0.3)"/>
+        <polygon points="0,0 50,50 50,0" style="fill:rgba(255,255,255,1)"/>
+        <text x="5" y="40" font-family="Verdana" font-size="10" fill="black" font-weight="bold">Back</text>
+      </svg>
+      <svg style="position:absolute; bottom: 0; right: 0%; cursor: pointer;" width="50" height="50" onclick="history.back()">
+        <polygon points="50,0 0,50 50,50" style="fill:rgba(255,255,255,1)"/>
+        <polygon points="50,0 0,50 0,0" style="fill:rgba(0,0,0,0.3)"/>
+        <text x="5" y="15" font-family="Verdana" font-size="10" fill="black" font-weight="bold">Back</text>
       </svg>
    </div> 
 
