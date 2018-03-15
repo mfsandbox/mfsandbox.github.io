@@ -177,7 +177,22 @@
   align-items: center;
 }
 
+.dogear {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+  transform-origin: 100% 100% 0;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
 
+.dogearFixed {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+}
 
 </style>
 <script src="./js/header_wme3.js"></script>
@@ -227,17 +242,26 @@
           <i class="fa fa-arrow-circle-o-down" style="color: white; background-color: grey; font-size:120%; cursor: pointer;"></i>
         </a>  
     </div> 
---> 
+
 
     <div class="card fixedcard" style="-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%); clip-path: polygon(0% 0%, 100% 0%, 100% 91%, 85% 100%, 0% 100%);" backside="WME_RedchairBack_flip1.html"> 
         <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
     </div>
+--> 
 
+    <div class="card fixedcard" > 
+        <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
+                  <svg class="dogearFixed" width="100" height="120" onclick="window.location.href= 'WME_RedchairBack_flip1.html'">
+                    <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
+                    <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
+                    <text x="5" y="35" font-family="Verdana" font-size="20" fill="white" font-weight="bold">More</text>
+                  </svg>
+    </div>
 
     <div class="card fixedcard" > 
         <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
                <!--<a style="color:inherit; position: absolute; bottom: 0%; right:0%; text-decoration: none; " href="WME_RedchairBack_flip1.html">-->
-                  <svg width="100" height="120" style="position: absolute; bottom: 0%; right:0%; cursor: pointer;" onclick="window.location.href= 'WME_RedchairBack_flip1.html'">
+                  <svg class="dogear" width="100" height="120" onclick="window.location.href= 'WME_RedchairBack_flip2.html'">
                     <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
                     <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
                     <text x="5" y="35" font-family="Verdana" font-size="20" fill="white" font-weight="bold">More</text>
@@ -245,6 +269,9 @@
               <!--</a>-->
     </div>
 
+
+
+<!--
     <div class="card fixedcard" > 
         <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
                <a style="color:inherit; position: absolute; top: 1%; right:0%; font-family: Calibri; font-size: 35px;" href="WME_RedchairBack_flip2.html">
@@ -272,7 +299,7 @@
                   <img style="width:130px; height:auto;" src="img/flip5_for front and back.png">
               </a>
     </div>
-
+-->
     <div class="card fixedcard" style="background-color: green;">
       <img draggable="false" style="height: auto; width: 100%; background-color: yellow;" class="heroImage" src="img/wme/Alissa/alissa_1.png">
     </div> 

@@ -112,8 +112,17 @@
           card.hidden = false;
           card.scrollTop = 0;
 
+            dogear = card.querySelector(".dogear");
+            if (dogear != undefined) {
+              dogear.style.transform = "scale3d(1,1,1)";
+            }
+
           backsideAttr = card.attributes.backside;
           if (backsideAttr != undefined) {
+            dogear = card.querySelector(".dogear");
+            if (dogear != undefined) {
+              dogear.style.transform = "scale3d(1,1,1)";
+            }
             document.querySelector(".cardflipper").href = backsideAttr.value;
             card.style.transitionDuration = "1s";
             card.style.webkitClipPath = bottomRightClip;
@@ -137,6 +146,10 @@
         }
         else {
           card.hidden = true;
+          dogear = card.querySelector(".dogear");
+          if (dogear != undefined) {
+              dogear.style.transform = "scale3d(0,0,0)";
+          }
           navIcons[index].className = "navicon fa fa-circle-o";
           if (card.className.includes("flipcard")) {
               navIcons[index].style = "font-size: 50%;"
