@@ -202,8 +202,20 @@ for (i = 0; i < accs.length; i++) {
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
             panel.style.display = "none";
+            if (panel.children.length > 0) {        
+              this.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>' + this.innerText;
+            }
+            else {
+              this.innerHTML = acc.innerText;
+            }
         } else {
             panel.style.display = "block";
+                        if (panel.children.length > 0) {        
+              this.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>' + this.innerText;
+            }
+            else {
+              this.innerHTML = acc.innerText;
+            }
         }
     });
 }
