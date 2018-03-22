@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 
-.accordion {
+.accordion, .accordionMaster {
     background-color: #eee;
     color: #444;
     cursor: pointer;
@@ -90,7 +90,8 @@ function earsAgog() {
         <polygon points="50,0 0,50 0,0" style="fill:rgba(0,0,0,0.3)"/>
         <text x="5" y="15" font-family="Verdana" font-size="10" fill="black" font-weight="bold">Back</text>
       </svg>
-      <button class="accordion">General Description</button>
+      <button class="accordionMaster active" onclick="toggleAll(this)"></button> 
+      <button class="accordion"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;General Description</button>
       <div class="panel">
         <table style="width:100%;">
             <tr><td><b>List Price</b></td><td>$335,000</td></tr>
@@ -110,7 +111,7 @@ function earsAgog() {
             <tr><td><b>Year Built Desc</b></td><td>Resale</td></tr>
         </table>
       </div>
-      <button class="accordion"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Features</button>
+      <button class="accordion">&nbsp;Features</button>
       <div class="panel">
         <table style="width:100%;">
             <tr><td><b>Net Rentable Area</b></td><td>900</td></tr>
@@ -132,7 +133,7 @@ function earsAgog() {
             <tr><td><b>Auction</b></td><td>No</td></tr>
         </table>
       </div>  
-      <button class="accordion">Utility Information</button>
+      <button class="accordion">&nbsp;Utility Information</button>
       <div class="panel">
         <table style="width:100%;">
             <tr><td><b>Heating</b></td><td>Central</td></tr>
@@ -147,7 +148,7 @@ function earsAgog() {
             <tr><td><b>Seperate Meter</b></td><td>Yes</td></tr>
         </table>        
       </div>   
-      <button class="accordion">Financial Information</button>      
+      <button class="accordion">&nbsp;Financial Information</button>      
       <div class="panel">
         <table style="width:100%;">
             <tr><td><b>Estimated Taxes</b></td><td>$4,149.00</td></tr>
@@ -159,31 +160,31 @@ function earsAgog() {
         </table>        
       </div>
 
-      <button class="accordion">Lot and Land Details</button>      
+      <button class="accordion">&nbsp;Lot and Land Details</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Walk IQ/Drive IQ</button>      
+      <button class="accordion">&nbsp;Walk IQ/Drive IQ</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Home Price Index</button>      
+      <button class="accordion">&nbsp;Home Price Index</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Homeowner Statistics</button>      
+      <button class="accordion">&nbsp;Homeowner Statistics</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Recent Sales and Tax Details</button>      
+      <button class="accordion">&nbsp;Recent Sales and Tax Details</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Area Monthly Rent</button>      
+      <button class="accordion">&nbsp;Area Monthly Rent</button>      
       <div class="panel">       
       </div>                 
 
-      <button class="accordion">Notes for You and Your Agent</button>      
+      <button class="accordion">&nbsp;Notes for You and Your Agent</button>      
       <div class="panel">       
       </div>                 
 
@@ -192,11 +193,11 @@ function earsAgog() {
 
 
 <script>
-var acc = document.getElementsByClassName("accordion");
+var accs = document.querySelectorAll(".accordion");
 var i;
 
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
+for (i = 0; i < accs.length; i++) {
+    accs[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var panel = this.nextElementSibling;
         if (panel.style.display === "block") {
@@ -206,6 +207,41 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+
+function toggleAll(toggler) {
+  accs = document.querySelectorAll(".accordion");
+
+  if (toggler.classList.contains("active")) {
+    toggler.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Expand All' ;
+    accs.forEach(function(acc,index) {
+      acc.classList.remove("active");
+      acc.nextElementSibling.style.display = "none";
+      if (acc.nextElementSibling.children.length > 0) {        
+        acc.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>' + acc.innerText;
+      }
+      else {
+        acc.innerHTML = acc.innerText;
+      }
+    });
+  }
+  else {
+    toggler.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>&nbsp;Collapse All' ;
+    accs.forEach(function(acc,index) {
+      acc.classList.add("active");
+      acc.nextElementSibling.style.display = "block";
+      if (acc.nextElementSibling.children.length > 0) {        
+        acc.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>' + acc.innerText;
+      }
+      else {
+        acc.innerHTML = acc.innerText;
+      }
+    });
+  }
+  toggler.classList.toggle("active");
+}
+
+toggler = document.querySelector(".accordionMaster");
+toggleAll(toggler);
 </script>
 </body>	
 
