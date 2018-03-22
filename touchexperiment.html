@@ -1,0 +1,238 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(12,12,128,0.7);
+}
+
+.navfooter {
+  position:absolute;
+  height: 2vh;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+  transition-duration: 1s;
+  font-family: Calibri;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  font-size:200%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  font-size:200%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dogear {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+  transform-origin: 100% 100% 0;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+}
+
+</style>
+
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" >
+  <div class="cardtable">
+
+
+	<div class="deck" >
+    <img src="img/hubblefield.jpg" draggable=false>
+ 
+  </div>  
+</div>
+
+</body>	
+<script>
+
+var sumX = -2000+ document.body.clientWidth/2;
+var sumY = -2000 + document.body.clientHeight/2;
+var img = document.querySelector('img')
+
+function gonzo(e) {
+  img.style.transform = `translate3d(${sumX + e.deltaX}px,${sumY + e.deltaY}px,0)`;
+  if (e.isFinal) {
+    sumX += e.deltaX;
+    sumY += e.deltaY;
+  }
+}
+var hammer = new Hammer(document.body);
+
+// this sets pan to behave similar to normal touch/mouse input
+// note that by setting the threshold to 0, pan will receive all inputs
+hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL, threshold: 0 }); 
+
+//hammer.on('panstart', touchstart);
+hammer.on('pan', function(e){gonzo(e);});
+//hammer.on
+
+img.style.transform = `translate3d(${sumX}px,${sumY}px,0)`;
+
+</script>
+</html>
