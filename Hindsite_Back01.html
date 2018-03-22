@@ -46,7 +46,7 @@
     transition: 0.4s;
 }
 
-.active, .accordion:hover {
+.accordion.hasContent:hover, .accordionMaster:hover {
     background-color: #ccc; 
 }
 
@@ -193,6 +193,10 @@ function earsAgog() {
 
 
 <script>
+
+var expandableIcon = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
+var collapsibleIcon =  '<i class="fa fa-chevron-up" aria-hidden="true"></i>';
+
 var accs = document.querySelectorAll(".accordion");
 var i;
 
@@ -203,7 +207,7 @@ for (i = 0; i < accs.length; i++) {
         if (panel.style.display === "block") {
             panel.style.display = "none";
             if (panel.children.length > 0) {        
-              this.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>' + this.innerText;
+              this.innerHTML = expandableIcon + this.innerText;
             }
             else {
               this.innerHTML = acc.innerText;
@@ -211,7 +215,7 @@ for (i = 0; i < accs.length; i++) {
         } else {
             panel.style.display = "block";
                         if (panel.children.length > 0) {        
-              this.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>' + this.innerText;
+              this.innerHTML = collapsibleIcon + this.innerText;
             }
             else {
               this.innerHTML = acc.innerText;
@@ -224,12 +228,13 @@ function toggleAll(toggler) {
   accs = document.querySelectorAll(".accordion");
 
   if (toggler.classList.contains("active")) {
-    toggler.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Expand All' ;
+    toggler.innerHTML = `${expandableIcon}&nbsp;Expand All` ;
     accs.forEach(function(acc,index) {
       acc.classList.remove("active");
       acc.nextElementSibling.style.display = "none";
-      if (acc.nextElementSibling.children.length > 0) {        
-        acc.innerHTML = '<i class="fa fa-plus-square-o" aria-hidden="true"></i>' + acc.innerText;
+      if (acc.nextElementSibling.children.length > 0) {
+        acc.classList.add("hasContent")        
+        acc.innerHTML = expandableIcon + acc.innerText;
       }
       else {
         acc.innerHTML = acc.innerText;
@@ -237,12 +242,12 @@ function toggleAll(toggler) {
     });
   }
   else {
-    toggler.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>&nbsp;Collapse All' ;
+    toggler.innerHTML = `${collapsibleIcon}&nbsp;Collapse All` ;
     accs.forEach(function(acc,index) {
       acc.classList.add("active");
       acc.nextElementSibling.style.display = "block";
       if (acc.nextElementSibling.children.length > 0) {        
-        acc.innerHTML = '<i class="fa fa-minus-square-o" aria-hidden="true"></i>' + acc.innerText;
+        acc.innerHTML = collapsibleIcon + acc.innerText;
       }
       else {
         acc.innerHTML = acc.innerText;
