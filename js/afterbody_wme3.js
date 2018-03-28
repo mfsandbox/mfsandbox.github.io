@@ -114,6 +114,7 @@
 
             dogear = card.querySelector(".dogear");
             if (dogear != undefined) {
+              dogear.style.transitionDelay = "1s";
               dogear.style.transform = "scale3d(1,1,1)";
             }
 
@@ -121,6 +122,7 @@
           if (backsideAttr != undefined) {
             dogear = card.querySelector(".dogear");
             if (dogear != undefined) {
+              dogear.style.transitionDelay = "1s";
               dogear.style.transform = "scale3d(1,1,1)";
             }
             document.querySelector(".cardflipper").href = backsideAttr.value;
