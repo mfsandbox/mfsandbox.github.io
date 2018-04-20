@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+.dogear {
+  position: absolute;
+  cursor: pointer;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  cursor: pointer;
+}
+
+
+
+</style>
+<script>
+  
+function earsAgog() {
+  ears = document.querySelectorAll('.dogear');
+  ears.forEach(function(ear,index) {
+    ear.style.transform = 'scale3d(1,1,1)';
+  })
+
+}
+
+</script>
+
+
+</head>
+<body style="margin:0;background-color: black" onload="earsAgog()">
+
+    <div style="width: 100%; height: auto; overflow: scroll; margin:0; position: absolute;">
+      <img draggable="false" style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_back.png">
+      <svg class="dogear" style="transform-origin: 100% 0 0;;top: 0; right: 0;" width="50" height="50" onclick="history.back()">
+        <polygon points="0,0 50,50 0,50" style="fill:rgba(0,0,0,0.3)"/>
+        <polygon points="0,0 50,50 50,0" style="fill:rgba(255,255,255,1)"/>
+        <g transform="translate(0px,50px)">
+          <path fill="#F15A29" d="M32.596,33.345c0.108,0,0.216,0.041,0.298,0.123c0.165,0.165,0.165,0.432,0,0.596l-5.601,5.601l5.601,5.602
+            c0.165,0.164,0.165,0.431,0,0.596c-0.164,0.164-0.431,0.164-0.596,0l-5.898-5.898c-0.164-0.165-0.164-0.432,0-0.597l5.898-5.898
+            C32.38,33.386,32.488,33.345,32.596,33.345"/>
+          <path fill="#F15A29" d="M46.078,25.761c0.233,0,0.421,0.188,0.421,0.422c0,7.666-6.237,13.903-13.903,13.903h-5.898
+            c-0.232,0-0.421-0.188-0.421-0.422c0-0.232,0.188-0.421,0.421-0.421h5.898c7.202,0,13.062-5.859,13.062-13.061
+            C45.657,25.949,45.845,25.761,46.078,25.761"/>
+        </g>
+      </svg>
+      <svg class="dogear" style="transform-origin: 100% 100% 0; bottom: 0; right: 0;" width="50" height="50" onclick="history.back()">
+        <polygon points="50,0 0,50 50,50" style="fill:rgba(255,255,255,1)"/>
+        <polygon points="50,0 0,50 0,0" style="fill:rgba(0,0,0,0.3)"/>
+        <g>
+          <path fill="#F15A29" d="M32.596,33.345c0.108,0,0.216,0.041,0.298,0.123c0.165,0.165,0.165,0.432,0,0.596l-5.601,5.601l5.601,5.602
+            c0.165,0.164,0.165,0.431,0,0.596c-0.164,0.164-0.431,0.164-0.596,0l-5.898-5.898c-0.164-0.165-0.164-0.432,0-0.597l5.898-5.898
+            C32.38,33.386,32.488,33.345,32.596,33.345"/>
+          <path fill="#F15A29" d="M46.078,25.761c0.233,0,0.421,0.188,0.421,0.422c0,7.666-6.237,13.903-13.903,13.903h-5.898
+            c-0.232,0-0.421-0.188-0.421-0.422c0-0.232,0.188-0.421,0.421-0.421h5.898c7.202,0,13.062-5.859,13.062-13.061
+            C45.657,25.949,45.845,25.761,46.078,25.761"/>
+        </g>
+      </svg>
+   </div> 
+
+</body>	
+
+</html>
