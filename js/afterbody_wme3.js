@@ -108,7 +108,7 @@
         if (index == currentCardIndex) {
 
           url.searchParams.set("card",`${index + 1}`);
-          history.replaceState(null,null,url.href);
+          history.replaceState({},null,url.href);
           card.hidden = false;
           card.scrollTop = 0;
 
