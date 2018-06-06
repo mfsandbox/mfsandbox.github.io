@@ -1,0 +1,240 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(255,255,255,0.7);
+}
+
+.navfooter {
+  position:absolute;
+  height: 2vh;
+  width: 100%;
+  padding-right: 33%;
+  padding-left: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+  transition-duration: 1s;
+  font-family: Calibri;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  font-size:200%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  font-size:200%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dogear {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+  transform-origin: 100% 100% 0;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+}
+</style>
+<script src="./js/header_wme3.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
+  <div class="cardtable">
+
+
+	<div class="deck">
+    <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
+    <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/1 KT_selling_mobile-loyalty-book-1-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/2 KT_selling_mobile-loyalty-book-2-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/3 KT_selling_mobile-loyalty-book-3-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/4 KT_selling_mobile-loyalty-book-4-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/5 KT_selling_mobile-loyalty-book-5-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/6 KT_selling_mobile-loyalty-book-6-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/7 KT_selling_mobile-loyalty-book-7-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/8 KT_selling_mobile-loyalty-book-8-060518-1.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/9 800x1300-72dpi-Composite-Slide6.png"></div> 
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/10 KT_selling_mobile-loyalty-book-9-060518-1.png"></div> 
+
+
+<!--
+    <div class="card fixedcard" > 
+      <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
+      <svg class="dogear" width="100" height="120" onclick="window.location.href= 'WME_RedchairBack_flip2.html'">
+        <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
+        <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
+        <text x="5" y="35" font-family="Verdana" font-size="20" fill="white" font-weight="bold">More</text>
+      </svg>
+    </div>
+-->    
+
+
+  </div>  
+
+  <div class = "navfooter">
+  </div>  
+</div>
+
+</body>	
+<script src="./js/afterbody_wme3.js"></script>
+</html>
