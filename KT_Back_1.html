@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+.dogear {
+  position: absolute;
+  cursor: pointer;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  cursor: pointer;
+}
+
+
+
+</style>
+<script>
+  
+function earsAgog() {
+  ears = document.querySelectorAll('.dogear');
+  ears.forEach(function(ear,index) {
+    ear.style.transform = 'scale3d(1,1,1)';
+  })
+
+}
+
+</script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+</head>
+<body style="margin:0;background-color: white" onload="earsAgog()">
+
+    <div style="width: 100%; height: auto; overflow: scroll; margin:0; position: absolute;">
+      <img draggable="false" style="height: auto; width: 100%;" src="img/kt/KT_Logo_Tagline_900.png"/>
+     <svg class="dogear" style="transform-origin: 100% 0 0;top: 0; right: 0;" width="50" height="50" onclick="history.back()">
+        <polygon points="0,0 50,50 0,50" style="fill:rgba(0,0,0,0.3)"/>
+        <polygon points="0,0 50,50 50,0" style="fill:rgba(255,255,255,1)"/>
+        <text x="5" y="40" font-family="Oswald" font-size="10" fill="black" font-weight="bold">Back</text>
+      </svg>
+      <svg class="dogear" style="transform-origin: 100% 100% 0; bottom: 0; right: 0;" width="50" height="50" onclick="history.back()">
+        <polygon points="50,0 0,50 50,50" style="fill:rgba(255,255,255,1)"/>
+        <polygon points="50,0 0,50 0,0" style="fill:rgba(0,0,0,0.3)"/>
+        <text x="5" y="15" font-family="Oswald" font-size="10" fill="black" font-weight="bold">Back</text>
+      </svg>
+      <div style="margin:8%; font-family: 'Open Sans'">
+        Kinetic Thread takes hyper-personalized mobile web experiences to the next level. Our innovative Mobile Engagement Platform leverages dynamically updated, enterprise-wide customer data to instantly curate and deliver personalized content to the consumer, in the moment, whenever and wherever they are. The Kinetic Thread story book enables rich, vibrant messaging, offers, coupons and content in a simple and nearly frictionless format. The result is an engaging consumer experience like no other, increasing purchase volume and velocity while establishing and growing brand loyalty. 
+        <br>
+        <br>
+        The Kinetic Thread Mobile Engagement Platform offers an app-like mobile experience without the operational and financial commitment of an app. Deployment is easy, too. With Kinetic Thread execution playbooks, our customers get up and running quickly.
+        <br>
+        <br>
+        For Examples of our solution, take a test drive here:
+        <br>
+        <br>
+        Text "LOYALTYBOOK" to 74700
+        <br>
+        <br>
+        Text "MOBILESTORY" to 74700
+        <br>
+        <br>
+    </div>
+   </div> 
+
+</body>	
+
+</html>
