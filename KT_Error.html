@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+.dogear {
+  position: absolute;
+  cursor: pointer;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  cursor: pointer;
+}
+
+
+
+</style>
+<script>
+  
+function earsAgog() {
+  ears = document.querySelectorAll('.dogear');
+  ears.forEach(function(ear,index) {
+    ear.style.transform = 'scale3d(1,1,1)';
+  })
+
+}
+
+</script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+</head>
+<body style="margin:0;background-color: white" onload="earsAgog()">
+
+    <div style="width: 100%; height: auto; overflow: scroll; margin:0; position: absolute;">
+      <img draggable="false" style="height: auto; width: 100%;" src="img/kt/KT_Error.png"/>
+
+   </div> 
+
+</body>	
+
+</html>
