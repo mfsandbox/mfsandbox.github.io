@@ -1,8 +1,10 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
 <script src="https://use.fontawesome.com/e9a878b310.js"></script>
 <script src="./js/hammer.min.js"></script>
+<script src="./js/JsBarcode.all.min.js"></script>
 <style media="screen">
 
 * {
@@ -220,8 +222,10 @@
         </svg>
     </div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/3 KT_selling_mobile-loyalty-book-3-060518-1.png">
+        <img id="barcode" style="position:absolute; left:225px; top: 300px; z-index:11;"/>
+
         <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-            <svg style="position:absolute; left:60px; top: 1133px; z-index:11; ">
+            <svg style="position:absolute; left:225px; top: 1133px; z-index:11; ">
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
             </svg>
         </a>
@@ -232,6 +236,7 @@
         </a>
     </div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/4 KT_selling_mobile-loyalty-book-4-060518-1.png">
+        <img id="barcode" style="position:absolute; left:225px; top: 375px; z-index:11;"/>
         <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
             <svg style="position:absolute; left:60px; top: 1133px; z-index:11; ">
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
@@ -305,6 +310,7 @@
   </div>  
 </div>
 
-</body>	
+</body>
+<script>JsBarcode("#barcode","50572641000311000960079282");</script>
 <script src="./js/afterbody_wme3.js"></script>
 </html>
