@@ -173,9 +173,14 @@
 
 
   if (cardCount > 1)
-  {  
-    document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
-    document.querySelector(".deck .cardIndexIncrementor").addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
+  {
+      document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
+      document.querySelectorAll(".deck .cardIndexIncrementor").forEach(
+            (incrementor) =>
+            {
+              incrementor.addEventListener('click', function(event) {incrementCardIndex(); setCardVisibility(cards, navIcons);})
+            }
+          )
   }
 
   var cardbacks = document.querySelectorAll(".cardback, .scrollcard");
