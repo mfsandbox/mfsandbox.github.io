@@ -61,7 +61,7 @@
 }
 
 .navicon {
-  color: rgba(255,255,255,0.7);
+  color: rgba(64,64,64,0.7);
 }
 
 .navfooter {
@@ -196,8 +196,8 @@
   cursor: pointer;
 }
 </style>
-<script src="./js/header_wme3.js"></script>
-
+    <script src="./js/header_wme3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
   <div class="cardtable">
@@ -209,12 +209,57 @@
 
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%201.png"></div>
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%202.png">
-            <img id="barcode" style="position:absolute; left:180px; top: 360px; z-index:11;"/>
+            <img id="barcode_upc" style="position:absolute; left:180px; top: 360px; z-index:11;"/>
             <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
                 <svg style="position:absolute; left:250px; top: 1133px; z-index:11; ">
-                    <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0.5);"/>
+                    <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0);"/>
                 </svg>
             </a>
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%203.png">
+            <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_Incentive.html'">
+                <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
+                <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
+                <text x="5" y="40" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
+            </svg>
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%204.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%205.png">
+            <img id="barcode_128" style="position:absolute; left:180px; top: 300px; z-index:11;"/>
+            <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
+                <svg style="position:absolute; left:250px; top: 1133px; z-index:11; ">
+                    <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0);"/>
+                </svg>
+            </a>
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%206.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%207.png">
+            <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
+                <svg style="position:absolute; left:245px; top: 1110px; z-index:11; ">
+                    <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0);"/>
+                </svg>
+            </a></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%208.png">
+            <div style="position:absolute; z-index:11; left:170px;top: 940px; height: 50px; width: 490px; font-size: 25px; display:none; font-size:35px; color: white;" id="emailmessage">Intelligent Status enables action and the capture of data while progressively deepening engagement with a brand.</div>
+            <input style="position:absolute; z-index:11; left:170px;top: 990px; height: 50px; width: 490px; font-size: 25px;"
+                   type="text"
+                   id="emailaddress"
+                   value="email address"
+                   onfocus = "this.value = '';this.onfocus = null;"/>
+            <svg style="position:absolute; left:250px; top: 1133px; z-index:11; cursor: pointer;"
+                 onclick="document.querySelector('#emailaddress').style.display='none'; document.querySelector('#emailmessage').style.display=''";>
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
+            </svg>
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%209.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%2010.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%2011.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/ah/loyaltybook/AH%20Loyalty%2012.png">
+            <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_ContactUs.html'">
+                <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
+                <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
+                <text x="5" y="45" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
+            </svg>
         </div>
 <!--
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/1 KT_selling_mobile-loyalty-book-1-060518-1.png">
@@ -321,6 +366,7 @@
 </div>
 
 </body>
-<script>JsBarcode("#barcode","43200099051",{width: 3.6, height:140, margin: 2, format:"UPC"} );</script>
+<script>JsBarcode("#barcode_upc","43200099051",{width: 3.6, height:140, margin: 2, format:"UPC"} );</script>
+<script>JsBarcode("#barcode_128","12345671234567",{width: 3.6, height:140, margin: 2});</script>
 <script src="./js/afterbody_wme3.js"></script>
 </html>
