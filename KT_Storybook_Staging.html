@@ -62,6 +62,25 @@
   color: rgba(64,64,64,0.7);
 }
 
+.radio{
+    -webkit-appearance:button;
+    -moz-appearance:button;
+    appearance:button;
+    border:4px solid #ccc;
+    border-top-color:#bbb;
+    border-left-color:#bbb;
+    background:#fff;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+.radio:checked{
+    border:15px solid #808080;
+}
+.radio:focus{
+    outline: none;
+}
+
 .navfooter {
   position:absolute;
   height: 2vh;
@@ -238,6 +257,11 @@
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/StoryBook/KT_Acquisition.png"></div>
 
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/StoryBook/KT_selling_mobile-story-book-3-060518-1.png">
+        <div style="position:absolute; left:70px; top: 170px; width: 700px" >
+            <input class="radio" type="radio" name="radios"/>    <label style="font-size: 40px; vertical-align: top; color: #606060;">JOIN SMS: Get text messages sent straight to your phone.</label>
+            <br><br>
+            <input class="radio" type="radio" name="radios"/><label style="font-size: 40px; vertical-align: top; color: #606060;">JOIN EMAIL: Become an email insider and get emails straight to your inbox.</label>
+        </div>
         <svg class="cardIndexIncrementor" style="position:absolute; left:251px; top: 1133px; z-index:11; ">
             <polygon points="0,0 340,0 340,70 0,70" style="fill: rgba(0,255,0,0);"/>
         </svg>

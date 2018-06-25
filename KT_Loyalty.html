@@ -61,9 +61,27 @@
 }
 
 .navicon {
-  color: rgba(255,255,255,0.7);
+  color: rgba(64,64,64,0.7);
 }
 
+.radio{
+    -webkit-appearance:button;
+    -moz-appearance:button;
+    appearance:button;
+    border:4px solid #ccc;
+    border-top-color:#bbb;
+    border-left-color:#bbb;
+    background:#fff;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+.radio:checked{
+    border:15px solid #808080;
+}
+.radio:focus{
+    outline: none;
+}
 .navfooter {
   position:absolute;
   height: 2vh;
@@ -196,8 +214,8 @@
   cursor: pointer;
 }
 </style>
-<script src="./js/header_wme3.js"></script>
-
+    <script src="./js/header_wme3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
   <div class="cardtable">
@@ -207,48 +225,57 @@
     <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
     <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
 
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/1 KT_selling_mobile-loyalty-book-1-060518-1.png">
-        <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_1.html'">
-            <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-            <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="10" y="45" font-family= 'Oswald' font-size="20" fill="white" font-weight="bold">More</text>
-        </svg>
-    </div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/2 KT_selling_mobile-loyalty-book-2-060518-1.png">
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/1 KT_selling_mobile-loyalty-book-1-060518-1.png"></div>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/2 KT_selling_mobile-loyalty-book-2-060518-1.png"></div>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Loyalty%20Intelligent%20Incentive.png">
         <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_Incentive.html'">
             <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
             <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="10" y="45" font-family= 'Oswald' font-size="20" fill="white" font-weight="bold">More</text>
+            <text x="5" y="40" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
         </svg>
     </div>
+
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/3 KT_selling_mobile-loyalty-book-3-060518-1.png">
         <img id="barcode" style="position:absolute; left:75px; top: 280px; z-index:11;"/>
-
         <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
             <svg style="position:absolute; left:225px; top: 1133px; z-index:11; ">
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
             </svg>
         </a>
-        <a href="KT_SingleUse.html">
-            <svg style="position:absolute; left:440px; top: 1133px; z-index:11; ">
-                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
-            </svg>
-        </a>
+        <svg style="position:absolute; left:440px; top: 1133px; z-index:11; " class="cardIndexIncrementor">
+            <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
+        </svg>
     </div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/4 KT_selling_mobile-loyalty-book-4-060518-1.png">
-        <img id="barcode" style="position:absolute; left:80px; top: 360px; z-index:11;"/>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Mobile%20Wallet.png">
         <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-            <svg style="position:absolute; left:60px; top: 1133px; z-index:11; ">
+            <svg style="position:absolute; left:245px; top: 1110px; z-index:11; ">
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
             </svg>
         </a>
-        <a href="KT_SingleUse.html">
-            <svg style="position:absolute; left:440px; top: 1133px; z-index:11; ">
-                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
-            </svg>
-        </a>
     </div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/5 KT_selling_mobile-loyalty-book-5-060518-1.png"></div> 
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/4 KT_selling_mobile-loyalty-book-4-060518-1.png">
+            <img id="barcode" style="position:absolute; left:80px; top: 360px; z-index:11;"/>
+            <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
+                <svg style="position:absolute; left:60px; top: 1133px; z-index:11; ">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
+                </svg>
+            </a>
+
+                <svg class="cardIndexIncrementor" style="position:absolute; left:440px; top: 1133px; z-index:11; ">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
+                </svg>
+
+        </div>
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Loyalty%20Unique%20Barcodes.png"></div>
+
+
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/5 KT_selling_mobile-loyalty-book-5-060518-1.png"></div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/6 KT_selling_mobile-loyalty-book-6-060518-1.png">
         <div style="position:absolute; z-index:11; left:170px;top: 940px; height: 50px; width: 490px; font-size: 25px; display:none; font-size:35px; color: white;" id="emailmessage">Intelligent Status enables action and the capture of data while progressively deepening engagement with a brand.</div>
         <input style="position:absolute; z-index:11; left:170px;top: 990px; height: 50px; width: 490px; font-size: 25px;"
@@ -262,32 +289,24 @@
         </svg>
         </a>
     </div>
+
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/7 KT_selling_mobile-loyalty-book-7-060518-1.png">
-        <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-            <svg style="position:absolute; left:245px; top: 1133px; z-index:11; ">
+            <svg class="cardIndexIncrementor" style="position:absolute; left:245px; top: 1133px; z-index:11; ">
                 <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0);"/>
             </svg>
-        </a>
     </div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/8 KT_selling_mobile-loyalty-book-8-060518-1.png">
-        <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_Keywords.html'">
-            <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-            <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="10" y="45" font-family= 'Oswald' font-size="20" fill="white" font-weight="bold">More</text>
-        </svg>
-    </div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/9 800x1300-72dpi-Composite-Slide6.png">
-        <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_1.html'">
-          <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-          <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-          <text x="10" y="45" font-family= 'Oswald' font-size="20" fill="white" font-weight="bold">More</text>
-        </svg>
-    </div> 
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/Kt%20Loyalty%20Intelligent%20Program%20and%20Status.png"></div>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/8 KT_selling_mobile-loyalty-book-8-060518-1.png"></div>
+
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/9 800x1300-72dpi-Composite-Slide6.png"></div>
+
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/10 KT_selling_mobile-loyalty-book-9-060518-1.png">
         <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_ContactUs.html'">
             <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
             <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="10" y="45" font-family= 'Oswald' font-size="20" fill="white" font-weight="bold">More</text>
+            <text x="5" y="40" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
         </svg>
     </div>
 
