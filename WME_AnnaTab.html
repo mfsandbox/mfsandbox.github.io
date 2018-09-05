@@ -104,7 +104,6 @@
   width: 800px;
   height: 1300px;
   overflow: hidden;
-  transition-duration: 1s;
   font-family: Calibri;
 }
 
@@ -203,6 +202,15 @@
 }
 .col{flex: 1; border-right: 1px solid #000; background-color: grey; line-height: 65px; font-size: 25px;}
 
+  .tabcontent {
+    height: 100%;
+    overflow: scroll;
+    margin:0;
+    position: absolute;
+    top: 0px;
+    -webkit-overflow-scrolling: touch;
+  }
+
 </style>
 <script src="./js/header_ktt01.js"></script>
 
@@ -221,10 +229,10 @@
 
     <div class="card fixedcard" > 
       <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
-      <div class="tabcontent" id="gonzo" style="height: 100%; overflow: scroll; margin:0; position: absolute; top: 0px; display: none;">
+      <div class="tabcontent" id="gonzo" style="display: none;">
         <img style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_back.png">
       </div>
-      <div class="tabcontent" id="fozzy" style="height: 100%; overflow: scroll; margin:0; position: absolute; top: 0px; display: none;">
+      <div class="tabcontent" id="fozzy" style="display: none;">
         <img style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_inverse.png">
       </div>
       <div class="tab-grid">
