@@ -194,7 +194,8 @@
 
                     }
   );                               
-/*
+
+
   document.body.addEventListener("touchmove",
                                   function(event) {
                                                     event.preventDefault();
@@ -203,6 +204,7 @@
                                   false
                                 )
 
-*/
+
+
   window.addEventListener("resize", function(event) {scaleHeroes();});
 
