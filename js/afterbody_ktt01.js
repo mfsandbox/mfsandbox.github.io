@@ -22,7 +22,7 @@
   }
 
 
-  url.searchParams.get("card")
+  url.searchParams.get("card");
 
   function gotoMap() {
     document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=world+market+zip+code+" + document.querySelector("#zipcode").value;
@@ -194,7 +194,7 @@
 
                     }
   );                               
-
+/*
   document.body.addEventListener("touchmove",
                                   function(event) {
                                                     event.preventDefault();
@@ -203,6 +203,6 @@
                                   false
                                 )
 
-
+*/
   window.addEventListener("resize", function(event) {scaleHeroes();});
 
