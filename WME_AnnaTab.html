@@ -67,10 +67,10 @@
   top: 100px;
   height: 2vh;
   width: 100%;
-  padding-right: 33%;
-  padding-left: 33%;
+  padding-right: 45%;
+  padding-left: 45%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -220,8 +220,10 @@
 
 
 	<div class="deck">
+        <!--
     <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
     <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+        -->
 
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Anna/anna_7.png"></div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/wme/Anna/anna_6.png"></div>
@@ -231,9 +233,15 @@
       <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
       <div class="tabcontent" id="gonzo" style="display: none;">
         <img style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_back.png">
+          <div style="width: 100%; height: 60px; position: fixed; top: 1180px; text-align: center; font-size: 30px; z-index: 10; background-color: rgba(255,255,255,0.9)">
+              <img src="img/scrollblack.png">
+          </div>
       </div>
       <div class="tabcontent" id="fozzy" style="display: none;">
         <img style="height: auto; width: 100%;" src="img/wme/Anna/anna_9_inverse.png">
+          <div style="width: 100%; height: 60px; position: fixed; top: 1180px; text-align: center; font-size: 30px; z-index: 10; background-color: rgba(0,0,0,0.8)">
+              <img src="img/scrollwhite.png">
+          </div>
       </div>
       <div class="tab-grid">
         <div data-opened="false" data-contentid="gonzo" class="col" align="center" onclick="toggleTab(this);">Details</div>

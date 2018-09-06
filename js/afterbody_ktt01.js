@@ -171,7 +171,7 @@
   setCardVisibility(cards,navIcons);
   //initFlipCards();
 
-
+/*
   if (cardCount > 1)
   {
       document.querySelector(".deck .cardIndexDecrementor").addEventListener('click', function(event) {decrementCardIndex(); setCardVisibility(cards, navIcons);})
@@ -182,6 +182,7 @@
             }
           )
   }
+  */
 
   var cardbacks = document.querySelectorAll(".cardback, .scrollcard");
 
