@@ -1,0 +1,325 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<script src="https://use.fontawesome.com/e9a878b310.js"></script>
+<script src="./js/hammer.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(79,114,190,0.9);
+}
+
+.navfooter {
+  position:absolute;
+  top: 100px;
+  height: 2vh;
+  width: 100%;
+  padding-right: 35%;
+  padding-left: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+  font-family: Calibri;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  font-size:200%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  font-size:200%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dogear {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+  transform-origin: 100% 100% 0;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+}
+
+.tab-grid {
+  display:flex ;
+  position: absolute;
+  width: 100%;
+  top: 1235px;
+}
+.col{flex: 1; border-right: 1px solid #000; background-color: rgb(79,114,190); line-height: 65px; font-size: 25px; color: white;}
+
+  .tabcontent {
+    height: 100%;
+    overflow: scroll;
+    margin:0;
+    position: absolute;
+    top: 0px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+</style>
+<script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
+  <div class="cardtable">
+
+
+  <div class="deck">
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/1%20Branded%20Cover.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/2%20What%20We%20Do.png"></div>
+    <div class="card fixedcard" >
+  <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+  <div class="tabcontent" id="lookbook" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Lookbook%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="inspire" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Inspire%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="recipes" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Recipe%20Store%20Sign.png">
+  </div>
+  <div class="tab-grid">
+    <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Lookbook</div>
+    <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Inspire</div>
+    <div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>
+  </div>
+  </div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/5%20MobileStoryBook.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/7%20The%20Power%20of%20Activation.png">
+    <div class="tabcontent" id="conversion" style="display: none;">
+      <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/8%20TabOpen_Increase%20Sales%20+%20Conversion.png">
+    </div>
+
+    <div class="tab-grid">
+      <div data-opened="false" data-contentid="conversion" class="col" align="center" onclick="toggleTab(this);">Increase Sales and Conversion</div>
+
+    </div>
+
+
+  </div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/9%20Frictionless.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/10%20Personalized%20In-Store%20Activation%202.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/11%20Integrating%20Your%20Customer%20Data.png">
+      <div class="tabcontent" id="activation" style="display: none;">
+        <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/12%20TabOpen_Activation%20Plays.png">
+      </div>
+
+      <div class="tab-grid">
+        <div data-opened="false" data-contentid="activation" class="col" align="center" onclick="toggleTab(this);">Activation Plays</div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class = "navfooter">
+  </div>
+</div>
+
+</body>
+<script src="./js/afterbody_ktt01.js"></script>
+<script>
+function toggleTab(theTab)
+{
+    tabControls = theTab.parentElement.querySelectorAll(`.col`);
+    tabControls.forEach((tabControl) => {
+        tabControl.style.backgroundColor = "rgb(79,114,190)";
+        tabControl.style.fontWeight = "";
+        theTab.style.textDecoration = "";
+    })
+
+
+    contentId = theTab.getAttribute('data-contentid');
+
+    x = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+
+    x.forEach(
+        (item) =>
+          {
+            if (item.id == contentId) {
+              if (item.style.display == "none") {
+                  item.style.display = "";
+                  theTab.style.backgroundColor = "rgb(245,194,66)";
+                  theTab.style.fontWeight = "bold";
+                  theTab.style.textDecoration = "underline";
+                  document.querySelector(".navfooter").style.display = "none";
+                  document.querySelectorAll('.navicon').forEach((nav) => {
+                      nav.style.display = "none";
+                  })
+                  swipeEnabled = false;
+                }
+                else {
+                  item.style.display = "none";
+                  document.querySelector(".navfooter").style.display = "";
+                  document.querySelectorAll('.navicon').forEach((nav) => {
+                      nav.style.display = "";
+                  })
+                  swipeEnabled = true;
+              }
+              }
+            else {
+              item.style.display = "none";
+            }
+          }
+    )
+}
+
+</script>
+</html>
