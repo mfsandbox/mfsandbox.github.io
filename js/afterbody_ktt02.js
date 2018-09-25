@@ -56,7 +56,7 @@
   }
 
   const getDotCircles = (cardCount, cardIndex, dotRGB) => {
-      let dotRadiusMap = [7,7,4,2];
+      let dotRadiusMap = [3.5,3.5,2,1];
       let dotPanelWidth = 200;
       let dotInfos = getDotInfos(cardCount, cardIndex, dotRadiusMap);
       let dotSpaceBetween = 9;
