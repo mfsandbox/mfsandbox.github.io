@@ -67,7 +67,7 @@
 
 .navfooter {
   position:absolute;
-  top: 50px;
+  top: 200px;
   height: 2vh;
   width: 100%;
   text-align: center;
@@ -293,15 +293,15 @@ function toggleTab(theTab)
     if (openTabName != toggledName) {openTabName = toggledName}
     else {openTabName = ""}
 
-    let inactiveBgColor = d3.rgb('rgb(228,161,69)');
+    let activeBgColor = d3.rgb('rgb(228,161,69)');
 
 
     let tabOpacity = (openTabName == "" ? 0.85 : 1.00);
 
-    inactiveBgColor.opacity = tabOpacity;
+    activeBgColor.opacity = tabOpacity;
 
-    let activeBgColor = d3.hsl(inactiveBgColor);
-    activeBgColor.l *= 1.2;
+    let inactiveBgColor = d3.hsl(activeBgColor);
+    inactiveBgColor.l *= 0.8;
     let contentId = theTab.getAttribute('data-contentid');
 
     if (openTabName == "") {
