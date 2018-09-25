@@ -295,8 +295,6 @@ function toggleTab(theTab)
 
     let inactiveBgColor = d3.rgb(`rgb(222,100,58`);
 
-    if (url.searchParams.get("tabcolor") != null) {inactiveBgColor = d3.rgb(`#${url.searchParams.get("tabcolor")}`);}
-
     let tabTransparency = (openTabName == "" ? 0.85 : 1.00);
 
     inactiveBgColor.transparency = tabTransparency;
