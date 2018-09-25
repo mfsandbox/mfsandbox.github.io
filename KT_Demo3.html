@@ -293,9 +293,13 @@ function toggleTab(theTab)
     if (openTabName != toggledName) {openTabName = toggledName}
     else {openTabName = ""}
 
+    let inactiveBgColor = d3.rgb(`rgb(222,100,58`);
+
+    if (url.searchParams.get("tabcolor") != null) {inactiveBgColor = d3.rgb(`#${url.searchParams.get("tabcolor")}`);}
+
     let tabTransparency = (openTabName == "" ? 0.85 : 1.00);
 
-    const inactiveBgColor = d3.rgb(`rgba(222,100,58,${tabTransparency})`);
+    inactiveBgColor.transparency = tabTransparency;
 
     let activeBgColor = d3.hsl(inactiveBgColor);
     activeBgColor.l *= 1.2;
