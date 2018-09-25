@@ -199,7 +199,7 @@
   width: 100%;
   top: 1235px;
 }
-.col{flex: 1; border-right: 1px solid #000; background-color: rgba(222,100,58,0.8); line-height: 65px; font-size: 30px; color: black; text-decoration: underline;}
+.col{flex: 1; border-right: 1px solid #000; background-color: rgba(228,161,69,0.85); line-height: 65px; font-size: 30px; color: black; text-decoration: underline;}
 
   .tabcontent {
     height: 100%;
@@ -293,16 +293,16 @@ function toggleTab(theTab)
     if (openTabName != toggledName) {openTabName = toggledName}
     else {openTabName = ""}
 
-    let inactiveBgColor = d3.rgb(`rgb(222,100,58`);
+    let inactiveBgColor = d3.rgb('rgb(228,161,69)');
 
-    let tabTransparency = (openTabName == "" ? 0.85 : 1.00);
 
-    inactiveBgColor.transparency = tabTransparency;
+    let tabOpacity = (openTabName == "" ? 0.85 : 1.00);
+
+    inactiveBgColor.opacity = tabOpacity;
 
     let activeBgColor = d3.hsl(inactiveBgColor);
     activeBgColor.l *= 1.2;
     let contentId = theTab.getAttribute('data-contentid');
-
 
     if (openTabName == "") {
         swipeEnabled = true;
