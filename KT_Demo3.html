@@ -199,7 +199,7 @@
   width: 100%;
   top: 1235px;
 }
-.col{flex: 1; border-right: 1px solid #000; background-color: rgba(228,161,69); line-height: 65px; font-size: 30px; color: black; text-decoration: underline;}
+.col{flex: 1; border-right: 1px solid #000; background-color: rgba(228,161,69,1.0); line-height: 65px; font-size: 30px; color: black; text-decoration: underline;}
 
   .tabcontent {
     height: 100%;
@@ -292,12 +292,14 @@ function toggleTab(theTab)
     let activeBgColor = d3.rgb('rgb(228,161,69)');
 
 
-    let tabOpacity = (openTabName == "" ? 1.00 : 1.00);
-
+    let tabOpacity =  1.00;
     activeBgColor.opacity = tabOpacity;
-
     let inactiveBgColor = d3.hsl(activeBgColor);
-    inactiveBgColor.l *= 0.8;
+
+    if (openTabName != "") {
+        inactiveBgColor.l *= 0.8;
+    }
+
     let contentId = theTab.getAttribute('data-contentid');
 
     if (openTabName == "") {
