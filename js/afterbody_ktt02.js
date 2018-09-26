@@ -95,7 +95,11 @@
   }
 
   const drawNavDots = (cardCount, cardIndex) => {
-    navFooter.innerHTML = getDotPanelSvg(cardCount,cardIndex+1, {red: 153, green: 128, blue: 109});
+    let currentCard = cards[cardIndex];
+
+   let dotRGB = currentCard.classList.contains("dots-light") ? {red: 255, green: 255, blue: 255} : {red: 153, green: 128, blue: 109};
+
+    navFooter.innerHTML = getDotPanelSvg(cardCount,cardIndex+1, dotRGB);
   }
 
   function decrementCardIndex() {

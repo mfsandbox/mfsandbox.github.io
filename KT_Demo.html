@@ -258,7 +258,7 @@
         </div>
       </div>
       <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/5%20MobileStoryBook.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png"></div>
+      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png"></div>
       <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/7%20The%20Power%20of%20Activation.png">
         <div class="tabcontent" id="conversion" style="display: none;">
           <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/8%20TabOpen_Increase%20Sales%20+%20Conversion.png">
@@ -296,7 +296,7 @@
           <text x="50" y="45" font-size="30" fill="white">SAVE TO PHONE</text>
         </svg>
       </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/15%20EmphasizeAssortment.png"></div>
+      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/15%20EmphasizeAssortment.png"></div>
       <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/16%20Measuring%20Effectiveness.png">
         <div class="tabcontent" id="roi" style="display: none;">
           <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/17%20TabOpen_Calculating%20ROI.png">
@@ -307,8 +307,8 @@
           </div>
       </div>
     </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/18%20Insights&Reporting.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/19%20Engagement.png">
+      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/18%20Insights&Reporting.png"></div>
+      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/19%20Engagement.png">
         <div class="tabcontent" id="engagement" style="display: none;">
           <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/20%20TabOpen_Services.png">
         </div>
@@ -318,7 +318,7 @@
           </div>
         </div>
       </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/21%20New%20Contact%20Us.png">
+      <div class="card fixedcard "><img draggable="false" class="heroImage" src="img/KT_201809/Demo/21%20New%20Contact%20Us.png">
         <div class="tabcontent" id="contactus" style="display: none;">
           <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/22%20Tab%20Open.png">
           <a href="tel:7372419550">
@@ -348,6 +348,7 @@
 <script src="./js/afterbody_ktt02.js"></script>
 <script>
   function toggleTab(theTab) {
+    let theCard = theTab.parentElement.parentElement;
     let tabElements = theTab.parentElement.querySelectorAll(`.col`);
     let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
     let toggledName = theTab.getAttribute('data-contentid');
