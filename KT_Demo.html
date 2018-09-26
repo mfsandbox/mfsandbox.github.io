@@ -1,422 +1,455 @@
 <html style="overflow: hidden; touch-action:none;">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <script src="https://use.fontawesome.com/e9a878b310.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
-  <script src="js/d3-color.v1.min.js"></script>
-  <script src="./js/hammer.min.js"></script>
-  <style media="screen">
-    * {
-      box-sizing: border-box;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
 
-    @font-face {
-      font-family: Geometr415_Blk;
-      src: url("fonts/geometr415_blk.ttf") format('truetype');
-    }
+        @font-face {
+            font-family: Geometr415_Blk;
+            src: url("fonts/geometr415_blk.ttf") format('truetype');
+        }
 
+        @font-face {
+            font-family: Calibri;
+            src: url("fonts/Calibri.ttf") format('truetype');
+        }
 
-    @font-face {
-      font-family: Calibri;
-      src: url("fonts/Calibri.ttf") format('truetype');
-    }
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
 
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
 
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .cardtable {
-      position: relative;
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-    }
+        .footer a {
+            color: black;
+        }
 
-    .header {
-      height: 5%;
-      width: 100%;
-      padding-right: 5%;
-      padding-left: 5%;
-      font-family: Calibri;
-      font-size: 75%;
-      background-color: white;
-      text-align: center;
-      display: flex;
-      justify-content: space-between;
-    }
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
 
-    .footer {
-      margin-top: 2%;
-      height: auto;
-      width: 100%;
-      padding-right: 10%;
-      padding-left: 10%;
-      font-family: Calibri;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .navfooter {
+            position: absolute;
+            top: 200px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
 
-    .footer a {
-      color: black;
-    }
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
 
-    .navicon {
-      color: rgba(79, 114, 190, 0.9);
-    }
+        .card {
+            position: relative;
+            margin: 0;
+        }
 
+        .card a button {
+            border-width: 0;
+            font-family: Geometr415_Blk;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
 
-    .navfooter {
-      position: absolute;
-      top: 200px;
-      height: 2vh;
-      width: 100%;
-      text-align: center;
-    }
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Calibri;
+        }
 
-    .deck {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      display: block;
-      overflow: hidden;
-    }
+        .scrollcard {
+            overflow: scroll;
+        }
 
-    .card {
-      position: relative;
-      margin: 0;
-    }
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
 
-    .card a button {
-      border-width: 0;
-      font-family: Geometr415_Blk;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 2.2vh;
-      color: white;
-      position: absolute;
-      height: 5%;
-      top: 94.9%;
-      width: 70%;
-      left: 15%;
-    }
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
 
-    .fixedcard {
-      width: 800px;
-      height: 1300px;
-      overflow: hidden;
-      font-family: Calibri;
-    }
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
 
-    .scrollcard {
-      overflow: scroll;
-    }
+        .cardback p {
+            margin: 10px;
+            font-family: 'Calibri';
+        }
 
-    .flipcard {
-      width: 800px;
-      height: 1300px;
-      overflow: hidden;
-    }
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Geometr415_Blk';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
 
-    .cardfront {
-      overflow: inherit;
-      height: inherit;
-      width: inherit;
-    }
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-    .cardback {
-      overflow: scroll;
-      height: inherit;
-      width: inherit;
-    }
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-    .cardback p {
-      margin: 10px;
-      font-family: 'Calibri';
-    }
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .cardbuttons a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      flex-basis: 0;
-      font-family: 'Geometr415_Blk';
-      font-size: 5vmin;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: white;
-      height: 10vmin;
-      background-color: black;
-    }
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
 
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
 
-    .deck .cardIndexDecrementor {
-      position: absolute;
-      top: 50%;
-      left: 0%;
-      font-size: 200%;
-      cursor: pointer;
-      z-index: 10;
-    }
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
 
-    .deck .cardIndexIncrementor {
-      position: absolute;
-      top: 50%;
-      right: 0%;
-      font-size: 200%;
-      cursor: pointer;
-      z-index: 10;
-    }
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
 
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
 
-    .buttonpanel {
-      display: flex;
-      width: 100%;
-      height: 10%;
-      justify-content: center;
-      align-items: center;
-    }
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
 
-    .dogear {
-      position: absolute;
-      bottom: 0%;
-      right: 0%;
-      cursor: pointer;
-      transform-origin: 100% 100% 0;
-      transition-duration: 1s;
-      transform: scale3d(0, 0, 0);
-    }
-
-    .dogearFixed {
-      position: absolute;
-      bottom: 0%;
-      right: 0%;
-      cursor: pointer;
-    }
-
-    .tab-grid {
-      display: flex;
-      position: absolute;
-      width: 100%;
-      top: 1235px;
-    }
-
-    .tabCloser {
-      font-size: 30px;
-      position: absolute;
-      text-decoration: none;
-      left: 3%;
-      top: -8%;
-    }
-
-    .col {
-      flex: 1;
-      border-right: 1px solid #000;
-      background-color: rgba(217, 217, 217, 1.0);
-      line-height: 65px;
-      font-size: 30px;
-      color: black;
-      text-decoration: underline;
-      position: relative;
-    }
-
-    .tabcontent {
-      height: 100%;
-      overflow: scroll;
-      margin: 0;
-      position: absolute;
-      top: 0px;
-      -webkit-overflow-scrolling: touch;
-
-    }
-  </style>
-  <script src="./js/header_ktt01.js"></script>
+        }
+    </style>
+    <script src="./js/header_ktt01.js"></script>
 
 </head>
 
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
-  <div class="cardtable">
+<div class="cardtable">
 
 
     <div class="deck">
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/1%20Branded%20Cover.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/2%20What%20We%20Do.png"></div>
-      <div id="lookinspire" class="card fixedcard">
-        <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
-        <div class="tabcontent" id="lookbook" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20TabOpen_SignageExamples.png">
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/1%20Branded%20Cover.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/2%20What%20We%20Do.png"></div>
+        <div id="lookinspire" class="card fixedcard">
+            <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+            <div class="tabcontent" id="lookbook" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20TabOpen_SignageExamples.png">
+            </div>
+            <div class="tabcontent" id="inspire" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20TabOpen_SignageExamples.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="lookbook" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    In-Store Signage Examples
+                </div>
+                <!--<div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>-->
+            </div>
         </div>
-        <div class="tabcontent" id="inspire" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20TabOpen_SignageExamples.png">
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/5%20MobileStoryBook.png"></div>
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png">
         </div>
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>In-Store Signage Examples
-          </div>
-          <!--<div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>-->
-        </div>
-      </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/5%20MobileStoryBook.png"></div>
-      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/7%20The%20Power%20of%20Activation.png">
-        <div class="tabcontent" id="conversion" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/8%20TabOpen_Increase%20Sales%20+%20Conversion.png">
-        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/7%20The%20Power%20of%20Activation.png">
+            <div class="tabcontent" id="conversion" style="display: none;">
+                <img style="height: auto; width: 100%;"
+                     src="img/KT_201809/Demo/8%20TabOpen_Increase%20Sales%20+%20Conversion.png">
+            </div>
 
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="conversion" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>Increase Sales and Conversion
-          </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="conversion" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Increase Sales and Conversion
+                </div>
 
-        </div>
-
-
-      </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/9%20Frictionless.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/10%20Personalized%20In-Store%20Activation%202.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/11%20Integrating%20Your%20Customer%20Data.png">
-        <div class="tabcontent" id="activation" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/12%20TabOpen_Activation%20Plays.png">
-        </div>
-
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="activation" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>Activation Plays
-          </div>
-
-        </div>
+            </div>
 
 
-      </div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/13%20The%20Power%20of%20SMS.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/14%20Mobile%20Wallet.png">
-        <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
-          <polygon points="0,0 350,0 350,70 0,70" style="fill: #F19E29"/>
-          <text x="50" y="45" font-size="30" fill="white">SAVE TO PHONE</text>
-        </svg>
-      </div>
-      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/15%20EmphasizeAssortment.png"></div>
-      <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/16%20Measuring%20Effectiveness.png">
-        <div class="tabcontent" id="roi" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/17%20TabOpen_Calculating%20ROI.png">
         </div>
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="roi" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>Calculating ROI
-          </div>
-      </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/9%20Frictionless.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/10%20Personalized%20In-Store%20Activation%202.png">
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/11%20Integrating%20Your%20Customer%20Data.png">
+            <div class="tabcontent" id="activation" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/12%20TabOpen_Activation%20Plays.png">
+            </div>
+
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="activation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Activation Plays
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/13%20The%20Power%20of%20SMS.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/14%20Mobile%20Wallet.png">
+            <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
+                <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F19E29"/>
+                    <text x="50" y="45" font-size="30" fill="white">SAVE TO PHONE</text>
+                </svg>
+            </a>
+        </div>
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Demo/15%20EmphasizeAssortment.png"></div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/16%20Measuring%20Effectiveness.png">
+            <div class="tabcontent" id="roi" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/17%20TabOpen_Calculating%20ROI.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="roi" class="col" align="center" onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Calculating ROI
+                </div>
+            </div>
+        </div>
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Demo/18%20Insights&Reporting.png"></div>
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Demo/19%20Engagement.png">
+            <div class="tabcontent" id="engagement" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/20%20TabOpen_Services.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="engagement" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Services
+                </div>
+            </div>
+        </div>
+        <div class="card fixedcard "><img draggable="false" class="heroImage"
+                                          src="img/KT_201809/Demo/21%20New%20Contact%20Us.png">
+            <div class="tabcontent" id="contactus" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/22%20Tab%20Open.png">
+                <a href="tel:7372419550">
+                    <svg style="position: absolute; left: 300px; top: 110px; height: 35px; width: 200px;"></svg>
+                </a>
+                <a href="sms:7372419550">
+                    <svg style="position: absolute; left: 300px; top: 230px; height: 35px; width: 200px;"></svg>
+                </a>
+                <a href="mailto:sales@kineticthread.com">
+                    <svg style="position: absolute; left: 226px; top: 347px; height: 35px; width: 350px;"></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/kinetic-thread">
+                    <svg style="position: absolute; left: 415px; top: 425px; height: 35px; width: 130px;"></svg>
+                </a>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="contactus" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Get In Touch
+                </div>
+            </div>
+        </div>
+        <div class="navfooter">
+        </div>
     </div>
-      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/18%20Insights&Reporting.png"></div>
-      <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/19%20Engagement.png">
-        <div class="tabcontent" id="engagement" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/20%20TabOpen_Services.png">
-        </div>
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="engagement" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>Services
-          </div>
-        </div>
-      </div>
-      <div class="card fixedcard "><img draggable="false" class="heroImage" src="img/KT_201809/Demo/21%20New%20Contact%20Us.png">
-        <div class="tabcontent" id="contactus" style="display: none;">
-          <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/22%20Tab%20Open.png">
-          <a href="tel:7372419550">
-            <svg style="position: absolute; left: 300px; top: 110px; height: 35px; width: 200px;"></svg>
-          </a>
-          <a href="sms:7372419550">
-            <svg style="position: absolute; left: 300px; top: 230px; height: 35px; width: 200px;"></svg>
-          </a>
-          <a href="mailto:sales@kineticthread.com">
-            <svg style="position: absolute; left: 226px; top: 347px; height: 35px; width: 350px;"></svg>
-          </a>
-          <a href="https://www.linkedin.com/company/kinetic-thread">
-            <svg style="position: absolute; left: 415px; top: 425px; height: 35px; width: 130px;"></svg>
-          </a>
-        </div>
-        <div class="tab-grid">
-          <div data-opened="false" data-contentid="contactus" class="col" align="center" onclick="toggleTab(this);">
-            <div class="tabCloser" style="display: none;">&#9747;</div>Get In Touch
-          </div>
-        </div>
-      </div>
-    <div class="navfooter">
-    </div>
-  </div>
 
 </body>
 <script src="./js/afterbody_ktt02.js"></script>
 <script>
-  function toggleTab(theTab) {
-    let theCard = theTab.parentElement.parentElement;
-    let tabElements = theTab.parentElement.querySelectorAll(`.col`);
-    let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
-    let toggledName = theTab.getAttribute('data-contentid');
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
 
-    let tabArray = [].slice.call(tabElements);
-    let contentArray = [].slice.call(contentElements);
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
 
-    //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
-    let contentDictionary = contentArray.reduce((accum, curVal) => { accum[curVal.id] = curVal; return accum; }, []);
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
 
-    let openTabName = contentArray.reduce((accum, curVal) => { return accum += (curVal.style.display != "none" ? curVal.id : "") }, "");
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
 
-    if (openTabName != toggledName) { openTabName = toggledName }
-    else { openTabName = "" }
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        }
+        else {
+            openTabName = ""
+        }
 
-    let activeBgColor = d3.rgb('rgb(217,217,217)');
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
 
 
-    let tabOpacity = 1.00;
-    activeBgColor.opacity = tabOpacity;
-    let inactiveBgColor = d3.hsl(activeBgColor);
-    activeBgColor = d3.hsl(activeBgColor);
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
 
-    if (openTabName != "") {
-      activeBgColor.l *= 0.8;
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        }
+        else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            }
+            else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
     }
-
-    let contentId = theTab.getAttribute('data-contentid');
-
-    if (openTabName == "") {
-      swipeEnabled = true;
-      document.querySelector(".navfooter").style.display = "";
-      document.querySelectorAll('.navicon').forEach((nav) => {
-        nav.style.display = "";
-      })
-
-    }
-    else {
-      swipeEnabled = false;
-      document.querySelector(".navfooter").style.display = "none";
-      document.querySelectorAll('.navicon').forEach((nav) => {
-        nav.style.display = "none";
-      })
-
-    }
-
-    tabArray.forEach((tabElement) => {
-      let tabName = tabElement.getAttribute('data-contentid');
-      let closer = tabElement.querySelector('.tabCloser');
-      if (tabName == openTabName) {
-        closer.style.display = "";
-        tabElement.style.backgroundColor = activeBgColor;
-        tabElement.style.color = "white";
-        tabElement.style.textDecoration = "none";
-        contentDictionary[tabName].style.display = "";
-      }
-      else {
-        closer.style.display = "none";
-        tabElement.style.backgroundColor = inactiveBgColor;
-        tabElement.style.color = "black";
-        tabElement.style.fontWeight = "";
-        tabElement.style.textDecoration = "underline";
-        contentDictionary[tabName].style.display = "none";
-      }
-
-    })
-
-  }
 
 </script>
 
