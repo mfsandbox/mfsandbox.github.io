@@ -1,0 +1,365 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+  <script src="./js/hammer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+<style media="screen">
+
+* {
+    box-sizing: border-box;
+  }
+  
+@font-face {
+    font-family: Geometr415_Blk;
+    src: url("fonts/geometr415_blk.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: Calibri;
+    src: url("fonts/Calibri.ttf") format('truetype');
+}
+
+
+
+.cardtable {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+}
+
+.header {
+  height: 5%;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  font-family: Calibri;
+  font-size: 75%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 2%;
+  height: auto;
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  font-family: Calibri;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a{
+  color: black;
+}
+
+.navicon {
+  color: rgba(79,114,190,0.9);
+}
+
+.navfooter {
+  position:absolute;
+  top: 100px;
+  height: 2vh;
+  width: 100%;
+  text-align: center;
+}
+
+.deck { 
+  margin:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  margin: 0;
+  }
+
+.card a button {
+  border-width: 0;
+  font-family: Geometr415_Blk;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.2vh;
+  color:white; 
+  position:absolute; 
+  height:5%; top: 94.9%;
+  width:70%; left:15%;
+}
+
+.fixedcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+  font-family: Calibri;
+}
+
+.scrollcard {
+  overflow: scroll;  
+}
+
+.flipcard {
+  width: 800px;
+  height: 1300px;
+  overflow: hidden;
+}
+
+.cardfront {
+  overflow: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback {
+  overflow: scroll;
+  height: inherit;
+  width: inherit;
+}
+
+.cardback p {
+  margin: 10px;
+  font-family: 'Calibri';
+}
+
+.cardbuttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  font-family: 'Geometr415_Blk';
+  font-size: 5vmin;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  height: 10vmin;
+  background-color: black;
+}
+
+
+.deck .cardIndexDecrementor {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  font-size:200%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deck .cardIndexIncrementor {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  font-size:200%; 
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.buttonpanel {
+  display: flex;
+  width:100%;
+  height:10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dogear {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+  transform-origin: 100% 100% 0;
+  transition-duration: 1s;
+  transform: scale3d(0,0,0);
+}
+
+.dogearFixed {
+  position: absolute;
+  bottom: 0%;
+  right:0%;
+  cursor: pointer;
+}
+
+.tab-grid {
+  display:flex ;
+  position: absolute;
+  width: 100%;
+  top: 1235px;
+}
+.col{flex: 1; border-right: 1px solid #000; background-color: rgb(79,114,190); line-height: 65px; font-size: 30px; color: white;}
+
+  .tabcontent {
+    height: 100%;
+    overflow: scroll;
+    margin:0;
+    position: absolute;
+    top: 0px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+</style>
+<script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
+  <div class="cardtable">
+
+
+  <div class="deck">
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook1.png">
+      <div class="tabcontent" id="learnmore" style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ">
+        <p>Jumpsuits are, without a doubt, a statement style. The head-to-toe, all-in-one garment creates a striking look that moves beyond a simple dress or pants and top combo, and into more fashionable territories. So why then, do so many women still avoid this trend-worthy style? Well, it isn't always the easiest piece of clothing to pull off.  Choose the wrong fit or add the wrong accessories and your jumpsuit can go from a fashion hero to a fashion zero. Luckily, we're here to help make sure your every ensemble is seriously chic. Here is our guide on how to wear a jumpsuit like a street style star.</p>
+        <img src="img/KT_201809/Lookbook/Blogger.png" style="width: 100%">
+
+        <p style="font-weight: bold;">Choosing A Jumpsuit</p>
+        <p>Like dresses, jumpsuits come in many styles, so part of pulling off this look is all about finding the right jumpsuit for you.
+          When shopping for a jumpsuit consider your needs. Are you after a casual jumpsuit to wear during the day or something more formal for an evening look?
+          Do you need long sleeves to combat cold weather or will a strapless style help you beat the heat?
+          Once you know your requirements, you can start focusing on the details.
+          In general, styles that are fitted at the waist and then looser on the legs tend to be the most flattering.
+          If you are tall, wide-leg jumpsuits that finish just above the ground will be highly complementary.
+          If you are vertically challenged, you may want to opt for a slim, cropped style instead to avoid looking swamped in the fabric.</p>
+        <p style="font-weight: bold;">When To Wear A Jumpsuit</p>
+
+        <p>Formal Occasions</p>
+        <p>When attending formal occasions, women often fall into the mindset of thinking that a dress is their only option.
+          While a dress may be the "safe" choice for dressing appropriately, it will rarely have the same impact as a jumpsuit. Jumpsuits can be just as beautiful and polished as a dress while offering an out-of-the-box wow factor that will earn you some serious style points. So for your next formal event try stepping out of your comfort zone and wear a jumpsuit. Choose a sleek and well-tailored style that flatters your figure, add some simple yet chic accessories, and you're ready to go.</p>
+        <p>Casual Occasions</p>
+        If you're looking to add some serious style to your weekend wardrobe, you can't overlook a casual jumpsuit. Relaxed, super comfortable and oh-so-chic, the casual jumpsuit is the perfect item to get you out of your jeans and t-shirt rut. Choose from cotton and denim varieties in a range of silhouettes to find the one that suits your style. In particular, loose fit jumpsuits that feature an elasticated or drawstring waist tend to be universally flattering and perfect for jumpsuit virgins. If you plan to wear flats with your jumpsuit, remember to make sure you pick a cropped style boot or lace-up sandal that finishes at or slightly above the ankles. This will help create balance and keep the look lengthened and slim.
+        Jumpsuit With High Heels
+        While jumpsuits can be flattering, they also have a knack for pulling the eye downwards as you look at them, making you appear shorter than what you are. Wide leg and low-waisted jumpsuits, in particular, are notorious for turning average height women into mini versions of themselves. One of the best ways to combat this problem is by adding a pair of high heels to your look. The additional height that you will receive from the heels will help lengthen your legs and make you appear taller. Just make sure that you choose slim heels instead of chunky ones to keep the look slick and long.
+      </div>
+      <div class="tab-grid">
+        <div data-opened="false" data-contentid="learnmore" class="col" align="center" onclick="toggleTab(this);">Learn More</div>
+      </div>
+    </div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook3.png">
+      <div class="tabcontent" id="disclaimers" style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; ">
+        <p style="font-weight: bold; font-size: 35px;">&bull;For use on $25 off $100 discount card</p>
+
+        <p style="font-size: 30px;">Valid today only, 9/13/2018. Cannot be combined with other coupons and offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the discount applied to that item.</p>
+      </div>
+      <div class="tab-grid">
+        <div data-opened="false" data-contentid="disclaimers" class="col" align="center" onclick="toggleTab(this);">Disclaimer</div>
+      </div>
+    </div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook4.png">
+      <div class="tabcontent" id="tips" style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 30px; ">
+        <p>
+          We all love a classic look, but basic outfits can be, well, basic. One way to switch up your everyday ensemble is to experiment with print mixing. It might be out of your comfort zone, but there is one mixed-print combo in particular that you really shouldn't be afraid to try: florals with stripes. These two iconic prints look so good together, they're basically complementary.
+          Not quite sure how to pull it off? Follow these tricks, and you'll be mixing florals with stripes like it's no big deal in no time.
+        <p style="font-weight: bold">It's All About Balance</p>
+          Not sure which stripes and florals to wear together? Balance the prints with each other. For example, if your skirt has a larger floral print, wear it with a shirt that has skinnier stripes. If the top has wider stripes, wear a skirt that has small florals.
+
+        <img src="img/KT_201809/Lookbook/bag.png" style="width: 100%">
+        <p style="font-weight: bold">Start Small</p>
+        <p> If you’re just easing into the floral + stripes combo, take baby steps. Before going all out with a floral bottom and a striped top (or vice versa), stick to just your top. For example, pair a striped tee with a floral blazer or a floral scarf. You will still achieve the same contrarian look with ease.</p>
+        <p style="font-weight: bold"> Go Subtle</p>
+        <p>Stripes are so versatile, they're basically a neutral. They're even less noticeable when in lighter tones along the grayscale. A more dainty floral print or lighter stripes will ease you into the mixing game while still keeping your look innovative and experimental.</p>
+        <p style="font-weight: bold"> Intentional Contrast</p>
+        <p>Juxtaposition is what makes mixed prints work and not just because of patterns. Contrast can create balance between casual and fancy items, too. For example, the casual graphic tank with gray stripes tones down the dressy floral print. It’s the casual-meets-fancy contrast of prints that makes this outfit effortlessly cool and playful.</p>
+        </p>
+      </div>
+      <div class="tab-grid">
+        <div data-opened="false" data-contentid="tips" class="col" align="center" onclick="toggleTab(this);">Get Tips</div>
+      </div>
+
+    </div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook5.png"></div>
+    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook6.png">
+      <svg style="position:absolute; left:250px; top: 1030px; z-index:11; cursor: pointer;">
+        <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(87,114,185,1);"/>
+        <text x="50" y="45" font-size="30" fill="white" font-weight="bold">View Selection</text>
+      </svg>
+    </div>
+
+    </div>
+
+    <!--<div class="card fixedcard" >
+  <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+  <div class="tabcontent" id="lookbook" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Lookbook%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="inspire" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Inspire%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="recipes" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Recipe%20Store%20Sign.png">
+  </div>
+  <div class="tab-grid">
+    <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Lookbook</div>
+    <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Inspire</div>
+    <div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>
+  </div>
+  </div>-->
+
+
+
+    </div>
+  </div>
+
+  <div class = "navfooter" style="display: block; margin:auto;">
+  </div>
+</div>
+
+</body>
+<script src="./js/afterbody_ktt02.js"></script>
+<script>
+function toggleTab(theTab)
+{
+    tabControls = theTab.parentElement.querySelectorAll(`.col`);
+    tabControls.forEach((tabControl) => {
+        tabControl.style.backgroundColor = "rgb(79,114,190)";
+        tabControl.style.fontWeight = "";
+        tabControl.style.textDecoration = "";
+    })
+
+
+    contentId = theTab.getAttribute('data-contentid');
+
+    x = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+
+    x.forEach(
+        (item) =>
+          {
+            if (item.id == contentId) {
+              if (item.style.display == "none") {
+                  item.style.display = "";
+                  theTab.style.backgroundColor = "rgb(245,194,66)";
+                  theTab.style.fontWeight = "bolder";
+                  theTab.style.textDecoration = "underline";
+                  document.querySelector(".navfooter").style.display = "none";
+                  document.querySelectorAll('.navicon').forEach((nav) => {
+                      nav.style.display = "none";
+                  })
+                  swipeEnabled = false;
+                }
+                else {
+                  item.style.display = "none";
+                  document.querySelector(".navfooter").style.display = "";
+                  document.querySelectorAll('.navicon').forEach((nav) => {
+                      nav.style.display = "";
+                  })
+                  swipeEnabled = true;
+              }
+              }
+            else {
+              item.style.display = "none";
+            }
+          }
+    )
+}
+
+</script>
+</html>
