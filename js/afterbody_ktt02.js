@@ -85,13 +85,13 @@
 
 
       return dotInfos.map(function(dotInfo,dotIndex) {
-          return `<circle cy = '20px' cx = '${dotArrayCenters[dotIndex]}px' r = '${dotInfo.radius}px' fill='${dotInfo.current ? currentRGBA : otherRGBA}'></circle>`;
+          return `<circle cy = '25px' cx = '${dotArrayCenters[dotIndex]}px' r = '${dotInfo.radius}px' fill='${dotInfo.current ? currentRGBA : otherRGBA}'></circle>`;
       })
   }
 
   const getDotPanelSvg = (cardCount, cardIndex, dotRGB) => {
 
-      return `<svg height=40px width=200px>${getDotCircles(cardCount,cardIndex,dotRGB)}</svg>`
+      return `<svg height=50px width=200px>${getDotCircles(cardCount,cardIndex,dotRGB)}</svg>`
   }
 
   const drawNavDots = (cardCount, cardIndex) => {
