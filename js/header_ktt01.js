@@ -38,7 +38,7 @@
     ct.style.height = `${windowHeight}px`;
     ct.style.width = `${windowWidth}px`;
     navfooter = document.body.querySelector(".navfooter");
-    navTop = Math.round(windowHeight * 0.01);
+    navTop = Math.round(windowHeight * 0.005);
     navfooter.style.top = `${navTop}px`;
     heroImages.forEach(
       function(heroImage,index){
