@@ -199,7 +199,15 @@
   width: 100%;
   top: 1235px;
 }
-.col{flex: 1; border-right: 1px solid #000; background-color: rgba(228,161,44,1.0); line-height: 65px; font-size: 30px; color: black; text-decoration: underline;}
+
+.tabCloser {
+  font-size: smaller;
+  position: absolute;
+  text-decoration: none;
+  left: 2%;
+}
+
+  .col{flex: 1; border-right: 1px solid #000; background-color: rgba(217,217,217,1.0); line-height: 65px; font-size: 30px; color: black; text-decoration: underline; position:relative;}
 
   .tabcontent {
     height: 100%;
@@ -208,6 +216,7 @@
     position: absolute;
     top: 0px;
     -webkit-overflow-scrolling: touch;
+
   }
 
 </style>
@@ -230,10 +239,10 @@
         <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20TabOpen_SignageExamples.png">
       </div>
       <div class="tab-grid">
-        <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Tab 1</div>
-        <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Tab 2</div>
+        <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);"><div  class="tabCloser" style="display: none;">&#9747;</div>Tab 1</div>
+        <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);"><div class="tabCloser" style="display: none;">&#9747;</div>Tab 2</div>
         <!--<div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>-->
-  </div>
+      </div>
   </div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/5%20MobileStoryBook.png"></div>
     <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png"></div>
@@ -243,7 +252,7 @@
     </div>
 
     <div class="tab-grid">
-      <div data-opened="false" data-contentid="conversion" class="col" align="center" onclick="toggleTab(this);">Increase Sales and Conversion</div>
+      <div data-opened="false" data-contentid="conversion" class="col" align="center" onclick="toggleTab(this);"><div class="tabCloser" style="display: none;">&#9747;</div>Increase Sales and Conversion</div>
 
     </div>
 
@@ -257,7 +266,7 @@
       </div>
 
       <div class="tab-grid">
-        <div data-opened="false" data-contentid="activation" class="col" align="center" onclick="toggleTab(this);">Activation Plays</div>
+        <div data-opened="false" data-contentid="activation" class="col" align="center" onclick="toggleTab(this);"><div class="tabCloser" style="display: none;">&#9747;</div>Activation Plays</div>
 
       </div>
 
@@ -289,15 +298,16 @@ function toggleTab(theTab)
     if (openTabName != toggledName) {openTabName = toggledName}
     else {openTabName = ""}
 
-    let activeBgColor = d3.rgb('rgb(228,161,44)');
+    let activeBgColor = d3.rgb('rgb(217,217,217)');
 
 
     let tabOpacity =  1.00;
     activeBgColor.opacity = tabOpacity;
     let inactiveBgColor = d3.hsl(activeBgColor);
+    activeBgColor = d3.hsl(activeBgColor);
 
     if (openTabName != "") {
-        inactiveBgColor.l *= 0.8;
+        activeBgColor.l *= 0.8;
     }
 
     let contentId = theTab.getAttribute('data-contentid');
@@ -319,21 +329,25 @@ function toggleTab(theTab)
 
     }
 
-    tabElements.forEach((tabElement) => {
+    tabArray.forEach((tabElement) => {
         let tabName = tabElement.getAttribute('data-contentid');
-
+        let closer = tabElement.querySelector('.tabCloser');
         if (tabName == openTabName) {
+            closer.style.display = "";
             tabElement.style.backgroundColor = activeBgColor;
-            tabElement.style.fontWeight = "bold";
+            tabElement.style.color = "white";
             tabElement.style.textDecoration = "none";
             contentDictionary[tabName].style.display = "";
         }
         else {
+            closer.style.display = "none";
             tabElement.style.backgroundColor = inactiveBgColor;
+            tabElement.style.color = "black";
             tabElement.style.fontWeight = "";
             tabElement.style.textDecoration = "underline";
             contentDictionary[tabName].style.display = "none";
         }
+
     })
 
 }
