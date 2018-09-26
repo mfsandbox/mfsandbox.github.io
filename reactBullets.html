@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React JS</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+    <script type="text/babel">
+        var HelloComponent = React.createClass({
+            render: function() {
+                return (
+                <div>
+                    <h1><span style={{color:'rgba(153,128,109,1)', fontSize: '56px'}}>&#9679; </span> <span style={{color:'rgba(153,128,109,1)', fontSize: '28px'}}>&#9679; </span>  Hello, World!</h1>
+                    <svg height="100" width="800">
+                        <circle r="7" fill="rgba(153,128,109,1)" cx="400" cy="50" />
+                        <circle r="7" fill="rgba(153,128,109,0.3)" cx="423" cy="50" />
+                    </svg>
+                 </div>   
+                )
+            }
+        })
+        ReactDOM.render(<HelloComponent />, document.querySelector('#app'))
+    </script>
+</body>
+</html>
