@@ -1,0 +1,555 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <style media="screen">
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: Geometr415_Blk;
+            src: url("fonts/geometr415_blk.ttf") format('truetype');
+        }
+
+        @font-face {
+            font-family: Calibri;
+            src: url("fonts/Calibri.ttf") format('truetype');
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Geometr415_Blk;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Calibri;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Calibri';
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Geometr415_Blk';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
+<div class="cardtable">
+
+
+    <div class="deck">
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Inspire/Bedding.png">
+            <div class="tabcontent" id="beddingmore"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ">
+                <p>For most of us, the bedroom is the ultimate respite. It's where we go to recharge, enjoy a guilty
+                    pleasure on television, or dive into a favorite book. The bedroom should be soothing; it should be
+                    clean, cared for, and welcoming, reflecting the type of peace of mind you'd like to achieve.
+                    The cloth you use to cover your bed will set the mood for the room entirely. Red-patterned duvet
+                    cover: My, what a sultry room you have. Pale green sheets with white pillows: How very calming. The
+                    better you understand your bed linens, the better your relationship with your bed will be.
+                <p style="font-weight: bold;">Personalize It</p>
+                The bedroom is special -- it's where you are "at ease," curled on your side with a good book (or iPad),
+                fading off to much-needed sleep. Make it truly unique by adding your own personal touches to your safe
+                haven!
+                <p></p>
+                <img src="img/KT_201809/Inspire/bedroom.jpg" style="width: 100%">
+                <p style="font-weight: bold;">Buy the Right Pillows </p>
+                Your pillow cradles your head at night. Make sure to buy one that matches you: The firmness of your
+                pillow should depend on how you like to sleep. Both back and side sleepers should have a medium-firm
+                pillow, filled with a combination of down and feathers, or silk. Stomach sleepers should have a soft
+                pillow filled with down to prevent neck strain.
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="beddingmore" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Learn More
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Inspire/Dining%20Chairs.png">
+            <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill:#F15A29"/>
+                <text x="50" y="45" font-size="30" fill="white">VIEW SELECTION</text>
+            </svg>
+        </div>
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Inspire/Terrarium.png">
+            <div class="tabcontent" id="terrariumshow"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ">
+                <p>If you're interested in testing out your green thumb, but don't have the space to do so, a DIY
+                    terrarium is just what you need. These mini tabletop gardens are fun to create and are a great way
+                    to perk up your indoor space.</p>
+                <p>In addition to being enjoyable and decorative, terrariums are also easy to care for and simply
+                    beautiful. It's a DIY win-win. Whether you're looking for a decor element to bring the outdoors in
+                    or a unique gift idea, consider making a DIY terrarium.</p>
+                <ul>
+                    <li>Supplies</li>
+                    <li>Glass Vessel</li>
+                    <li>Small Stones or Pebbles</li>
+                    <li>Activated Charcoal</li>
+                    <li>Potting Soil</li>
+                    <li>Plants</li>
+                    <li>Small Gardening Tools</li>
+                </ul>
+                <img src="img/KT_201809/Inspire/bloom.jpg" style="width: 100%">
+                <p style="font-weight: bold;">Step 1: Cover the bottom of your terrarium with a 1&amp;&frac12;
+                    inch-thick layer of
+                    small stones or pebbles.</p>
+                <p>The bottom layer of small pebbles will act as drainage for your terrarium.</p>
+                <p style="font-weight: bold;">Step 2: Add a very thin layer of activated charcoal.</p>
+                <p>The activated charcoal will keep water fresh and fight off any bacterial growth in your
+                    terrarium.</p>
+                <p style="font-weight: bold;">Step 3: Add a layer of potting soil.</p>
+                <p>As we mentioned, any potting soil mix will do, although if you're planting succulents or cacti there
+                    are specialized mixes you can use. You'll want to add enough potting soil so that it's deep enough
+                    for your plants to root into it. We recommend a layer that's about 2&amp;&frac12; inches. For this
+                    particular
+                    terrarium, we used 2 inches of potting soil.</p>
+                <p style="font-weight: bold;">Step 4: Now it's time to add your plants.</p>
+                <ul>
+                    <li>Start by planting your largest plant first. Remove the plant from its container and prune the
+                        roots as you would when repotting any plant.
+                    </li>
+                    <li>Then, make a hole in the soil large enough to fit the plants' roots.</li>
+                    <li>Next, nestle the plant into the soil. It's easiest to work your way from the back to the front
+                        of your terrarium. There's no rhyme or reason to the design of your terrarium, play around with
+                        the arrangement and don't forget to have fun!
+                    </li>
+                </ul>
+                <p style="font-weight: bold;">Pro Tip: Use gloves when handling cactus or any other prickly plant.</p>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="terrariumshow" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Show Me
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Inspire/Blue%20Couch.png">
+            <div class="tabcontent" id="bluecouchshow"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ">
+                <p>There are so many reasons why buying a sofa in a neutral tone is a wise choice. They're easy to
+                    design around and you probably won't regret your purchase a week later. Statement sofas? They're the
+                    opposite. However, there's a certain thrill you get from a bold, patterned, or brightly-colored sofa
+                    that you can't get from anything grey.</p>
+                <p>The challenge is designing your space so that the sofa stands out but doesn't overpower the rest of
+                    your living room. But rest assured, it can be done. So if you're fantasizing about a sofa that's
+                    anything but safe, find out how to make it work.</p>
+
+                <ul>
+                    <li>AMPLIFY THE COLOR</li>
+                    <li>MAKE IT A FOCAL POINT</li>
+                    <li>GO WILD WITH PATTERNS</li>
+                </ul>
+                <p>For the truly bold, forget about mixing subtle with bold. Instead, own your eclectic style with an
+                    unexpected combination of patterns, colors, and artwork.</p>
+
+                <img src="img/KT_201809/Inspire/showmecouch.jpg" style="width: 100%">
+
+                <p>Being too matchy-matchy is boring, but bringing out the striking shade of blue from this painting
+                    intensifies the color in the best possible way.</p>
+
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="bluecouchshow" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Show Me
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Inspire/Charcuterie.png">
+            <div class="tabcontent" id="charcuterieshow"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ">
+                <p>Far more than a bunch of meat on a plate, charcuterie is a culinary choose-your-own-adventure story.
+                    Imagine the savory goodness that is a charcuterie board: an array of cured meats, tangy pickles,
+                    sweet jams, cheese, fresh fruit, and your own personal culinary wild cards, paired with beer or wine
+                    to complement the flavors and textures.</p>
+
+                <p>From the French chair ("flesh") and cuit ("cooked"), and pronounced "shar-koo-tuh-ree," charcuterie
+                    describes a wide range of cured meats, from hard, thin-sliced cuts to soft spreads. In France, the
+                    word also describes the shop that sells them. Charcuterie can serve as a starter course for a formal
+                    occasion, or it can spotlight as the light-meal centerpiece at a casual gathering.</p>
+
+                <p>The wonderful thing about a charcuterie board is its versatility. You can mix and match flavors and
+                    textures. You can focus on a particular style or region. You can leave some items off the menu
+                    altogether. For instance, you could nix bread or crackers from a gluten-free board, or substitute
+                    fig salami for Italian salami and hummus for pate on a vegetarian board. Or double-down on
+                    variations of a group favorite (a culinary tour of the pates of various regions of France,
+                    anyone?).</p>
+                <ul>
+                    <li><span style="font-weight:bold;">Something pre-sliced:</span> these bring savory salty goodness
+                    </li>
+                    <li><span style="font-weight:bold;">Something you slice:</span> these add chew and texture</li>
+                    <li><span style="font-weight:bold;">Something spreadable:</span> these provide richness and
+                        smoothness on the palette
+                    </li>
+                    <li><span style="font-weight:bold;">Accents:</span> these add variety, help people mix and match,
+                        add contrast, and combine different sensations, textures, aromas and flavors
+                    </li>
+                    <li><span style="font-weight:bold;">Beverages:</span> these reset the palette and complement or
+                        contrast the food
+                    </li>
+                </ul>
+
+                <img src="img/KT_201809/Inspire/cheese.jpg" style="width: 100%">
+
+                <p>A charcuterie board is not just what you eat, it's also what people see and how the components are
+                arranged. Once you select your elements, examine how you want to arrange your board. Here are some
+                    ideas:</p>
+                <ul>
+                <li>Place everything on flat wooden surfaces, such as a butcher block or large cutting board. Consider
+                    additional surfaces to separate meats if your guest list includes vegetarians or vegans.</li>
+                <li>Color-code multiple platters. Accents including jam, fruit, and pickles add pops of color. Arrange them
+                on white plates. (For instance, you can serve all jams in small bowls on one plate, all fruit on
+                    another, etc.)</li>
+                    <li>Showcase and complement meats, cheeses, and breads with colored plates.</li>
+                <li>Add small tags with descriptions of what each item is and where it comes from, as well as any important
+                    dietary factors.</li>
+                </ul>
+                <p>Now you're ready to assemble the components of your first-class charcuterie board!</p>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="charcuterieshow" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Show Me
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Inspire/Spend%20100%20get%2020%20Furniture%20Coupon.png">
+            <div class="tabcontent" id="disclaimers"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; ">
+                <p style="font-weight: bold; font-size: 35px;">&bull;For use on $20 off $100 discount card</p>
+
+                <p style="font-size: 30px;">Valid today only, 9/27/2018. Cannot be combined with other coupons and
+                    offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to
+                    prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the
+                    discount applied to that item.</p>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="disclaimers" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Disclaimer
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<div class="card fixedcard" >
+  <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+  <div class="tabcontent" id="lookbook" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Lookbook%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="inspire" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Inspire%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="recipes" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Recipe%20Store%20Sign.png">
+  </div>
+  <div class="tab-grid">
+    <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Lookbook</div>
+    <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Inspire</div>
+    <div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>
+  </div>
+  </div>-->
+
+
+</div>
+</div>
+
+<div class="navfooter">
+</div>
+</div>
+
+</body>
+<script src="./js/afterbody_ktt02.js"></script>
+<script>
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        }
+        else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        }
+        else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            }
+            else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+</script>
+</html>

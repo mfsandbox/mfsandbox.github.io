@@ -1,335 +1,404 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-<script src="https://use.fontawesome.com/e9a878b310.js"></script>
-<script src="./js/hammer.min.js"></script>
-<script src="./js/JsBarcode.all.min.js"></script>
-<style media="screen">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <style media="screen">
 
-* {
-    box-sizing: border-box;
-  }
-  
-@font-face {
-    font-family: Geometr415_Blk;
-    src: url("fonts/geometr415_blk.ttf") format('truetype');
-}
+        * {
+            box-sizing: border-box;
+        }
 
+        @font-face {
+            font-family: Geometr415_Blk;
+            src: url("fonts/geometr415_blk.ttf") format('truetype');
+        }
 
-@font-face {
-    font-family: Calibri;
-    src: url("fonts/Calibri.ttf") format('truetype');
-}
+        @font-face {
+            font-family: Calibri;
+            src: url("fonts/Calibri.ttf") format('truetype');
+        }
 
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
 
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
 
-.cardtable {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  margin:0;
-}
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.header {
-  height: 5%;
-  width: 100%;
-  padding-right: 5%;
-  padding-left: 5%;
-  font-family: Calibri;
-  font-size: 75%;
-  background-color: white;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
+        .footer a {
+            color: black;
+        }
 
-.footer {
-  margin-top: 2%;
-  height: auto;
-  width: 100%;
-  padding-right: 10%;
-  padding-left: 10%;
-  font-family: Calibri;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
 
-.footer a{
-  color: black;
-}
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
 
-.navicon {
-  color: rgba(64,64,64,0.7);
-}
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
 
-.radio{
-    -webkit-appearance:button;
-    -moz-appearance:button;
-    appearance:button;
-    border:4px solid #ccc;
-    border-top-color:#bbb;
-    border-left-color:#bbb;
-    background:#fff;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-}
-.radio:checked{
-    border:15px solid #808080;
-}
-.radio:focus{
-    outline: none;
-}
-.navfooter {
-  position:absolute;
-  height: 2vh;
-  width: 100%;
-  padding-right: 33%;
-  padding-left: 33%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .card {
+            position: relative;
+            margin: 0;
+        }
 
-.deck { 
-  margin:0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: block;
-  overflow: hidden;
-}
+        .card a button {
+            border-width: 0;
+            font-family: Geometr415_Blk;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
 
-.card {
-  position: relative;
-  margin: 0;
-  }
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Calibri;
+        }
 
-.card a button {
-  border-width: 0;
-  font-family: Geometr415_Blk;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 2.2vh;
-  color:white; 
-  position:absolute; 
-  height:5%; top: 94.9%;
-  width:70%; left:15%;
-}
+        .scrollcard {
+            overflow: scroll;
+        }
 
-.fixedcard {
-  width: 800px;
-  height: 1300px;
-  overflow: hidden;
-  transition-duration: 1s;
-  font-family: Calibri;
-}
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
 
-.scrollcard {
-  overflow: scroll;  
-}
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
 
-.flipcard {
-  width: 800px;
-  height: 1300px;
-  overflow: hidden;
-}
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
 
-.cardfront {
-  overflow: inherit;
-  height: inherit;
-  width: inherit;
-}
+        .cardback p {
+            margin: 10px;
+            font-family: 'Calibri';
+        }
 
-.cardback {
-  overflow: scroll;
-  height: inherit;
-  width: inherit;
-}
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Geometr415_Blk';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
 
-.cardback p {
-  margin: 10px;
-  font-family: 'Calibri';
-}
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-.cardbuttons a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  flex-basis: 0;
-  font-family: 'Geometr415_Blk';
-  font-size: 5vmin;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: white;
-  height: 10vmin;
-  background-color: black;
-}
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
 
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
 
-.deck .cardIndexDecrementor {
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  font-size:200%;
-  cursor: pointer;
-  z-index: 10;
-}
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
 
-.deck .cardIndexIncrementor {
-  position: absolute;
-  top: 50%;
-  right: 0%;
-  font-size:200%; 
-  cursor: pointer;
-  z-index: 10;
-}
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
 
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
 
-.buttonpanel {
-  display: flex;
-  width:100%;
-  height:10%;
-  justify-content: center;
-  align-items: center;
-}
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
 
-.dogear {
-  position: absolute;
-  bottom: 0%;
-  right:0%;
-  cursor: pointer;
-  transform-origin: 100% 100% 0;
-  transition-duration: 1s;
-  transform: scale3d(0,0,0);
-}
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
 
-.dogearFixed {
-  position: absolute;
-  bottom: 0%;
-  right:0%;
-  cursor: pointer;
-}
-</style>
-    <script src="./js/header_wme3.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;" onload="scaleHeroes()">
-  <div class="cardtable">
+<div class="cardtable">
 
 
-	<div class="deck">
-    <i class="navicon fa cardIndexDecrementor fa-angle-left"></i>
-    <i class="navicon fa cardIndexIncrementor fa-angle-right"></i>
+    <div class="deck">
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Birthday15.png">
+            <div class="tabcontent" id="birthdayreward"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
+            </div>
+            <div class="tabcontent" id="birthdaydisclaimers"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ; width:100%;">
+                <p style="font-size: 35px;">Valid today only, 9/27/2018. Cannot be combined with other coupons and
+                    offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to
+                    prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the
+                    discount applied to that item.</p>
 
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/1 KT_selling_mobile-loyalty-book-1-060518-1.png"></div>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="birthdayreward" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Claim Reward
+                </div>
+                <div data-opened="false" data-contentid="birthdaydisclaimers" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Disclaimers
+                </div>
+            </div>
+        </div>
 
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/2 KT_selling_mobile-loyalty-book-2-060518-1.png"></div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Loyalty%20Intelligent%20Incentive.png">
-        <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_Incentive.html'">
-            <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-            <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="5" y="40" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
-        </svg>
-    </div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/3 KT_selling_mobile-loyalty-book-3-060518-1.png">
-        <img id="barcode" style="position:absolute; left:75px; top: 280px; z-index:11;"/>
-        <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-            <svg style="position:absolute; left:225px; top: 1133px; z-index:11; ">
-                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
+        <!--
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/KT_201809/Inspire/Dining%20Chairs.png">
+            <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill:#F15A29"/>
+                <text x="50" y="45" font-size="30" fill="white">VIEW SELECTION</text>
             </svg>
-        </a>
-        <svg style="position:absolute; left:440px; top: 1133px; z-index:11; " class="cardIndexIncrementor">
-            <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
-        </svg>
-    </div>
+        </div>
+        -->
 
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Mobile%20Wallet.png">
-        <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-            <svg style="position:absolute; left:245px; top: 1110px; z-index:11; ">
-                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
-            </svg>
-        </a>
-    </div>
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/$10%20Rewards.png">
+            <div class="tabcontent" id="reward10disclaimer"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
+                <p style="font-size: 35px;">Valid 8/04/2018 - 9/03/2018. Not valid on alcoholic beverages, gift cards, delivery surcharges, and shipping fees. Cannot be combined with other coupons and offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the discount applied to that item. </p>
 
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/4 KT_selling_mobile-loyalty-book-4-060518-1.png">
-            <img id="barcode" style="position:absolute; left:80px; top: 360px; z-index:11;"/>
-            <a href="https://reach-api.urbanairship.com/v1/pass/adaptive/uI4R0ra21l">
-                <svg style="position:absolute; left:60px; top: 1133px; z-index:11; ">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,255,0);"/>
-                </svg>
-            </a>
+            </div>
 
-                <svg class="cardIndexIncrementor" style="position:absolute; left:440px; top: 1133px; z-index:11; ">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
-                </svg>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="reward10disclaimer" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    View Disclaimers
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png">
 
         </div>
 
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/KT%20Loyalty%20Unique%20Barcodes.png"></div>
-
-
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/5 KT_selling_mobile-loyalty-book-5-060518-1.png"></div>
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/6 KT_selling_mobile-loyalty-book-6-060518-1.png">
-        <div style="position:absolute; z-index:11; left:170px;top: 940px; height: 50px; width: 490px; font-size: 25px; display:none; font-size:35px; color: white;" id="emailmessage">Intelligent Status enables action and the capture of data while progressively deepening engagement with a brand.</div>
-        <input style="position:absolute; z-index:11; left:170px;top: 990px; height: 50px; width: 490px; font-size: 25px;"
-               type="text"
-               id="emailaddress"
-               value="email address"
-               onfocus = "this.value = '';this.onfocus = null;"/>
-        <svg style="position:absolute; left:250px; top: 1133px; z-index:11; cursor: pointer;"
-             onclick="document.querySelector('#emailaddress').style.display='none'; document.querySelector('#emailmessage').style.display=''";>
-            <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,255,0,0);"/>
-        </svg>
-        </a>
     </div>
 
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/7 KT_selling_mobile-loyalty-book-7-060518-1.png">
-            <svg class="cardIndexIncrementor" style="position:absolute; left:245px; top: 1133px; z-index:11; ">
-                <polygon points="0,0 370,0 370,70 0,70" style="fill: rgba(0,0,255,0);"/>
-            </svg>
-    </div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/Kt%20Loyalty%20Intelligent%20Program%20and%20Status.png"></div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/8 KT_selling_mobile-loyalty-book-8-060518-1.png"></div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/9 800x1300-72dpi-Composite-Slide6.png"></div>
-
-    <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt/LoyaltyBook/10 KT_selling_mobile-loyalty-book-9-060518-1.png">
-        <svg class="dogear" width="100" height="120" onclick="window.location.href= 'KT_Back_ContactUs.html'">
-            <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-            <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-            <text x="5" y="40" font-family= 'Open Sans' font-size="20" fill="white" font-weight="bold">More</text>
-        </svg>
-    </div>
+    <!--<div class="card fixedcard" >
+  <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+  <div class="tabcontent" id="lookbook" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Lookbook%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="inspire" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Inspire%20Store%20Sign.png">
+  </div>
+  <div class="tabcontent" id="recipes" style="display: none;">
+    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Recipe%20Store%20Sign.png">
+  </div>
+  <div class="tab-grid">
+    <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Lookbook</div>
+    <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Inspire</div>
+    <div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>
+  </div>
+  </div>-->
 
 
-<!--
-    <div class="card fixedcard" > 
-      <img draggable="false" class="heroImage" src="img/wme/Anna/anna_9.png">
-      <svg class="dogear" width="100" height="120" onclick="window.location.href= 'WME_RedchairBack_flip2.html'">
-        <polygon points="100,0 100,120 0,120" style="fill:rgb(255,255,255)"/>
-        <polygon points="0,0 100,0 0,120" style="fill:rgba(0,0,0,0.3)"/>
-        <text x="5" y="35" font-family="Verdana" font-size="20" fill="white" font-weight="bold">More</text>
-      </svg>
-    </div>
--->    
+</div>
+</div>
 
-
-  </div>  
-
-  <div class = "navfooter">
-  </div>  
+<div class="navfooter">
+</div>
 </div>
 
 </body>
-<script>JsBarcode("#barcode","50572641000311000960079282",{width: 3.6, height:140, margin: 2});</script>
-<script src="./js/afterbody_wme3.js"></script>
+<script src="./js/afterbody_ktt02.js"></script>
+<script>
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        }
+        else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        }
+        else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            }
+            else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+</script>
 </html>
