@@ -1,15 +1,22 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="./js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <style media="screen">
 
         * {
             box-sizing: border-box;
         }
+
+
+
+
 
         @font-face {
             font-family: Geometr415_Blk;
@@ -51,6 +58,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        p {
+            font-size: 25px;
+            font-family:'Open Sans';
         }
 
         .footer a {
@@ -236,6 +248,7 @@
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Birthday15.png">
             <div class="tabcontent" id="birthdayreward"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
+                <img id="barcode_128" style="position:absolute; left:200px; top: 300px;"/>
             </div>
             <div class="tabcontent" id="birthdaydisclaimers"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ; width:100%;">
@@ -270,6 +283,7 @@
         -->
 
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/$10%20Rewards.png">
+            <img id="barcode_128" style="position:absolute; left:200px; top: 300px;"/>
             <div class="tabcontent" id="reward10disclaimer"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
                 <p style="font-size: 35px;">Valid 8/04/2018 - 9/03/2018. Not valid on alcoholic beverages, gift cards, delivery surcharges, and shipping fees. Cannot be combined with other coupons and offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the discount applied to that item. </p>
@@ -286,30 +300,50 @@
         </div>
 
 
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png">
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png"></div>
 
+
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/NavPag%20Example2.png">
+            <p style="position: absolute;left: 160px; top: 100px; font-weight: 600; color: #635245 ">Rewards For: 1234&nbsp;5678</p>
+            <p style="position: absolute;left: 160px; top: 110px; font-weight: 700; font-size: 50px; color: #FFFFFF">Julie Bonn</p>
+            <p style="position: absolute;left: 160px; top: 250px; font-weight: 600; color: #635245">YOU'RE ONLY</p>
+            <p style="position: absolute;left: 400px; top: 250px; font-weight: 700; color: #FFFFFF">495 points</p>
+            <p style="position: absolute;left: 160px; top: 300px; font-weight: 600; color: #635245">AWAY FROM A</p>
+            <p style="position: absolute;left: 400px; top: 300px; font-weight: 700; color: #FFFFFF">$10 reward</p>
+            <a href="">
+            <svg style="position:absolute; left:250px; top: 1034px; z-index:11; cursor: pointer;">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #44C0B8"/>
+                <text x="50" y="45" font-size="30" fill="white">SAVE TO PHONE</text>
+            </svg>
+            </a>
+            <a href="">
+                <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"/>
+                    <text x="50" y="45" font-size="30" fill="#44C0B8">VIEW ACCOUNT</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Email%20Bonus%20Credits.png">
+            <a href="">
+                <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #44C0B8"/>
+                    <text x="100" y="45" font-size="30" fill="#FFFFFF">SUBMIT</text>
+                </svg>
+            </a>
+        </div>
+
+
+        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/pillows.png">
+            <a href="">
+                <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F15A29"/>
+                    <text x="50" y="45" font-size="30" fill="#FFFFFF">VIEW SELECTION</text>
+                </svg>
+            </a>
         </div>
 
     </div>
-
-    <!--<div class="card fixedcard" >
-  <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
-  <div class="tabcontent" id="lookbook" style="display: none;">
-    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Lookbook%20Store%20Sign.png">
-  </div>
-  <div class="tabcontent" id="inspire" style="display: none;">
-    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Inspire%20Store%20Sign.png">
-  </div>
-  <div class="tabcontent" id="recipes" style="display: none;">
-    <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/4%20Recipe%20Store%20Sign.png">
-  </div>
-  <div class="tab-grid">
-    <div data-opened="false" data-contentid="lookbook" class="col" align="center" onclick="toggleTab(this);">Lookbook</div>
-    <div data-opened="false" data-contentid="inspire" class="col" align="center" onclick="toggleTab(this);">Inspire</div>
-    <div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>
-  </div>
-  </div>-->
-
 
 </div>
 </div>
@@ -401,4 +435,5 @@
 
     }
 </script>
+<script>JsBarcode("#barcode_128","12345671234567",{width: 3.6, height:140, margin: 2});</script>
 </html>
