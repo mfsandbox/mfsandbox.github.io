@@ -7,7 +7,7 @@
     <script src="./js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
     <script src="js/JsBarcode.all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
     <style media="screen">
 
         * {
@@ -247,12 +247,9 @@
     <div class="deck">
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Birthday15.png">
             <div class="tabcontent" id="birthdayreward"
-                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
-                <img id="barcode_128" style="position:absolute; left:200px; top: 300px;"/>
-            </div>
-            <div class="tabcontent" id="birthdaydisclaimers"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ; width:100%;">
-                <p style="font-size: 35px;">Valid today only, 9/27/2018. Cannot be combined with other coupons and
+                <img id="barcode_128" style="position:absolute; left:120px; top: 200px;"/>
+                <p style="position:absolute; top: 450px;">Valid today only. Cannot be combined with other coupons and
                     offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to
                     prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the
                     discount applied to that item.</p>
@@ -262,28 +259,13 @@
                 <div data-opened="false" data-contentid="birthdayreward" class="col" align="center"
                      onclick="toggleTab(this);">
                     <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Claim Reward
-                </div>
-                <div data-opened="false" data-contentid="birthdaydisclaimers" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Disclaimers
+                    Get Reward
                 </div>
             </div>
         </div>
 
-        <!--
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                    src="img/KT_201809/Inspire/Dining%20Chairs.png">
-            <svg style="position:absolute; left:250px; top: 1125px; z-index:11; cursor: pointer;">
-                <polygon points="0,0 350,0 350,70 0,70" style="fill:#F15A29"/>
-                <text x="50" y="45" font-size="30" fill="white">VIEW SELECTION</text>
-            </svg>
-        </div>
-        -->
-
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/$10%20Rewards.png">
-            <img id="barcode_128" style="position:absolute; left:200px; top: 300px;"/>
+            <img id="barcode_128" style="position:absolute; left:120px; top: 300px;"/>
             <div class="tabcontent" id="reward10disclaimer"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
                 <p style="font-size: 35px;">Valid 8/04/2018 - 9/03/2018. Not valid on alcoholic beverages, gift cards, delivery surcharges, and shipping fees. Cannot be combined with other coupons and offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the discount applied to that item. </p>
@@ -302,14 +284,31 @@
 
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png"></div>
 
+        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Spend%20100%20get%2020%20Furniture%20Coupon.png">
+            <img id="barcode_128" style="position:absolute; left:120px; top: 290px;"/>
+            <div class="tabcontent" id="spenddisclaimer"
+                 style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100% ">
+                <p style="font-size: 35px;">Valid today only. Not valid on alcoholic beverages, gift cards, delivery surcharges, and shipping fees. Cannot be combined with other coupons and offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the discount applied to that item. </p>
+
+            </div>
+
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="spenddisclaimer" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    View Disclaimers
+                </div>
+            </div>
+        </div>
+
 
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/NavPag%20Example2.png">
-            <p style="position: absolute;left: 160px; top: 100px; font-weight: 600; color: #635245 ">Rewards For: 1234&nbsp;5678</p>
-            <p style="position: absolute;left: 160px; top: 110px; font-weight: 700; font-size: 50px; color: #FFFFFF">Julie Bonn</p>
-            <p style="position: absolute;left: 160px; top: 250px; font-weight: 600; color: #635245">YOU'RE ONLY</p>
-            <p style="position: absolute;left: 400px; top: 250px; font-weight: 700; color: #FFFFFF">495 points</p>
-            <p style="position: absolute;left: 160px; top: 300px; font-weight: 600; color: #635245">AWAY FROM A</p>
-            <p style="position: absolute;left: 400px; top: 300px; font-weight: 700; color: #FFFFFF">$10 reward</p>
+            <p style="position: absolute;left: 160px; top: 90px; font-weight: 600; font-size: 32px; color: #635245 ">Rewards For: 1234&nbsp;5678</p>
+            <p style="position: absolute;left: 160px; top: 110px; font-weight: 800; font-size: 50px; color: #FFFFFF">Julie Bonn</p>
+            <p style="position: absolute;left: 160px; top: 250px; font-weight: 600; font-size: 32px; color: #635245">YOU'RE ONLY</p>
+            <p style="position: absolute;left: 400px; top: 245px; font-weight: 600; font-size: 35px; color: #FFFFFF">495 points</p>
+            <p style="position: absolute;left: 160px; top: 300px; font-weight: 600; font-size: 32px; color: #635245">AWAY FROM A</p>
+            <p style="position: absolute;left: 400px; top: 295px; font-weight: 600; font-size: 35px; color: #FFFFFF;">$10 reward</p>
             <a href="">
             <svg style="position:absolute; left:250px; top: 1034px; z-index:11; cursor: pointer;">
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: #44C0B8"/>
@@ -435,5 +434,5 @@
 
     }
 </script>
-<script>JsBarcode("#barcode_128","12345671234567",{width: 3.6, height:140, margin: 2});</script>
+<script>JsBarcode("#barcode_128","12345671234567",{width: 5, height:160, margin: 2});</script>
 </html>

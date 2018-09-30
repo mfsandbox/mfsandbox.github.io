@@ -1,10 +1,13 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="./js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
     <style media="screen">
 
         * {
@@ -51,6 +54,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        p {
+            font-size: 25px;
+            font-family:'Open Sans';
         }
 
         .footer a {
@@ -292,10 +300,9 @@
             </div>
         </div>
         <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Lookbook/Lookbook3.png">
+            <img id="barcode_128" style="position:absolute; left:120px; top: 260px;"/>
             <div class="tabcontent" id="disclaimers"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; ">
-                <p style="font-weight: bold; font-size: 35px;">&bull;For use on $25 off $100 discount card</p>
-
                 <p style="font-size: 30px;">Valid today only, 9/27/2018. Cannot be combined with other coupons and
                     offers. Discount will be applied to current selling price. Employees not eligible. No adjustments to
                     prior purchases. No cash value or rain checks issued. When you return an item, you will forfeit the
@@ -493,4 +500,5 @@
 
     }
 </script>
+<script>JsBarcode("#barcode_128","12345671234567",{width: 5, height:160, margin: 2});</script>
 </html>

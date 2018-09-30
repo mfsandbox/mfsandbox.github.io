@@ -1,10 +1,13 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="./js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
     <style media="screen">
 
         * {
@@ -54,7 +57,8 @@
         }
 
         p {
-            font-size: 30px;
+            font-size: 25px;
+            font-family:'Open Sans';
         }
 
         .footer a {
@@ -290,6 +294,7 @@
 
         <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Recipes/Incentive%20Card.png">
+            <img id="barcode_128" style="position:absolute; left:120px; top: 300px;"/>
             <div class="tabcontent" id="incentivedisclaimer"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width:100%; height:100%; ">
                 <p>
@@ -579,4 +584,5 @@
 
     }
 </script>
+<script>JsBarcode("#barcode_128","12345671234567",{width: 5, height:160, margin: 2});</script>
 </html>
