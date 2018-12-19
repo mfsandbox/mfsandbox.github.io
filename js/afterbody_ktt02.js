@@ -186,7 +186,7 @@
 
           url.searchParams.set("card",`${index + 1}`);
           history.replaceState({},null,url.href);
-          gtag('config', 'UA-130553299-1', {'page_path': `/${bookName}/card${index + 1}`});
+          //gtag('config', 'UA-130553299-1', {'page_path': `/${bookName}/card${index + 1}`});
           card.hidden = false;
           card.scrollTop = 0;
 
