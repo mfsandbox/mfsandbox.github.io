@@ -139,6 +139,7 @@
   function flipCard(card) {
     url.searchParams.set("card",`${currentCardIndex + 1}`);
     history.pushState(null,null,url.href);
+
     var cardBack = card.querySelector('.cardback');
     var cardFront = card.querySelector('.cardfront');
     cardFront.hidden = !cardFront.hidden;
@@ -185,6 +186,7 @@
 
           url.searchParams.set("card",`${index + 1}`);
           history.replaceState({},null,url.href);
+          gtag('config', 'UA-130553299-1', {'page_path': `/${bookName}/card${index + 1}`});
           card.hidden = false;
           card.scrollTop = 0;
 

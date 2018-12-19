@@ -1,6 +1,16 @@
 <html style="overflow: hidden; touch-action:none;">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130553299-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        //gtag('config', 'UA-130553299-1', {'page_location': 'demobook'});
+        let bookName = 'demobook';
+    </script>
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
@@ -235,12 +245,16 @@
 
 
     <div class="deck">
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div class="card fixedcard" id="branded_cover"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Demo/1%20Branded%20Cover.png"></div>
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
-                                         src="img/KT_201809/Demo/2%20What%20We%20Do.png"></div>
-        <div id="lookinspire" class="card fixedcard">
+        <div class="card fixedcard dots-light" id="what_we_do"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/kt_coupon_chairs_20_40perc.png"></div>
+        <div class="card fixedcard" id="lookinspire">
             <img draggable="false" class="heroImage" src="img/KT_201809/Demo/3%20How%20It%20Works.png">
+
+        </div>
+        <div class="card fixedcard" id="mobile_storybooks"><img draggable="false" class="heroImage"
+                                         src="img/KT_201809/Demo/kt_keyword_engagement_20181214.png">
             <div class="tabcontent" id="lookbook" style="display: none;">
                 <img style="height: auto; width: 100%;" src="img/KT_201809/Demo/TabOpen_SignageExamples_50448.png">
             </div>
@@ -251,17 +265,17 @@
                 <div data-opened="false" data-contentid="lookbook" class="col" align="center"
                      onclick="toggleTab(this);">
                     <div class="tabCloser" style="display: none;">&#9747;</div>
-                    In-Store Signage Examples
+                    View More Examples
                 </div>
                 <!--<div data-opened="false" data-contentid="recipes" class="col" align="center" onclick="toggleTab(this);">Recipes</div>-->
             </div>
+
+
         </div>
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
-                                         src="img/KT_201809/Demo/Mobile%20Storybooks_50448.png"></div>
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div class="card fixedcard dots-light" id="in_store_engagement"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Demo/6%20In-Store%20Engagement%20That%20Works.png">
         </div>
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div class="card fixedcard" id="power_of_activation"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Demo/7%20The%20Power%20of%20Activation.png">
             <div class="tabcontent" id="conversion" style="display: none;">
                 <img style="height: auto; width: 100%;"
