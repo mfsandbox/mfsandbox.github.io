@@ -1,5 +1,14 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125650738-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        let bookName = 'recipes';
+    </script>
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
@@ -242,8 +251,7 @@
 
     <div class="deck">
 
-
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_rosemary_grapefruit_cocktail" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Recipes/Cocktail.png">
             <div class="tabcontent" id="cocktailingredients"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width: 100%; height: 100%; ">
@@ -291,8 +299,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_coupon_10_off_40" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Recipes/Incentive%20Card.png">
             <img id="barcode_128" style="position:absolute; left:120px; top: 300px;"/>
             <div class="tabcontent" id="incentivedisclaimer"
@@ -312,8 +319,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_peach_cobbler" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Recipes/Tart.png">
 
             <div class="tabcontent" id="tartingredients"
@@ -379,9 +385,7 @@
             </div>
 
         </div>
-
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div id="kt_chamomile_rose_macaron" class="card fixedcard"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Recipes/2TabsExample.png">
             <div class="tabcontent" id="macroningredients"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width: 100%; height: 100%; ">
@@ -461,7 +465,7 @@
             </div>
 
         </div>
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_avocado_guacamole_toast" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Recipes/Avocado%20Toast.png">
             <div class="tabcontent" id="guacrecipe"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; width: 100%; height: 100%; ">
@@ -492,17 +496,15 @@
             </div>
         </div>
 
+        <div class="navfooter"></div>
     </div>
 
 </div>
-</div>
 
-<div class="navfooter">
-</div>
-</div>
+
 
 </body>
-<script src="./js/afterbody_ktt02.js"></script>
+<script src="./js/afterbody_ktt03.js"></script>
 <script>
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
