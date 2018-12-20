@@ -1,5 +1,14 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125650738-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        let bookName = 'loyaltybook';
+    </script>
+
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -242,7 +251,7 @@
 
 
     <div class="deck">
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Birthday15.png">
+        <div id="kt_reward_bday_15spec" class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/Birthday15.png">
             <div class="tabcontent" id="birthdayreward"
                  style="display: none; background-color: white; padding: 60px; padding-bottom: 120px; font-size: 25px; ; width:100%;">
                 <img id="barcode_128" style="position:absolute; left:120px; top: 200px;"/>
@@ -260,8 +269,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div id="kt_reward_10" class="card fixedcard"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Loyalty/$10%20Rewards.png">
             <img id="barcode_128" style="position:absolute; left:120px; top: 300px;"/>
             <div class="tabcontent" id="reward10disclaimer"
@@ -282,12 +290,9 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png">
+        <div id="kt_use_id" class="card fixedcard"><img draggable="false" class="heroImage" src="img/KT_201809/Loyalty/gladMember.png">
         </div>
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div id="kt_coupon_100_get_20" class="card fixedcard"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Loyalty/Spend%20100%20get%2020%20Furniture%20Coupon.png">
             <img id="barcode_128" style="position:absolute; left:120px; top: 290px;"/>
             <div class="tabcontent" id="spenddisclaimer"
@@ -308,9 +313,7 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="card fixedcard"><img draggable="false" class="heroImage"
+        <div id="kt_loyalty_card" class="card fixedcard"><img draggable="false" class="heroImage"
                                          src="img/KT_201809/Loyalty/NavPag%20Example2.png">
             <p style="position: absolute;left: 160px; top: 90px; font-weight: 600; font-size: 32px; color: #635245 ">
                 Rewards For:</p>
@@ -338,8 +341,7 @@
             </svg>
 
         </div>
-
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_email_intercept_50_points" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Loyalty/Email%20Bonus%20Credits.png">
 
             <svg style="position:absolute; left:250px; top: 1125px; z-index:11;">
@@ -361,9 +363,7 @@
                 </svg>
             </div>
         </div>
-
-
-        <div class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="kt_throw_pillows" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                     src="img/KT_201809/Loyalty/pillows.png">
 
             <svg style="position:absolute; left:250px; top: 1125px; z-index:11;">
@@ -372,7 +372,6 @@
             </svg>
 
         </div>
-
     </div>
 
 </div>
@@ -383,7 +382,7 @@
 </div>
 
 </body>
-<script src="./js/afterbody_ktt02.js"></script>
+<script src="./js/afterbody_ktt03.js"></script>
 <script>
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
