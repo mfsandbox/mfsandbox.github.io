@@ -1,0 +1,465 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125650738-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        let bookName = 'garrisonbrothers20190115';
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <style media="screen">
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Roboto+Condensed;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Roboto+Condensed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p {
+            font-size: 30px;
+            font-family:'Roboto+Condensed';
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Roboto+Condensed;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Roboto Condensed;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold'
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardButton {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            width: 350px;
+            height: 75px;
+            font-size: 38px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<div class="cardtable">
+
+
+    <div class="deck">
+
+        <div id="gb_jim_bowie" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/gb_chipotle_bourbon_queso.png">
+            <div class="tabcontent" id="chipotleingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_chipotle_bourbon_queso_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="chipotlepreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_chipotle_bourbon_queso_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="chipotleingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="chipotlepreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
+        </div>
+
+        <div id="gb_bourbon_glazed_ham" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                      src="img/gb_bourbon_glazed_ham.png">
+            <div class="tabcontent" id="glazedhamingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_bourbon_glazed_ham_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="glazedhampreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_bourbon_glazed_ham_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="glazedhamingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="glazedhampreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
+        </div>
+
+        <div id="gb_come_take_it" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                      src="img/gb_come_take_it.png">
+            <div class="tabcontent" id="cometakeitingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_come_take_it_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="cometakeitpreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_come_take_it_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="cometakeitingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="cometakeitpreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
+        </div>
+
+        <div id="gb_copper_cowgirl" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                         src="img/gb_copper_cowgirl.png">
+            <div class="tabcontent" id="coppercowgirlingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_copper_cowgirl_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="coppercowgirlpreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_copper_cowgirl_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="coppercowgirlingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="coppercowgirlpreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
+        </div>
+
+        <div id="gb_drygoods_store_1" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_1.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
+                    <text x="80" y="48" fill="black" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
+        </div>
+
+        <div id="gb_drygoods_store_2" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_2.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #D85933"></polygon>
+                    <text x="80" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
+        </div>
+
+        <div id="gb_drygoods_store_3" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_3.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #000000"></polygon>
+                    <text x="80" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
+        </div>
+
+        <div id="gb_find_events" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_find_events.png">
+            <a href="http://www.garrisonbros.com/events" target="_blank">
+            <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #D85933"></polygon>
+                <text x="30" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">FIND AN EVENT</text>
+            </svg>
+            </a>
+        </div>
+
+        <div id="gb_where_to_buy" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_where_to_buy.png">
+            <a href="https://www.bullseyelocations.com/pages/KT-GB-TEST" target="_blank">
+            <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #000000"></polygon>
+                <text x="52" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">LOCATE NOW</text>
+            </svg>
+            </a>
+        </div>
+
+        <div class="navfooter"></div>
+    </div>
+
+</div>
+
+
+
+</body>
+<script src="./js/afterbody_ktt04.js"></script>
+<script>
+    //https://www.garrisonbros.com/find-it
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        }
+        else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        }
+        else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            }
+            else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+</script>
+</html>
