@@ -155,27 +155,6 @@
     document.querySelector('.cardIndexIncrementor').style.visibility = swipeEnabled ? 'Visible' : 'Hidden';
   }
 
-/*
-  function initFlipCards() {
-    flipcards = document.querySelectorAll(".flipcard");
-    flipcards.forEach(
-      function(card,index) {
-        cardBack = card.querySelector('.cardback');
-        cardBack.hidden = true;
-        flippers = card.querySelectorAll('.cardflipper');
-        flippers.forEach(
-          function(flipper,index) {
-            flipper.style.cursor = "pointer";
-            flipper.onclick = function(){
-              flipCard(card);
-            }        
-          }
-        )   
-      }
-    )
-  } 
-  */
-
   function setCardVisibility(cards, navIcons) {
     cards.forEach(
       function (card,index){
@@ -209,9 +188,6 @@
             card.style.webkitClipPath = bottomRightClip;
             card.style.clipPath = bottomRightClip;
           }
-
-          /*if (card.className.includes("flipcard")) {*/
-
         }
         else {
           card.hidden = true;
@@ -236,6 +212,8 @@
   })
 
   window.addEventListener("load",function() {
+      let spinner = document.querySelector('.spinner');
+      if (spinner) {spinner.hidden = true;}
       scaleHeroes();
       drawNavDots(cardCount,currentCardIndex);
       setCardVisibility(cards,navIcons);
