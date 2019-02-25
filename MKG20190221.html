@@ -1,6 +1,7 @@
 <html style="overflow: hidden; touch-action:none;">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script ga
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125650738-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -171,6 +172,7 @@
             position: absolute;
             width: 100%;
             top: 1235px;
+            z-index: 99;
         }
 
         .col {
@@ -200,6 +202,7 @@
             position: absolute;
             top: 0px;
             -webkit-overflow-scrolling: touch;
+            z-index: 50;
         }
 
         .spinner {
@@ -278,13 +281,27 @@
 
         <div id="mkg_create" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                                    src="img/mkg_create.png">
+            <div class="tabcontent" id="mkg_see_the_studio"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/mkg_create_open_tab.png">
+
+            </div>
+
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="mkg_see_the_studio" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    See the studio
+                </div>
+            </div>
         </div>
 
         <div id="mkg_make_memories" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
                                                                     src="img/mkg_make_memories.png">
         </div>
 
-        <div id="mkg_we_make_it_easy" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+        <div id="mkg_we_make_it_easy" class="card fixedcard"><img draggable="false" class="heroImage"
                                                                            src="img/mkg_we_make_it_easy.png">
         </div>
 
@@ -321,16 +338,30 @@
 
         <div id="mkg_book_your_getaway" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_book_your_getaway.png">
             <a href="https://www.makersgetaway.com/open-invitation-getaway" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
                     <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
-                    <text x="45" y="48" fill="black" font-family="Montserrat">LEARN MORE</text>
+                    <text x="55" y="48" fill="black" font-family="Montserrat">BOOK NOW</text>
                 </svg>
             </a>
+            <div class="tabcontent" id="mkg_getaway_details"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/mkg_book_your_getaway_open_tab.png">
+
+            </div>
+
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="mkg_getaway_details" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none; z-index: 99;">&#9747;</div>
+                    Get the details
+                </div>
+            </div>
         </div>
 
         <div id="mkg_contact_us" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_contact_us.png">
             <a href="https://www.makersgetaway.com/contact" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
                     <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
                     <text x="38" y="48" fill="black" font-family="Montserrat">GET IN TOUCH</text>
                 </svg>
@@ -338,17 +369,21 @@
         </div>
 
         <div id="mkg_lets_be_friends" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_lets_be_friends.png">
+
             <a href="https://www.instagram.com/makersgetaway/" target="_blank">
-                <svg style="position:absolute; left:272px; top: 911px; z-index:11;" >
-                    <polygon points="0,0 100,0 100,100 0,100" style="fill: rgba(255,255,255,0)"></polygon>
+                <svg style="position:absolute; left:225px; top: 1034px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
+                    <text x="60" y="48" fill="black" font-family="Montserrat">INSTAGRAM</text>
                 </svg>
             </a>
 
             <a href="https://www.facebook.com/makersgetaway" target="_blank">
-                <svg style="position:absolute; left:386px; top: 922px; z-index:11;" >
-                    <polygon points="0,0 90,0 90,90 0,90" style="fill: rgba(255,255,255,0)"></polygon>
+                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
+                    <text x="65" y="48" fill="black" font-family="Montserrat">FACEBOOK</text>
                 </svg>
             </a>
+
         </div>
 
         <div class="navfooter"></div>
