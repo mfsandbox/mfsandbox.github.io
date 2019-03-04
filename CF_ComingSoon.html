@@ -1,27 +1,35 @@
 <html style="overflow: hidden; touch-action:none;">
+
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>const googleAnalyticsId = `UA-125650738-5`;</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125650738-3"></script>
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        let bookName = 'makersgetaway20190220';
+        let bookName = 'cf_comingsoon';
     </script>
 
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
-    <script src="js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
-    <script src="js/JsBarcode.all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <script src="./js/hammer.min.js"></script>
     <style media="screen">
-
         * {
             box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: Geometr415_Blk;
+            src: url("fonts/geometr415_blk.ttf") format('truetype');
+        }
+
+        @font-face {
+            font-family: Calibri;
+            src: url("fonts/Calibri.ttf") format('truetype');
         }
 
         .cardtable {
@@ -36,7 +44,7 @@
             width: 100%;
             padding-right: 5%;
             padding-left: 5%;
-            font-family: Montserrat;
+            font-family: Calibri;
             font-size: 75%;
             background-color: white;
             text-align: center;
@@ -50,15 +58,10 @@
             width: 100%;
             padding-right: 10%;
             padding-left: 10%;
-            font-family: Montserrat;
+            font-family: Calibri;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        p {
-            font-size: 30px;
-            font-family:'Montserrat';
         }
 
         .footer a {
@@ -93,7 +96,7 @@
 
         .card a button {
             border-width: 0;
-            font-family: Montserrat;
+            font-family: Geometr415_Blk;
             text-align: center;
             vertical-align: middle;
             font-size: 2.2vh;
@@ -109,7 +112,7 @@
             width: 800px;
             height: 1300px;
             overflow: hidden;
-            font-family: Montserrat;
+            font-family: Calibri;
         }
 
         .scrollcard {
@@ -136,8 +139,7 @@
 
         .cardback p {
             margin: 10px;
-            font-family: 'Montserrat';
-            font-style: 'Bold'
+            font-family: 'Calibri';
         }
 
         .cardbuttons a {
@@ -146,8 +148,7 @@
             align-items: center;
             flex-grow: 1;
             flex-basis: 0;
-            font-family: 'Montserrat';
-            font-style: 'Bold';
+            font-family: 'Geometr415_Blk';
             font-size: 5vmin;
             text-decoration: none;
             text-transform: uppercase;
@@ -156,15 +157,47 @@
             background-color: black;
         }
 
-        .deck .cardButton {
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
             position: absolute;
             top: 50%;
             right: 0%;
-            width: 350px;
-            height: 75px;
-            font-size: 38px;
+            font-size: 200%;
             cursor: pointer;
             z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
         }
 
         .tab-grid {
@@ -172,19 +205,6 @@
             position: absolute;
             width: 100%;
             top: 1235px;
-            z-index: 99;
-        }
-
-        .col {
-            flex: 1;
-            border-right: 1px solid #000;
-            background-color: rgba(217, 217, 217, 1.0);
-            line-height: 65px;
-            font-size: 30px;
-            font-weight: bold;
-            color: black;
-            text-decoration: underline;
-            position: relative;
         }
 
         .tabCloser {
@@ -195,6 +215,17 @@
             top: -8%;
         }
 
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
         .tabcontent {
             height: 100%;
             overflow: scroll;
@@ -202,9 +233,8 @@
             position: absolute;
             top: 0px;
             -webkit-overflow-scrolling: touch;
-            z-index: 50;
-        }
 
+        }
         .spinner {
             margin: auto;
             width: 70px;
@@ -266,137 +296,26 @@
             <div class="bounce3"></div>
         </div>
 
-        <div id="mkg_makers_getaway" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                                 src="img/mkg_makers_getaway.png">
-        </div>
+        <div id="kt_case_study_retail" class="card fixedcard" >
+            <img draggable="false" class="heroImage" src="img/cf_coming_soon.png">
+            <a href="tel:+15124224000" target="_blank">
+                <svg style="position:absolute; left:250px; top: 1060px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 400,0 400,70 0,70" style="fill: rgba(255,255,255,0)"></polygon>
 
-        <div id="mkg_creative_escape" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                                  src="img/mkg_creative_escape.png">
-        </div>
-
-        <div id="mkg_relax" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                            src="img/mkg_relax.png">
-        </div>
-
-
-        <div id="mkg_create" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                   src="img/mkg_create.png">
-            <div class="tabcontent" id="mkg_see_the_studio"
-                 style="display: none; background-color: black; width: 100%; height: 100%; ">
-                <img draggable="false" class="heroImage"
-                     src="img/mkg_create_open_tab.png">
-
-            </div>
-
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="mkg_see_the_studio" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    See the studio
-                </div>
-            </div>
-        </div>
-
-        <div id="mkg_make_memories" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                    src="img/mkg_make_memories.png">
-        </div>
-
-        <div id="mkg_we_make_it_easy" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                                           src="img/mkg_we_make_it_easy.png">
-        </div>
-
-        <!-- Tab Card
-        <div id="gb_copper_cowgirl" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                         src="img/gb_copper_cowgirl.png">
-            <div class="tabcontent" id="coppercowgirlingredients"
-                 style="display: none; background-color: black; width: 100%; height: 100%; ">
-                <img draggable="false" class="heroImage"
-                     src="img/gb_copper_cowgirl_ingredients.png">
-
-            </div>
-            <div class="tabcontent" id="coppercowgirlpreparation"
-                 style="display: none; background-color: black; width: 100%; height: 100%; ">
-
-                <img draggable="false" class="heroImage"
-                     src="img/gb_copper_cowgirl_preparation.png">
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="coppercowgirlingredients" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    INGREDIENTS
-                </div>
-                <div data-opened="false" data-contentid="coppercowgirlpreparation" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    PREPARATION
-                </div>
-            </div>
-        </div>
-        -->
-
-
-        <div id="mkg_book_your_getaway" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_book_your_getaway.png">
-            <a href="https://www.makersgetaway.com/open-invitation-getaway" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
-                    <text x="55" y="48" fill="black" font-family="Montserrat">BOOK NOW</text>
-                </svg>
-            </a>
-            <div class="tabcontent" id="mkg_getaway_details"
-                 style="display: none; background-color: black; width: 100%; height: 100%; ">
-                <img draggable="false" class="heroImage"
-                     src="img/mkg_book_your_getaway_open_tab.png">
-
-            </div>
-
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="mkg_getaway_details" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none; z-index: 99;">&#9747;</div>
-                    Get the details
-                </div>
-            </div>
-        </div>
-
-        <div id="mkg_contact_us" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_contact_us.png">
-            <a href="https://www.makersgetaway.com/contact" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
-                    <text x="38" y="48" fill="black" font-family="Montserrat">GET IN TOUCH</text>
                 </svg>
             </a>
         </div>
-
-        <div id="mkg_lets_be_friends" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/mkg_lets_be_friends.png">
-
-            <a href="https://www.instagram.com/makersgetaway/" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1034px; z-index:11;" class="cardButton">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
-                    <text x="60" y="48" fill="black" font-family="Montserrat">INSTAGRAM</text>
-                </svg>
-            </a>
-
-            <a href="https://www.facebook.com/makersgetaway" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1125px; z-index:11;" class="cardButton">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
-                    <text x="65" y="48" fill="black" font-family="Montserrat">FACEBOOK</text>
-                </svg>
-            </a>
-
         </div>
 
-        <div class="navfooter"></div>
+
+
+        <div class="navfooter">
+        </div>
     </div>
-
 </div>
-
-
-
 </body>
 <script src="./js/afterbody_ktt05.js"></script>
 <script>
-    //https://www.garrisonbros.com/find-it
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
         let tabElements = theTab.parentElement.querySelectorAll(`.col`);
@@ -476,5 +395,7 @@
         })
 
     }
+
 </script>
+
 </html>
