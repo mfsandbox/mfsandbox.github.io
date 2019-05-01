@@ -21,13 +21,17 @@
     }
   }
 
-
-  url.searchParams.get("card");
-
   function gotoMap() {
     document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=world+market+zip+code+" + document.querySelector("#zipcode").value;
   }
 
+  const keyword = url.searchParams.get('kw') || "";
+
+  const user = url.searchParams.get('u') || "";
+
+  if (user != "") {
+      gtag('set', {'user_id': user});
+  }
 
   const getDotInfos = (cardCount, cardIndex, dotRadiusMap) =>
   {
@@ -166,7 +170,17 @@
           url.searchParams.set("card",`${index + 1}`);
           history.replaceState({},null,url.href);
           let currentCardId = cards[currentCardIndex].id;
-          gtag('config', googleAnalyticsId, {'page_path': `/${bookName}/${currentCardId}`});
+          let gtagData = {};
+          gtagData["page_path"] = `/${bookName}/${currentCardId}`;
+          gtagData["campaign"] = {'medium': '', source: '', 'name': `${keyword}`};
+
+          /*if (user != "") {
+              gtagData["user_id"] = user;
+          }*/
+
+          gtag('config', googleAnalyticsId, gtagData);
+
+
           card.hidden = false;
           card.scrollTop = 0;
 
