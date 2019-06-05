@@ -375,15 +375,13 @@
                 <input style="position:absolute; left:285px; top: 615px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="lastname">
                 <input style="position:absolute; left:285px; top: 690px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="company">
                 <input style="position:absolute; left:285px; top: 765px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="title">
-                <input style="position:absolute; left:245px; top: 840px; width: 350px; height: 40px; font-family: Titillium Web; font-size:25px;" type="email" name="email">
+                <input style="position:absolute; left:285px; top: 840px; width: 350px; height: 40px; font-family: Titillium Web; font-size:25px;" type="email" name="email">
                 <input style="position:absolute; left:285px; top: 915px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="tel" name="phone">
-                <a href="" target="_blank">
-                    <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
+                    <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;" onclick = "incrementCardIndex();setCardVisibility(cards, navIcons);">
                         <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
                         <text x="130" y="43" style=" font-family: Titillium Web; font-size:25px;" fill="white">SUBMIT
                         </text>
                     </svg>
-                </a>
             </form>
         </div>
 
@@ -418,113 +416,15 @@
                     <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(0,0,0,0)"/>
                 </svg>
             </a>
-        </div>
-<!--
-        <div id="txsteps_adolescent_substance" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_392.png">
-            <a href="https://www.txhealthsteps.com/392-adolescent-substance-use" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
-                    <text x="130" y="43" font-family="Myriad_Pro_Regular" font-size="25" fill="white">ENROLL
-                    </text>
+
+
+                <svg style="position:absolute; left:50px; top: 995px; width: 750px; height: 35px;">
+                    <a href="https://www.google.com/maps/place/10415+Morado+Cir,+Austin,+TX+78759">
+                    <polygon points="0,0 700,0 700,70 0,70" style="fill: rgba(0,0,0,0)"/>
+                    </a>
                 </svg>
-            </a>
-            <div class="tabcontent" id="txsteps_adolescent_substance_tab" style="display: none;">
-                <img src="img/txsteps_392_opentab.png" style="height: auto; width: 100%;">
-
-            </div>
-            <div class="tab-grid">
-                <div align="center" class="col" data-contentid="txsteps_adolescent_substance_tab" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Course Overview
-                </div>
-            </div>
-        </div>
-
-        <div id="txsteps_prenatal_health" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_412.png">
-            <a href="https://www.txhealthsteps.com/412-prenatal-health-screening-and-intervention" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
-                    <text x="130" y="43" font-family="Myriad_Pro_Regular" font-size="25" fill="white">ENROLL
-                    </text>
-                </svg>
-            </a>
-            <div class="tabcontent" id="txsteps_prenatal_health_tab" style="display: none;">
-                <img src="img/txsteps_412_opentab.png" style="height: auto; width: 100%;">
-            </div>
-            <div class="tab-grid">
-                <div align="center" class="col" data-contentid="txsteps_prenatal_health_tab" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Course Overview
-                </div>
-            </div>
-        </div>
-
-        <div id="txsteps_about" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_about.png">
-            <a href="https://www.txhealthsteps.com/293-about-texas-health-steps-online-provider-education" target="_blank">
-            <svg style="position:absolute; left:375px; top: 370px; width: 100px; z-index:11;">
-                <polygon points="0,0 70,35 0,70" style="fill: rgba(0,0,255,0)"/>
-            </svg>
-            </a>
-            <a href="https://www.txhealthsteps.com/293-about-texas-health-steps-online-provider-education" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
-                    <text x="110" y="43" font-family="Myriad_Pro_Regular" font-size="25" fill="white">LEARN MORE
-                    </text>
-                </svg>
-            </a>
-        </div>
-
-        <div id="txsteps_joinsms" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_joinsms.png">
-            <fieldset style="border: 3px groove; border-color: #003087; position: absolute; top: 450px; left:200px; width:400px; font-family: Myriad_Pro_Regular; font-size: 30px; color:#003087">
-                <legend>Select your profession</legend>
-
-                <input type="radio" id="doctor" name="profession" value="doctor">
-                <label for="doctor">Doctor</label><br/>
-
-                <input type="radio" id="nurse" name="profession">
-                <label for="nurse">Nurse</label><br/>
-
-                <input type="radio" id="dentist" name="profession">
-                <label for="dentist">Dentist</label><br/>
-
-                <input type="radio" id="socialworker" name="profession">
-                <label for="socialworker">Social Worker</label><br>
-
-
-                <input type="radio" id="pharmacist" name="profession">
-                <label for="pharmacist">Pharmacist</label><br/>
-
-                <input type="radio" id="general" name="profession">
-                <label for="general">General</label><br/>
-            </fieldset>
-
-            <a href="" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
-                    <text x="150" y="43" font-family="Myriad_Pro_Regular" font-size="25" fill="white">JOIN
-                    </text>
-                </svg>
-            </a>
-            <div class="tabcontent" id="txsteps_joinsms_tab" style="display: none;">
-                <img src="img/txsteps_joinsms_opentab.png" style="height: auto; width: 100%;">
-                <a href="https://www.dshs.state.tx.us/privacypractices.aspx" target="_blank">
-                    <svg style="position:absolute; left:325px; top: 784px; width: 150px; height: 50px;">
-                        <polygon points="0,0 350,0 350,50 0,50" style="fill: rgba(0,0,255,0)"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="tab-grid">
-                <div align="center" class="col" data-contentid="txsteps_joinsms_tab" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Privacy Policy
-                </div>
-            </div>
 
         </div>
-        -->
 
     </div>
 
