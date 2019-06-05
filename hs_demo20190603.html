@@ -22,6 +22,7 @@
     <script src="js/d3-color.v1.min.js"></script>
     <script src="./js/hammer.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <style media="screen">
         * {
             box-sizing: border-box;
@@ -316,9 +317,9 @@
                 <img src="img/hs_3a.png" style="height: auto; width: 100%;">
             </div>
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="hs_why_tab" data-opened="false"
+                <div align="center" class="col" data-contentid="hs_why_tab" data-opened="false" style="font-family: Titillium Web;"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    <div class="tabCloser" style="display: none;font-family: Titillium Web;">&#9747;</div>
                     Examples
                 </div>
             </div>
@@ -330,9 +331,9 @@
                 <img src="img/hs_4a_rev2.png" style="height: auto; width: 100%;">
             </div>
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="hs_why2how_tab" data-opened="false"
+                <div align="center" class="col" data-contentid="hs_why2how_tab" data-opened="false" style="font-family: Titillium Web;"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    <div class="tabCloser" style="display: none;font-family: Titillium Web;">&#9747;</div>
                     Areas of Expertise
                 </div>
             </div>
@@ -343,7 +344,7 @@
                 <img src="img/hs_5a_rev2.png" style="height: auto; width: 100%;">
             </div>
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="hs_results_tab" data-opened="false"
+                <div align="center" class="col" data-contentid="hs_results_tab" data-opened="false" style="font-family: Titillium Web;"
                      onclick="toggleTab(this);">
                     <div class="tabCloser" style="display: none;">&#9747;</div>
                     Real Clients
@@ -360,7 +361,7 @@
 
             </div>
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="hs_awards_tab" data-opened="false"
+                <div align="center" class="col" data-contentid="hs_awards_tab" data-opened="false" style="font-family: Titillium Web;"
                      onclick="toggleTab(this);">
                     <div class="tabCloser" style="display: none;">&#9747;</div>
                     Awards & Excellence
@@ -369,6 +370,21 @@
         </div>
 
         <div id="hs_form" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/hs_8_formnofields_nobutton.png">
+            <form>
+                <input style="position:absolute; left:285px; top: 540px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="firstname">
+                <input style="position:absolute; left:285px; top: 615px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="lastname">
+                <input style="position:absolute; left:285px; top: 690px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="company">
+                <input style="position:absolute; left:285px; top: 765px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="text" name="title">
+                <input style="position:absolute; left:245px; top: 840px; width: 350px; height: 40px; font-family: Titillium Web; font-size:25px;" type="email" name="email">
+                <input style="position:absolute; left:285px; top: 915px; width: 310px; height: 40px; font-family: Titillium Web; font-size:25px;" type="tel" name="phone">
+                <a href="" target="_blank">
+                    <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
+                        <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
+                        <text x="130" y="43" style=" font-family: Titillium Web; font-size:25px;" fill="white">SUBMIT
+                        </text>
+                    </svg>
+                </a>
+            </form>
         </div>
 
         <div id="hs_final" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/hs_9_rev2.png">
