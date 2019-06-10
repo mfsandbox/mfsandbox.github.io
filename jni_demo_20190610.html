@@ -299,6 +299,7 @@
 
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<iframe name="hidden" style="display:none;"></iframe>
 <div class="cardtable">
 
     <div class="deck">
@@ -418,19 +419,19 @@
         <div class="card fixedcard" id="jni_extending_engagement"><img class="heroImage" draggable="false" src="img/jni_spirits_14_extending_engagement.png"></div>
 
         <div class="card fixedcard" id="jni_lead_capture"><img class="heroImage" draggable="false" src="img/jni_spirits_15_lead_capture.png">
-            <form action="https://8e9v2lngy1.execute-api.us-east-1.amazonaws.com/default/jni-lead-email" method="post" target="_blank">
+            <form action="https://8e9v2lngy1.execute-api.us-east-1.amazonaws.com/default/jni-lead-email" method="post" target="hidden" onsubmit="document.getElementById('formbutton').disabled=true;">
                 <input style="position:absolute; left:295px; top: 494px; width: 325px; height: 35px; font-size:25px;" type="text" name="firstname">
                 <input style="position:absolute; left:295px; top: 554px; width: 325px; height: 35px; font-size:25px;" type="text" name="lastname">
                 <input style="position:absolute; left:295px; top: 614px; width: 325px; height: 35px; font-size:25px;" type="text" name="email">
                 <datalist id="gender">
-                    <option value="male">
-                    <option value="female">
+                    <option value="Male">
+                    <option value="Female">
                     <option value="--">
 
                 </datalist>
                 <input list="gender" style="position:absolute; left:295px; top: 674px; width: 325px; height: 35px; font-size:25px;" type="text" name="gender">
                 <input style="position:absolute; left:295px; top: 974px; width: 325px; height: 35px; font-size:25px;" type="text" name="whiskeyanswer">
-                <input list="teams" onkeydown="false" style="position:absolute; left:295px; top: 1054px; width: 325px; height: 35px; font-size:25px;" type="text" name="team">
+                <input list="teams" style="position:absolute; left:295px; top: 1054px; width: 325px; height: 35px; font-size:25px;" type="text" name="team">
                 <datalist id="teams">
                     <option value="Arizona Cardinals">
                     <option value="Atlanta Falcons">
@@ -465,7 +466,7 @@
                     <option value="Tennessee Titans">
                     <option value="Washington Redskins">
                 </datalist>
-                <button style="position:absolute; left:295px; top: 1124px; width: 325px; height: 35px; font-size:25px; background-color:rgb(28,163,220)" type="submit">Submit</button>
+                <button id="formbutton" style="position:absolute; left:295px; top: 1124px; width: 325px; height: 35px; font-size:25px; background-color:rgb(28,163,220)" type="submit" onclick="alert('Thank you for your submission!');">Submit</button>
             </form>
 
             <div class="tabcontent" id="jni_lead_capture_tab" style="display: none;">
