@@ -229,8 +229,8 @@
             border-right: 1px solid #000;
             background-color: rgba(255,200,0, 1.0);
             line-height: 65px;
-            font-size: 35px;
-            font-family: Myriad_Pro_Regular;
+            font-size: 30px;
+            font-family: Myriad_Pro_Bold;
             color: black;
             text-decoration: underline;
             position: relative;
@@ -357,7 +357,7 @@
             </div>
         </div>
 
-        <div id="txsteps_about" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_about_rev2.png">
+        <div id="txsteps_about" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_2_about_texas_steps.png">
             <a href="https://www.txhealthsteps.com/293-about-texas-health-steps-online-provider-education" target="_blank">
             <svg style="position:absolute; left:375px; top: 370px; width: 100px; z-index:11;">
                 <polygon points="0,0 70,35 0,70" style="fill: rgba(0,0,255,0)"/>
@@ -372,8 +372,8 @@
             </a>
         </div>
 
-        <div id="txsteps_joinsms" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_joinsms_rev2.png">
-            <fieldset style="border: 3px groove; border-color: #003087; position: absolute; top: 430px; left:200px; width:400px; font-family: Myriad_Pro_Regular; font-size: 35px; color:#003087">
+        <div id="txsteps_joinsms" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_2_join_sms.png">
+            <fieldset style="border: 3px groove; border-color: #003087; position: absolute; top: 480px; left:200px; width:400px; font-family: Myriad_Pro_Regular; font-size: 35px; color:#000000">
                 <legend>Select your profession</legend>
 
                 <input type="radio" id="doctor" name="profession" value="doctor" style="height:30px;">
@@ -404,7 +404,7 @@
                 </svg>
 
             <div class="tabcontent" id="txsteps_joinsms_tab" style="display: none;">
-                <img src="img/txsteps_joinsms_opentab.png" style="height: auto; width: 100%;">
+                <img src="img/txsteps_2_privacy_policy.png" style="height: auto; width: 100%;">
                 <a href="https://www.dshs.state.tx.us/privacypractices.aspx" target="_blank">
                     <svg style="position:absolute; left:325px; top: 784px; width: 150px; height: 50px;">
                         <polygon points="0,0 350,0 350,50 0,50" style="fill: rgba(0,0,255,0)"/>
@@ -464,7 +464,7 @@
         let tabOpacity = 1.00;
         activeBgColor.opacity = tabOpacity;
         let inactiveBgColor = d3.hsl(activeBgColor);
-        activeBgColor = d3.hsl(activeBgColor);
+        //activeBgColor = d3.hsl(activeBgColor);
 
         if (openTabName != "") {
             activeBgColor.l *= 0.8;
