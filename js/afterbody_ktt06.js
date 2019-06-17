@@ -89,7 +89,7 @@
 
 
       return dotInfos.map(function(dotInfo,dotIndex) {
-          return `<circle cy = '20px' cx = '${dotArrayCenters[dotIndex]}px' r = '${dotInfo.radius}px' fill='${dotInfo.current ? currentRGBA : otherRGBA}'></circle>`;
+          return `<circle cy = '10px' cx = '${dotArrayCenters[dotIndex]}px' r = '${dotInfo.radius}px' fill='${dotInfo.current ? currentRGBA : otherRGBA}'></circle>`;
       })
   }
 
