@@ -1,5 +1,4 @@
 <html style="overflow: hidden; touch-action:none;">
-
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script>
@@ -14,24 +13,18 @@
     </script>
 
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/hammer.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
-    <script src="./js/hammer.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
     <style media="screen">
+
         * {
             box-sizing: border-box;
-        }
-
-        @font-face {
-            font-family: Geometr415_Blk;
-            src: url("fonts/geometr415_blk.ttf") format('truetype');
-        }
-
-        @font-face {
-            font-family: Calibri;
-            src: url("fonts/Calibri.ttf") format('truetype');
         }
 
         .cardtable {
@@ -46,7 +39,7 @@
             width: 100%;
             padding-right: 5%;
             padding-left: 5%;
-            font-family: Calibri;
+            font-family: Roboto+Condensed;
             font-size: 75%;
             background-color: white;
             text-align: center;
@@ -60,10 +53,15 @@
             width: 100%;
             padding-right: 10%;
             padding-left: 10%;
-            font-family: Calibri;
+            font-family: Roboto+Condensed;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        p {
+            font-size: 30px;
+            font-family:'Roboto+Condensed';
         }
 
         .footer a {
@@ -98,7 +96,7 @@
 
         .card a button {
             border-width: 0;
-            font-family: Geometr415_Blk;
+            font-family: Roboto+Condensed;
             text-align: center;
             vertical-align: middle;
             font-size: 2.2vh;
@@ -114,7 +112,7 @@
             width: 800px;
             height: 1300px;
             overflow: hidden;
-            font-family: Calibri;
+            font-family: Roboto Condensed;
         }
 
         .scrollcard {
@@ -141,7 +139,8 @@
 
         .cardback p {
             margin: 10px;
-            font-family: 'Calibri';
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold'
         }
 
         .cardbuttons a {
@@ -150,7 +149,8 @@
             align-items: center;
             flex-grow: 1;
             flex-basis: 0;
-            font-family: 'Geometr415_Blk';
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold';
             font-size: 5vmin;
             text-decoration: none;
             text-transform: uppercase;
@@ -159,47 +159,15 @@
             background-color: black;
         }
 
-        .deck .cardIndexDecrementor {
-            position: absolute;
-            top: 50%;
-            left: 0%;
-            font-size: 200%;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .deck .cardIndexIncrementor {
+        .deck .cardButton {
             position: absolute;
             top: 50%;
             right: 0%;
-            font-size: 200%;
+            width: 350px;
+            height: 75px;
+            font-size: 38px;
             cursor: pointer;
             z-index: 10;
-        }
-
-        .buttonpanel {
-            display: flex;
-            width: 100%;
-            height: 10%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .dogear {
-            position: absolute;
-            bottom: 0%;
-            right: 0%;
-            cursor: pointer;
-            transform-origin: 100% 100% 0;
-            transition-duration: 1s;
-            transform: scale3d(0, 0, 0);
-        }
-
-        .dogearFixed {
-            position: absolute;
-            bottom: 0%;
-            right: 0%;
-            cursor: pointer;
         }
 
         .tab-grid {
@@ -207,6 +175,18 @@
             position: absolute;
             width: 100%;
             top: 1235px;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-decoration: underline;
+            position: relative;
         }
 
         .tabCloser {
@@ -217,17 +197,6 @@
             top: -8%;
         }
 
-        .col {
-            flex: 1;
-            border-right: 1px solid #000;
-            background-color: rgba(217, 217, 217, 1.0);
-            line-height: 65px;
-            font-size: 30px;
-            color: black;
-            text-decoration: underline;
-            position: relative;
-        }
-
         .tabcontent {
             height: 100%;
             overflow: scroll;
@@ -235,8 +204,8 @@
             position: absolute;
             top: 0px;
             -webkit-overflow-scrolling: touch;
-
         }
+
         .spinner {
             margin: auto;
             width: 70px;
@@ -298,42 +267,170 @@
             <div class="bounce3"></div>
         </div>
 
-        <div id="kt_casestudy_intro" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_1_case_study.png">
+        <div id="kt_powered_by_for_brands" class="card fixedcard"><img draggable="false" class="heroImage"
+                                                                                  src="img/kt_powered_by_gbdemo.png">
         </div>
 
-        <div id="kt_casestudy_thechallenge" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_2_case_study.png">
+        <div id="gb_jim_bowie" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                    src="img/gb_chipotle_bourbon_queso.png">
+            <div class="tabcontent" id="chipotleingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_chipotle_bourbon_queso_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="chipotlepreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_chipotle_bourbon_queso_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="chipotleingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="chipotlepreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_oursolution" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_3_case_study.png">
+        <div id="gb_bourbon_glazed_ham" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                      src="img/gb_bourbon_glazed_ham.png">
+            <div class="tabcontent" id="glazedhamingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_bourbon_glazed_ham_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="glazedhampreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_bourbon_glazed_ham_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="glazedhamingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="glazedhampreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_results" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_4_case_study.png">
+        <div id="gb_come_take_it" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                      src="img/gb_come_take_it.png">
+            <div class="tabcontent" id="cometakeitingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_come_take_it_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="cometakeitpreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_come_take_it_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="cometakeitingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="cometakeitpreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_smspower" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_5_case_study.png">
+        <div id="gb_copper_cowgirl" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                         src="img/gb_copper_cowgirl.png">
+            <div class="tabcontent" id="coppercowgirlingredients"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_copper_cowgirl_ingredients.png">
+
+            </div>
+            <div class="tabcontent" id="coppercowgirlpreparation"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_copper_cowgirl_preparation.png">
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="coppercowgirlingredients" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div data-opened="false" data-contentid="coppercowgirlpreparation" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    PREPARATION
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_targetdcoupons" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_6_case_study.png">
+        <div id="gb_drygoods_store_1" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_1.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFFFFF"></polygon>
+                    <text x="80" y="48" fill="black" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
         </div>
 
-        <div id="kt_casestudy_aboutus" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_7_case_study.png">
+        <div id="gb_drygoods_store_2" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_2.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #D85933"></polygon>
+                    <text x="80" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
         </div>
 
-        <div id="kt_casestudy_signup" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_8_case_study.png">
+        <div id="gb_drygoods_store_3" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_drygoods_store_3.png">
+            <a href="http://store.garrisonbros.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #000000"></polygon>
+                    <text x="80" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">SHOP NOW</text>
+                </svg>
+            </a>
         </div>
 
+        <div id="gb_find_events" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_find_events.png">
+            <a href="http://www.garrisonbros.com/events" target="_blank">
+            <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #D85933"></polygon>
+                <text x="30" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">FIND AN EVENT</text>
+            </svg>
+            </a>
+        </div>
 
+        <div id="gb_where_to_buy" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/gb_where_to_buy.png">
+            <a href="https://www.bullseyelocations.com/pages/Embedded_GB" target="_blank">
+            <svg style="position:absolute; left:225px; top: 1160px; z-index:11;" class="cardButton">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #000000"></polygon>
+                <text x="52" y="50" fill="white" font-family="Roboto Slab" font-weight="bold">LOCATE NOW</text>
+            </svg>
+            </a>
+        </div>
 
-        <div id="kt_casestudy_contactus" class="card fixedcard"><img draggable="false" class="heroImage"
-                                         src="img/kt_9_case_study_contact.png">
+        <div id="kt_contactus" class="card fixedcard "><img draggable="false" class="heroImage"
+                                                            src="img/kt_contact_pop.png">
             <div class="tabcontent" id="contactus" style="display: none;">
                 <img style="height: auto; width: 100%;" src="img/kt_9a_case_study.png">
                 <a href="tel:7372419950">
@@ -364,13 +461,17 @@
             </div>
         </div>
 
-        <div class="navfooter">
-        </div>
+        <div class="navfooter"></div>
     </div>
+
 </div>
+
+
+
 </body>
 <script src="./js/afterbody_ktt06.js"></script>
 <script>
+    //https://www.garrisonbros.com/find-it
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
         let tabElements = theTab.parentElement.querySelectorAll(`.col`);
@@ -450,7 +551,5 @@
         })
 
     }
-
 </script>
-
 </html>
