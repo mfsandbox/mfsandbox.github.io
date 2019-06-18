@@ -16,7 +16,7 @@
     </script>
 
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
@@ -28,13 +28,13 @@
         }
 
         @font-face {
-            font-family: Geometr415_Blk;
-            src: url("fonts/geometr415_blk.ttf") format('truetype');
+            font-family: TopolRegular;
+            src: url("fonts/TopolRegular.otf") format('opentype');
         }
 
         @font-face {
-            font-family: Calibri;
-            src: url("fonts/Calibri.ttf") format('truetype');
+            font-family: GT_America_Extended_Regular;
+            src: url("fonts/GT-America-Extended-Regular.ttf") format('truetype');
         }
 
         .cardtable {
@@ -101,7 +101,7 @@
 
         .card a button {
             border-width: 0;
-            font-family: Geometr415_Blk;
+            font-family: Helvetica;
             text-align: center;
             vertical-align: middle;
             font-size: 2.2vh;
@@ -117,7 +117,7 @@
             width: 800px;
             height: 1300px;
             overflow: hidden;
-            font-family: Source Sans Pro;
+            font-family: Helvetica;
         }
 
         .scrollcard {
@@ -144,7 +144,7 @@
 
         .cardback p {
             margin: 10px;
-            font-family: 'Calibri';
+            font-family: Helvetica;
         }
 
         .cardbuttons a {
@@ -153,7 +153,7 @@
             align-items: center;
             flex-grow: 1;
             flex-basis: 0;
-            font-family: 'Geometr415_Blk';
+            font-family: Helvetica;
             font-size: 5vmin;
             text-decoration: none;
             text-transform: uppercase;
@@ -226,6 +226,8 @@
             background-color: rgba(217, 217, 217, 1.0);
             line-height: 65px;
             font-size: 30px;
+            font-family: Helvetica;
+            font-weight: bold;
             color: black;
             text-decoration: underline;
             position: relative;
@@ -292,11 +294,52 @@
             }
         }
 
+        /*     .styled-select {
+                 overflow: hidden;
+                 height: 74px;
+                 float: left;
+                 width: 365px;
+                 margin-right: 10px;
+                 background: url("./img/chevron-down-25.png") ;
+             }*/
+
+        .styled-select {
+            height: 74px;
+            overflow: hidden;
+            width: 240px;
+        }
+
+        input {
+            position:absolute;
+            font-size:25px;
+            border-width: 1px;
+            border-color: black;
+            left:260px;
+            width: 325px;
+            height: 35px;
+        }
+
+        .styled-select select {
+
+            border-radius: 0;
+            border: 1px solid black;
+            background: url("./img/chevron-down-25.png") no-repeat 100% center;
+            width: 380px;
+            overflow: hidden;
+            padding-top: 2px;
+            height: 70px;
+            text-indent: 10px;
+
+            -webkit-appearance: none;
+        }
+
+
     </style>
     <script src="./js/header_ktt01.js"></script>
 
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<iframe name="hidden" style="display:none;"></iframe>
 <div class="cardtable">
 
     <div class="deck">
@@ -307,224 +350,187 @@
             <div class="bounce3"></div>
         </div>
 
-        <!--
-                <div id="kt_intro" class="card fixedcard">
-                    <img draggable="false" class="heroImage" src="img/cf_coming_soon.png">
-                    <a href="tel:+15124224000" target="_blank">
-                        <svg style="position:absolute; left:255px; top: 960px; z-index:11;">
-                            <polygon points="0,0 400,0 400,70 0,70" style="fill: rgba(0,255,255,0.0)"></polygon>
-                        </svg>
-                    </a>
+        <div class="card fixedcard" id="kt_whitelabel"><img class="heroImage" draggable="false"
+                                                        src="img/kt_whitelabel_jni.png"></div>
+
+        <div class="card fixedcard" id="kt_intro"><img class="heroImage" draggable="false"
+                                                        src="img/jni_spirits_1_intro_card.jpg"></div>
+
+        <div class="card fixedcard" id="kt_setting_stage"><img class="heroImage" draggable="false"
+                                                                src="img/jni_spirits_2_setting_the_stage.jpg">
+            <div class="tabcontent" id="kt_setting_stage_tab" style="display: none;">
+                <img src="img/jni_spirits_2a_setting_the_stage_open_tab.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_setting_stage_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Source
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_digital_transformation"><img class="heroImage" draggable="false"
+                                                                         src="img/jni_spirits_3_jni_digital_transformation.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_how_it_works"><img class="heroImage" draggable="false"
+                                                               src="img/jni_spirits_4_how_it_works.jpg"></div>
+
+        <div class="card fixedcard" id="kt_coaster"><img class="heroImage" draggable="false"
+                                                          src="img/jni_spirits_5_on_premise_coaster_mockup.jpg"></div>
+
+        <div class="card fixedcard" id="kt_hang_tag"><img class="heroImage" draggable="false"
+                                                           src="img/jni_spirits_6_off_premise_hang_tag_mockup.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_lanyard"><img class="heroImage" draggable="false"
+                                                          src="img/jni_spirits_7_event_lanyard_mockup.jpg"></div>
+
+        <div class="card fixedcard" id="kt_sample_book"><img class="heroImage" draggable="false"
+                                                              src="img/jni_spirits_8_transition_to_sample_book.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_brand_education"><img class="heroImage" draggable="false"
+                                                                  src="img/jni_spirits_9_brand_education.jpg"></div>
+
+        <div class="card fixedcard" id="kt_old_fashioned"><img class="heroImage" draggable="false"
+                                                                src="img/jni_spirits_10_recipe_old_fashioned.jpg">
+            <div class="tabcontent" id="kt_old_fashioned_ingredients" style="display: none;">
+                <img src="img/jni_spirits_10a_recipe_old_fashioned_ingredients.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="kt_old_fashioned_makeit" style="display: none;">
+                <img src="img/jni_spirits_10b_recipe_old_fashioned_make_it.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_old_fashioned_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="kt_old_fashioned_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_blackberry_smash"><img class="heroImage" draggable="false"
+                                                                   src="img/jni_spirits_11_recipe_blackberry_smash.jpg">
+            <div class="tabcontent" id="kt_blackberry_smash_ingredients" style="display: none;">
+                <img src="img/jni_spirits_11a_recipe_blackberry_smash_ingredients.jpg"
+                     style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="kt_blackberry_smash_makeit" style="display: none;">
+                <img src="img/jni_spirits_11b_recipe_blackberry_smash_make_it.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_blackberry_smash_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="kt_blackberry_smash_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_gifting"><img class="heroImage" draggable="false"
+                                                          src="img/jni_spirits_12_gifting.jpg">
+            <div class="tabcontent" id="kt_gifting_tab" style="display: none;">
+                <img src="img/jni_spirits_12a_gifting_open_tab.jpg" style="height: auto; width: 100%;">
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_gifting_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Gifting
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_social"><img class="heroImage" draggable="false"
+                                                         src="img/jni_spirits_13_social.jpg">
+            <a href="https://www.facebook.com/jacknadelinternational" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1049px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #00a8e1"/>
+                    <text x="110" y="43" font-size="25" fill="white">FACEBOOK</text>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/jacknadelinternational/" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #e15829"/>
+                    <text x="110" y="43" font-size="25" fill="white">INSTAGRAM</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="kt_extending_engagement"><img class="heroImage" draggable="false"
+                                                                       src="img/jni_spirits_14_extending_engagement.jpg">
+        </div>
+        <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false"
+                                                               src="img/kt_lead_capture_form_nofields.png">
+            <form target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+                <input type="hidden" name="bookserial" id="bookserial">
+                <input type="hidden" name="isTest" value="true" id="isTest">
+                <input style="top: 570px;" type="text" name="firstname" required aria-required="true">
+                <input style="top: 675px;" type="text" name="lastname" required aria-required="true">
+                <input style="top: 780px;" type="text" name="company" required aria-required="true">
+                <input style="top: 885px; " type="email" name="email" required aria-required="true">
+                <!--
+                <div class="styled-select">
+                    <select style="position:absolute; left:295px; top: 678px; width: 325px; height: 35px; font-size:25px;"
+                            name="gender" required aria-required="true">
+                        <optgroup>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </optgroup>
                 </div>
                 -->
+                <input style="top: 990px;"
+                       type="phone" name="workphone">
 
-        <div id="kt_powered_for_b2b" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/kt_powered_by_cfdemo.png">
-        </div>
+                <button id="formbutton"
+                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829;"
+                        type="submit">SUBMIT
+                </button>
+            </form>
+            <!--
+            <div class="tabcontent" id="kt_lead_capture_tab" style="display: none;">
 
-        <div id="kt_intro" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_exterior_architects_rendering.png">
-            <div class="tabcontent" id="kt_intro_tab" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_contact_listing_agent-button.png">
-                <a href="tel:5124224000">
-                    <svg style="position: absolute; left: 464px; top: 514px; height: 35px; width: 210px;"></svg>
+                <img src="img/jni_spirits_15a_lead_capture_open_tab.jpg" style="height: auto; width: 100%;">
+                <a href="tel:8587202326">
+                    <svg style="position: absolute; left: 300px; top: 835px; height: 35px; width: 200px; "></svg>
                 </a>
-                <a href="mailto:KarlHausmann@HindsiteAustin.com">
-                    <svg style="position: absolute; left: 100px; top: 581px; height: 35px; width: 600px;"></svg>
-                </a>
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_intro_tab" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Contact Listing Agent
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_interior_reception" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_interior_photo_1_reception_area.png">
-            <div class="tabcontent" id="kt_interior_reception_tab" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_more_details.png">
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_interior_reception_tab" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    More Details
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_interior_warehouse" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_interior_photo_2_warehouse.png">
-            <div class="tabcontent" id="kt_interior_warehouse_tab" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_more_details.png">
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_interior_warehouse_tab" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    More Details
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_exterior_warehouse" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_exterior_photo_view_into_warehouse.png">
-            <div class="tabcontent" id="kt_exterior_warehouse_tab" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_more_details.png">
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_exterior_warehouse_tab" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    More Details
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_customizable" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_customizable.png">
-            <div class="tabcontent" id="kt_customizable_details" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_more_details.png">
-            </div>
-            <div class="tabcontent" id="kt_customizable_contact" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_contact_listing_agent-button.png">
-                <a href="tel:5124224000">
-                    <svg style="position: absolute; left: 464px; top: 514px; height: 35px; width: 210px;"></svg>
-                </a>
-                <a href="mailto:KarlHausmann@HindsiteAustin.com">
-                    <svg style="position: absolute; left: 100px; top: 581px; height: 35px; width: 600px;"></svg>
+                <a href="mailto:kevyn.claerhout@nadel.com">
+                    <svg style="position: absolute; left: 195px; top: 960px; height: 35px; width: 415px; "></svg>
                 </a>
             </div>
+
             <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_customizable_details" class="col" align="center"
+                <div align="center" class="col" data-contentid="kt_lead_capture_tab" data-opened="false"
                      onclick="toggleTab(this);">
                     <div class="tabCloser" style="display: none;">&#9747;</div>
-                    More Details
+                    Contact Us
                 </div>
-                <div data-opened="false" data-contentid="kt_customizable_contact" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Contact Listing Agent
-                </div>
+
             </div>
+            -->
 
         </div>
 
-        <div id="kt_2_unit_architecture" class="card fixedcard dots-light">
-            <img draggable="false" class="heroImage" src="img/cf_architectural_drawing_2_unit.png">
-            <div class="tabcontent" id="kt_2_unit_zoning" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_zoning_yellow.png">
-            </div>
-            <div class="tabcontent" id="kt_2_unit_contact" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_contact_listing_agent-button.png">
-                <a href="tel:5124224000">
-                    <svg style="position: absolute; left: 464px; top: 514px; height: 35px; width: 210px;"></svg>
-                </a>
-                <a href="mailto:KarlHausmann@HindsiteAustin.com">
-                    <svg style="position: absolute; left: 100px; top: 581px; height: 35px; width: 600px;"></svg>
-                </a>
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_2_unit_zoning" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Zoning
-                </div>
-                <div data-opened="false" data-contentid="kt_2_unit_contact" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Contact Listing Agent
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_3_unit_architecture" class="card fixedcard dots-light">
-            <img draggable="false" class="heroImage" src="img/cf_architectural_drawing_3_unit.png">
-            <div class="tabcontent" id="kt_3_unit_zoning" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_zoning_yellow.png">
-            </div>
-            <div class="tabcontent" id="kt_3_unit_contact" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_contact_listing_agent-button.png">
-                <a href="tel:5124224000">
-                    <svg style="position: absolute; left: 464px; top: 514px; height: 35px; width: 210px;"></svg>
-                </a>
-                <a href="mailto:KarlHausmann@HindsiteAustin.com">
-                    <svg style="position: absolute; left: 100px; top: 581px; height: 35px; width: 600px;"></svg>
-                </a>
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_3_unit_zoning" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Zoning
-                </div>
-                <div data-opened="false" data-contentid="kt_3_unit_contact" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Contact Listing Agent
-                </div>
-            </div>
-
-        </div>
-
-        <div id="kt_location" class="card fixedcard dots-light">
-            <img draggable="false" class="heroImage" src="img/cf_location_map.png">
-            <div class="tabcontent" id="kt_location_details" style="display: none;">
-                <img style="height: auto; width: 100%;" src="img/cf_location_details.png">
-
-            </div>
-            <div class="tab-grid">
-                <div data-opened="false" data-contentid="kt_location_details" class="col" align="center"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Location Details
-                </div>
-            </div>
-        </div>
-
-        <div id="kt_site_plan_zoomed" class="card fixedcard dots-light">
-            <img draggable="false" class="heroImage" src="img/cf_site_plan_zoomed_in.png">
-            <a href="http://cfcommercialcondos.com" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F7E300"/>
-                    <text x="30" y="45" font-family="Source Sans Pro" font-weight="bold" font-size="25" fill="black">CFCommercialCondos.com</text>
-                </svg>
-            </a>
-        </div>
-
-        <div id="kt_site_plan_overview" class="card fixedcard dots-light">
-            <img draggable="false" class="heroImage" src="img/cf_site_plan_overview.png">
-            <a href="http://cfcommercialcondos.com" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F7E300"/>
-                    <text x="30" y="45" font-family="Source Sans Pro" font-weight="bold" font-size="25" fill="black">CFCommercialCondos.com</text>
-                </svg>
-            </a>
-        </div>
-
-        <div id="kt_outro" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/cf_contact_listing_agent-button.png">
-
-            <a href="tel:5124224000">
-                <svg style="position: absolute; left: 464px; top: 514px; height: 35px; width: 210px;"></svg>
-            </a>
-            <a href="mailto:KarlHausmann@HindsiteAustin.com">
-                <svg style="position: absolute; left: 100px; top: 581px; height: 35px; width: 600px;"></svg>
-            </a>
-            <a href="http://cfcommercialcondos.com" target="_blank">
-                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F7E300"/>
-                    <text x="30" y="45" font-family="Source Sans Pro" font-weight="bold" font-size="25" fill="black">CFCommercialCondos.com</text>
-                </svg>
-            </a>
-        </div>
-
-
-        <div id="kt_contact_us_b2b" class="card fixedcard">
-            <img draggable="false" class="heroImage" src="img/kt_contact_b2b.png">
+        <div id="kt_contactus" class="card fixedcard "><img draggable="false" class="heroImage"
+                                                            src="img/kt_contact_white_label.png">
             <div class="tabcontent" id="contactus" style="display: none;">
                 <img style="height: auto; width: 100%;" src="img/kt_contact_open_tab.png">
                 <a href="tel:7372419950">
@@ -555,18 +561,26 @@
             </div>
         </div>
 
+
     </div>
 
-</div>
 
-
-<div class="navfooter">
-</div>
+    <div class="navfooter">
+    </div>
 </div>
 </body>
 
-<script src="./js/afterbody_ktt06.js"></script>
+<script src="./js/afterbody_jni02.js"></script>
 <script>
+    function disableForm() {
+        const theForm = document.querySelector("form");
+
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+        //theForm.querySelectorAll("input").forEach(function(item) {item.disabled = true;});
+        //theForm.querySelectorAll("select").forEach(function(item) {item.disabled = true;});
+
+    }
+
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
         let tabElements = theTab.parentElement.querySelectorAll(`.col`);
