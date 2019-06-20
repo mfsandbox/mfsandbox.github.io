@@ -478,8 +478,9 @@
         <div class="card fixedcard" id="kt_extending_engagement"><img class="heroImage" draggable="false"
                                                                        src="img/jni_spirits_14_extending_engagement.jpg">
         </div>
+
         <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false"
-                                                               src="img/kt_lead_capture_form_nofields.png">
+                                                               src="img/kt_lead_capture_form_whitelabel.png">
             <form action="https://k1a3sx2ong.execute-api.us-east-1.amazonaws.com/default/kt-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
                 <input type="hidden" name="bookname" id ="bookname">
                 <input type="hidden" name="bookserial" id="bookserial">
@@ -506,28 +507,6 @@
                         type="submit">SUBMIT
                 </button>
             </form>
-            <!--
-            <div class="tabcontent" id="kt_lead_capture_tab" style="display: none;">
-
-                <img src="img/jni_spirits_15a_lead_capture_open_tab.jpg" style="height: auto; width: 100%;">
-                <a href="tel:8587202326">
-                    <svg style="position: absolute; left: 300px; top: 835px; height: 35px; width: 200px; "></svg>
-                </a>
-                <a href="mailto:kevyn.claerhout@nadel.com">
-                    <svg style="position: absolute; left: 195px; top: 960px; height: 35px; width: 415px; "></svg>
-                </a>
-            </div>
-
-            <div class="tab-grid">
-                <div align="center" class="col" data-contentid="kt_lead_capture_tab" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    Contact Us
-                </div>
-
-            </div>
-            -->
-
         </div>
 
         <div id="kt_contactus" class="card fixedcard "><img draggable="false" class="heroImage"
@@ -572,11 +551,7 @@
 <script>
     function disableForm() {
         const theForm = document.querySelector("form");
-
         theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
-        //theForm.querySelectorAll("input").forEach(function(item) {item.disabled = true;});
-        //theForm.querySelectorAll("select").forEach(function(item) {item.disabled = true;});
-
     }
 
     function toggleTab(theTab) {
