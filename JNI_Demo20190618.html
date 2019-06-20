@@ -480,7 +480,8 @@
         </div>
         <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false"
                                                                src="img/kt_lead_capture_form_nofields.png">
-            <form target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+            <form action="https://k1a3sx2ong.execute-api.us-east-1.amazonaws.com/default/kt-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+                <input type="hidden" name="bookname" id ="bookname">
                 <input type="hidden" name="bookserial" id="bookserial">
                 <input type="hidden" name="isTest" value="true" id="isTest">
                 <input style="top: 570px;" type="text" name="firstname" required aria-required="true">
@@ -499,7 +500,7 @@
                 </div>
                 -->
                 <input style="top: 990px;"
-                       type="phone" name="workphone">
+                       type="phone" required aria-required="true" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" name="workphone" title="Enter a valid US or international phone number">
 
                 <button id="formbutton"
                         style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829; border-style:none;"
@@ -655,6 +656,10 @@
         })
 
     }
+
+    document.querySelector('#bookserial').value = bookserial;
+    document.querySelector('#bookname').value = bookName.split('.')[0];
+
 
 </script>
 
