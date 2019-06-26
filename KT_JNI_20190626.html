@@ -1,0 +1,640 @@
+<html style="overflow: hidden; touch-action:none;">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: TopolRegular;
+            src: url("fonts/TopolRegular.otf") format('opentype');
+        }
+
+        @font-face {
+            font-family: GT_America_Extended_Regular;
+            src: url("fonts/GT-America-Extended-Regular.ttf") format('truetype');
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Helvetica;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Helvetica;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: Helvetica;
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: Helvetica;
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-family: Helvetica;
+            font-weight: bold;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+        /*     .styled-select {
+                 overflow: hidden;
+                 height: 74px;
+                 float: left;
+                 width: 365px;
+                 margin-right: 10px;
+                 background: url("./img/chevron-down-25.png") ;
+             }*/
+
+        .styled-select {
+            height: 74px;
+            overflow: hidden;
+            width: 240px;
+        }
+
+        input {
+            position:absolute;
+            font-size:25px;
+            border-style:solid;
+            border-width: 1px;
+            border-color: rgb(243,108,66);
+            left:260px;
+            width: 400px;
+            height: 35px;
+        }
+
+        .styled-select select {
+
+            border-radius: 0;
+            border: 1px solid black;
+            background: url("./img/chevron-down-25.png") no-repeat 100% center;
+            width: 380px;
+            overflow: hidden;
+            padding-top: 2px;
+            height: 70px;
+            text-indent: 10px;
+
+            -webkit-appearance: none;
+        }
+
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<iframe name="hidden" style="display:none;"></iframe>
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+        <div class="card fixedcard" id="kt_whitelabel"><img class="heroImage" draggable="false"
+                                                        src="img/kt_whitelabel_jni.png"></div>
+
+        <div class="card fixedcard" id="kt_intro"><img class="heroImage" draggable="false"
+                                                        src="img/JNI-01-V2.png"></div>
+
+        <div class="card fixedcard" id="kt_setting_stage"><img class="heroImage" draggable="false"
+                                                                src="img/jni_spirits_2_setting_the_stage.jpg">
+            <div class="tabcontent" id="kt_setting_stage_tab" style="display: none;">
+                <img src="img/jni_spirits_2a_setting_the_stage_open_tab.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_setting_stage_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Source
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_digital_transformation"><img class="heroImage" draggable="false"
+                                                                         src="img/jni_spirits_3_jni_digital_transformation.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_how_it_works"><img class="heroImage" draggable="false"
+                                                               src="img/jni_spirits_4_how_it_works.jpg"></div>
+
+        <div class="card fixedcard" id="kt_coaster"><img class="heroImage" draggable="false"
+                                                          src="img/jni_spirits_5_on_premise_coaster_mockup.jpg"></div>
+
+        <div class="card fixedcard" id="kt_hang_tag"><img class="heroImage" draggable="false"
+                                                           src="img/jni_spirits_6_off_premise_hang_tag_mockup.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_lanyard"><img class="heroImage" draggable="false"
+                                                          src="img/jni_spirits_7_event_lanyard_mockup.jpg"></div>
+
+        <div class="card fixedcard" id="kt_sample_book"><img class="heroImage" draggable="false"
+                                                              src="img/jni_spirits_8_transition_to_sample_book.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_brand_education"><img class="heroImage" draggable="false"
+                                                                  src="img/JNI-09-V2.png"></div>
+
+        <div class="card fixedcard" id="kt_old_fashioned"><img class="heroImage" draggable="false"
+                                                                src="img/jni_spirits_10_recipe_old_fashioned.jpg">
+            <div class="tabcontent" id="kt_old_fashioned_ingredients" style="display: none;">
+                <img src="img/JNI-10a-V2.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="kt_old_fashioned_makeit" style="display: none;">
+                <img src="img/jni_spirits_10b_recipe_old_fashioned_make_it.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_old_fashioned_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="kt_old_fashioned_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_blackberry_smash"><img class="heroImage" draggable="false"
+                                                                   src="img/jni_spirits_11_recipe_blackberry_smash.jpg">
+            <div class="tabcontent" id="kt_blackberry_smash_ingredients" style="display: none;">
+                <img src="img/JNI-11a.png"
+                     style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="kt_blackberry_smash_makeit" style="display: none;">
+                <img src="img/jni_spirits_11b_recipe_blackberry_smash_make_it.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_blackberry_smash_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="kt_blackberry_smash_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_gifting"><img class="heroImage" draggable="false"
+                                                          src="img/JNI-12-V2.png">
+            <div class="tabcontent" id="kt_gifting_tab" style="display: none;">
+                <img src="img/JNI-12a-V3.png" style="height: auto; width: 100%;">
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_gifting_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Gifting
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="kt_social"><img class="heroImage" draggable="false"
+                                                         src="img/jni_spirits_13_social.jpg">
+
+                <svg style="position:absolute; left:225px; top: 1049px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #00a8e1"/>
+                    <text x="110" y="43" font-size="25" fill="white">FACEBOOK</text>
+                </svg>
+
+
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #e15829"/>
+                    <text x="110" y="43" font-size="25" fill="white">INSTAGRAM</text>
+                </svg>
+
+        </div>
+
+        <div class="card fixedcard" id="kt_extending_engagement"><img class="heroImage" draggable="false"
+                                                                       src="img/jni_spirits_14_extending_engagement.jpg">
+        </div>
+
+        <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false"
+                                                               src="img/kt_lead_capture_form_whitelabel.png">
+            <form action="https://k1a3sx2ong.execute-api.us-east-1.amazonaws.com/default/kt-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+                <input type="hidden" name="bookname" id ="bookname">
+                <input type="hidden" name="bookserial" id="bookserial">
+                <input style="top: 570px;" type="text" name="firstname" required aria-required="true">
+                <input style="top: 675px;" type="text" name="lastname" required aria-required="true">
+                <input style="top: 780px;" type="text" name="company" required aria-required="true">
+                <input style="top: 885px; " type="email" name="email" required aria-required="true">
+                <!--
+                <div class="styled-select">
+                    <select style="position:absolute; left:295px; top: 678px; width: 325px; height: 35px; font-size:25px;"
+                            name="gender" required aria-required="true">
+                        <optgroup>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </optgroup>
+                </div>
+                -->
+                <input style="top: 990px;"
+                       type="phone" required aria-required="true" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" name="workphone" title="Enter a valid US or international phone number">
+
+                <button id="formbutton"
+                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829; border-style:none;"
+                        type="submit">SUBMIT
+                </button>
+            </form>
+        </div>
+
+        <div id="kt_contactus" class="card fixedcard "><img draggable="false" class="heroImage"
+                                                            src="img/kt_contact_white_label.png">
+            <div class="tabcontent" id="contactus" style="display: none;">
+                <img style="height: auto; width: 100%;" src="img/kt_contact_open_tab.png">
+                <a href="tel:7372419950">
+                    <svg style="position: absolute; left: 275px; top: 833px; height: 35px; width: 240px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="sms:7372419950">
+                    <svg style="position: absolute; left: 275px; top: 900px; height: 35px; width: 240px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="mailto:sales@kineticthread.com">
+                    <svg style="position: absolute; left: 185px; top: 970px; height: 35px; width: 420px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/kinetic-thread">
+                    <svg style="position: absolute; left: 265px; top: 1035px; height: 35px; width: 255px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href=" https://www.kineticthread.com" target="_blank">
+                    <svg style="position: absolute; left: 235px; top: 1100px; height: 35px; width: 325px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="contactus" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Get In Touch
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="navfooter">
+    </div>
+</div>
+</body>
+
+<script src="./js/afterbody_jni02.js"></script>
+<script>
+    function disableForm() {
+        const theForm = document.querySelector("form");
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+    }
+
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            } else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+
+    document.querySelector('#bookserial').value = bookserial;
+    document.querySelector('#bookname').value = bookName.split('.')[0];
+
+
+</script>
+
+</html>
