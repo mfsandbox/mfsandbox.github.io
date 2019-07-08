@@ -441,9 +441,6 @@
 
     function marketoLoadFormCallback(form) {
         form.onSuccess(function(a,b) {
-            alert(JSON.stringify(a));
-            alert(b);
-            window.open(b,'_blank');
             document.querySelector("#marketoButton").style.display = "none";
             return false;
         });
