@@ -306,7 +306,7 @@
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
-
+<!--
         <div id="hs_cover" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/hs_1_cover.png">
         </div>
 
@@ -369,6 +369,7 @@
                 </div>
             </div>
         </div>
+        -->
 
         <div id="hs_form" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/hs_contactform_190703.png">
             <div style="display:none; position:absolute: left; left: 50px; top: 50px;">
@@ -376,12 +377,12 @@
             </div>
             <svg id="marketoButton" style="position:absolute; left:250px; top: 1034px; z-index:11;" cursor="pointer" onclick='marketoButtonOnClick();' >
                 <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFDE00"/>
-                <text x="40" y="45" font-size="30" fill="#3e484c">Keep me updated</text>
-
+                <text x="40" y="45" font-size="30" fill="#3e484c" style="font-family: Titillium Web; font-weight: bold;">Keep me updated</text>
             </svg>
 
         </div>
 
+        <!--
         <div id="hs_final" class="card fixedcard dots-light"><img draggable="false" class="heroImage" src="img/hs_9_rev2.png">
             <a href="mailto:info@headspring.com" target="_blank">
                 <svg style="position:absolute; left:125px; top: 1060px; width: 310px; height: 40px;">
@@ -422,6 +423,7 @@
                 </svg>
 
         </div>
+        -->
 
     </div>
 
@@ -440,11 +442,14 @@
     }
 
     function marketoLoadFormCallback(form) {
-        form.onSuccess(function(a,b) {
-            document.querySelector("#marketoButton").style.display = "none";
-            return false;
-        });
+        form.onSuccess(marketoFormSuccess);
         MktoForms2.lightbox(form).show();
+    }
+
+    function marketoFormSuccess(a,b) {
+        document.querySelector("#hs_form").innerHTML = `<img draggable="false" class="heroImage" src="img/hs_formthankyou_190703.png">`;
+        return false;
+
     }
 
     function toggleTab(theTab) {
