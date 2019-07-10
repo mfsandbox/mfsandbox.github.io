@@ -1,0 +1,471 @@
+<html style="overflow: hidden; touch-action:none;">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <script src="//app-ab23.marketo.com/js/forms2/js/forms2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Titillium Web;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Titillium Web;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Titillium Web;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Titillium Web;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Titillium Web';
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Titillium Web';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-family: "Open Sans";
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+        <div id="hs_azurepipelines" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                           src="img/hs_devops_azurepipelines.png">
+        </div>
+
+        <div id="hs_transition" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                       src="img/hs_devops_transition.png">
+        </div>
+
+        <div id="hs_somethingwrong" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                           src="img/hs_devops_somethingwrong_v2.png">
+            <div class="tabcontent" id="hs_somethingwrong_tab" style="display: none;">
+                <img src="img/hs_devops_cicd_v2.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="hs_somethingwrong_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Learn why
+                </div>
+            </div>
+        </div>
+
+        <div id="hs_securityconcerns" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                             src="img/hs_devops_securityconcerns_v2.png">
+        </div>
+
+        <div id="hs_signmeup" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                     src="img/hs_devops_signmeup.png">
+            <div style="display:none; position:absolute: left; left: 50px; top: 50px;">
+                <form id="mktoForm_1210"></form>
+            </div>
+            <svg id="marketoButton" style="position:absolute; left:250px; top: 1034px; z-index:11;" cursor="pointer"
+                 onclick='marketoButtonOnClick();'>
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: #FFDE00"/>
+                <text x="75" y="45" font-size="30" fill="#3e484c"
+                      style="font-family: Titillium Web; font-weight: bold;">Sign me up
+                </text>
+            </svg>
+        </div>
+
+
+        <div id="hs_wanttotalk" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                       src="img/hs_devops_wanttotalk.png">
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<div class="navfooter">
+</div>
+</body>
+
+<script src="./js/afterbody_hspring.js"></script>
+<script>
+    function marketoButtonOnClick() {
+        MktoForms2.loadForm("//app-ab23.marketo.com", "452-XUA-690", 1210, marketoLoadFormCallback);
+    }
+
+    function marketoLoadFormCallback(form) {
+        form.onSuccess(marketoFormSuccess);
+        MktoForms2.lightbox(form).show();
+    }
+
+    function marketoFormSuccess(a, b) {
+        document.querySelector("#hs_signmeup").innerHTML = `<img draggable="false" class="heroImage" src="img/hs_devops_thankyou.png">
+            <div class="tabcontent" id="hs_thankyou_tab" style="display: none;">
+                <img src="img/hs_devops_wanttotalk.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="hs_thankyou_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Contact us
+                </div>
+            </div>`;
+        document.querySelector("#hs_wanttotalk").remove();
+        cards = document.querySelectorAll(".card");
+        cardCount = cards.length;
+        drawNavDots(cardCount, currentCardIndex);
+        setCardVisibility(cards, navIcons);
+        return false;
+    }
+
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            } else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+
+</script>
+
+</html>
