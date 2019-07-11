@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body style="padding:0px; margin: 0px;">
+<div style="background-color: #00a8e1; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; height: 100%; width: 100%;">
+    <div style="left: 40%; top: 40%; position: absolute; font-size: 5vh;" id="dimensions"></div>
+</div>
+</body>
+<script>
+    window.addEventListener("resize", function(event) {scaleHeroes();});
+    function scaleHeroes() {
+        let theDiv = document.querySelector("div");
+        theDiv.style.height = `${document.documentElement.clientHeight}`;
+        theDiv.style.width = `${document.documentElement.clientWidth}`;
+        document.querySelector(`#dimensions`).innerText = `${document.documentElement.clientHeight} x ${document.documentElement.clientWidth}`;
+    }
+    scaleHeroes();
+</script>
+</html>
