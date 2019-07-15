@@ -405,14 +405,21 @@
         </div>
         <div class="dormantcard" id="pgin_final"><img class="heroImage" draggable="false"
                                                               src="img/PGIN_Card_05.png">
-            <a href="https://www.google.com/maps/place/NOPSI+Hotel,+New+Orleans" target="_blank">
-            <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px; cursor: pointer;" >
-                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(249,55,33)"/>
-                <text x="40" y="43" font-family="Roboto" font-weight="500" font-size="30" fill="white">View Address &amp; Map
-                </text>
-            </svg>
-            </a>
+            <div class="tabcontent" id="pgin_incorrect_tab" style="display: none;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.9521244645794!2d-90.07492798407671!3d29.95205568191617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a60ac3a90e0f%3A0xd428cda5970fbabf!2sNOPSI+Hotel%2C+New+Orleans!5e0!3m2!1sen!2sus!4v1563153694703!5m2!1sen!2sus" width="800" height="1235" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="pgin_incorrect_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    View Address &amp; Map Here
+                </div>
+            </div>
         </div>
+
+
+
 <!--
 
         <div class="card fixedcard" id="kt_powered_by_for_brands"><img class="heroImage" draggable="false"
