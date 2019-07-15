@@ -1,0 +1,735 @@
+<html style="overflow: hidden; touch-action:none;">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: TopolRegular;
+            src: url("fonts/TopolRegular.otf") format('opentype');
+        }
+
+        @font-face {
+            font-family: GT_America_Extended_Regular;
+            src: url("fonts/GT-America-Extended-Regular.ttf") format('truetype');
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .dormantcard{
+            display: none;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Geometr415_Blk;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Source Sans Pro;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Calibri';
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Geometr415_Blk';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(21, 27, 77, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-family: GT_America_Extended_Regular;
+            color: white;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+        input {
+            position:absolute;
+            font-size:25px;
+            border-style:solid;
+            border-width: 1px;
+            border-color: rgb(243,108,66);
+            left:260px;
+            width: 400px;
+            height: 35px;
+        }
+
+        .styled-select select {
+
+            border-radius: 0;
+            border: 1px solid black;
+            background: url("./img/chevron-down-25.png") no-repeat 100% center;
+            width: 380px;
+            overflow: hidden;
+            padding-top: 2px;
+            height: 70px;
+            text-indent: 10px;
+
+            -webkit-appearance: none;
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<iframe name="hidden" style="display:none;"></iframe>
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+
+
+        <div class="card fixedcard dots-light" id="pgin_intro"><img class="heroImage" draggable="false"
+                                                                       src="img/PGIN_Card_01.png">
+            <div class="tabcontent" id="pgin_intro_tab" style="display: none;">
+                <img src="img/PGIN_Card_01tab.png" style="height: auto; width: 100%;">
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="pgin_intro_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Disclaimer
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="pgin_jannerquestion"><img class="heroImage" draggable="false"
+                                                         src="img/PGIN_Card_02.png">
+
+                    <input style="position:absolute; left: 150px; top: 675px;" name="group1" type="radio" value="janner"/>
+
+                    <input style="position:absolute; left: 150px; top: 785px" name="group1" type="radio" value="spanner" />
+
+                    <input style="position:absolute; left: 150px; top: 905px"  name="group1" type="radio" value="tanner" />
+
+            <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px; cursor: pointer;" onclick="checkJannerAnswer();">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(249,55,33)"/>
+                <text x="120" y="43" font-family="Roboto" font-weight="500" font-size="30" fill="white">SUBMIT
+                </text>
+            </svg>
+
+        </div>
+
+        <div class="dormantcard dots-light" id="pgin_jannercorrect"><img class="heroImage" draggable="false"
+                                                                  src="img/PGIN_Card_03.png">
+            <div class="tabcontent" id="pgin_correct_tab" style="display: none;">
+                <img src="img/PGIN_Card_03.png" style="height: auto; width: 100%;">
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="pgin_correct_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Join the Lost Property Society
+                </div>
+            </div>
+
+        </div>
+        <div class="dormantcard" id="pgin_jannerincorrect"><img class="heroImage" draggable="false"
+                                                              src="img/PGIN_Card_04.png">
+            <div class="tabcontent" id="pgin_incorrect_tab" style="display: none;">
+                <img src="img/PGIN_Card_04.png" style="height: auto; width: 100%;">
+            </div>
+
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="pgin_incorrect_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Join the Lost Property Society
+                </div>
+            </div>
+        </div>
+        <div class="dormantcard" id="pgin_final"><img class="heroImage" draggable="false"
+                                                              src="img/PGIN_Card_05.png">
+            <a href="https://www.google.com/maps/place/NOPSI+Hotel,+New+Orleans" target="_blank">
+            <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px; cursor: pointer;" >
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(249,55,33)"/>
+                <text x="40" y="43" font-family="Roboto" font-weight="500" font-size="30" fill="white">View Address &amp; Map
+                </text>
+            </svg>
+            </a>
+        </div>
+<!--
+
+        <div class="card fixedcard" id="kt_powered_by_for_brands"><img class="heroImage" draggable="false"
+                                                                                  src="img/kt_powered_by_glvdemo.png">
+        </div>
+
+        <div class="card fixedcard dots-light" id="glv_welcome_card">
+            <img class="heroImage" draggable="false" src="img/glv_welcome_card.png">
+        </div>
+
+        <div class="card fixedcard" id="glv_membership">
+            <img class="heroImage" draggable="false" src="img/glv_membership.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #EB5226"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="30" y="43">GET YOUR SHAKER CLUB BOX</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="glv_here_kitty">
+            <img class="heroImage" draggable="false" src="img/glv_here_kitty.png">
+            <div class="tabcontent" id="glv_here_kitty_ingredients" style="display: none;">
+                <img src="img/glv_here_kitty_ingredients.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_here_kitty_makeit" style="display: none;">
+                <img src="img/glv_here_kitty_make_it.png" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="glv_here_kitty_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="glv_here_kitty_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="glv_brand_story">
+            <img class="heroImage" draggable="false" src="img/glv_brand_story.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #611013"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="92" y="43">GET TO KNOW US</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="glv_two_thymer">
+            <img class="heroImage" draggable="false" src="img/glv_two_thymer.png">
+            <div class="tabcontent" id="glv_two_thymer_ingredients" style="display: none;">
+                <img src="img/glv_two_thymer_ingredients.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_two_thymer_makeit" style="display: none;">
+                <img src="img/glv_two_thymer_make_it.png" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="glv_two_thymer_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="glv_two_thymer_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard dots-light" id="glv_map">
+            <img class="heroImage" draggable="false" src="img/glv_map.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #611013"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="130" y="43">FIND US</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard dots-light" id="glv_well_come_to_you">
+            <img class="heroImage" draggable="false" src="img/glv_well_come_to_you.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #F5CBCE"/>
+                    <text fill="black" font-family="TopolRegular" font-size="25" x="92" y="43">GET IT DELIVERED</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="glv_duderino">
+            <img class="heroImage" draggable="false" src="img/glv_duderino.png">
+            <div class="tabcontent" id="glv_duderino_ingredients" style="display: none;">
+                <img src="img/glv_duderino_ingredients.png" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_duderino_makeit" style="display: none;">
+                <img src="img/glv_duderino_make_it.png" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="glv_duderino_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="glv_duderino_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="glv_join_us_for_events">
+            <img class="heroImage" draggable="false" src="img/glv_join_us_for_events.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #CE7C39"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="130" y="43">JOIN US</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard dots-light" id="glv_follow_us_on_social">
+            <img class="heroImage" draggable="false" src="img/glv_follow_us_on_social.png">
+            <a href="https://www.instagram.com/goodnightlovingvodka/" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1049px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #D89E8D"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="130" y="43">INSTAGRAM</text>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/goodnightlovingvodka/" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #1E2859"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="130" y="43">FACEBOOK</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="glv_swag">
+            <img class="heroImage" draggable="false" src="img/glv_swag.png">
+            <a href="" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #EB5226"/>
+                    <text fill="white" font-family="TopolRegular" font-size="25" x="130" y="43">GET SOME</text>
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false" src="img/kt_lead_capture_form_generic.png">
+            <form action="https://k1a3sx2ong.execute-api.us-east-1.amazonaws.com/default/kt-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+                <input type="hidden" name="bookname" id ="bookname">
+                <input type="hidden" name="bookserial" id="bookserial">
+                <input style="top: 570px;" type="text" name="firstname" required aria-required="true">
+                <input style="top: 675px;" type="text" name="lastname" required aria-required="true">
+                <input style="top: 780px;" type="text" name="company" required aria-required="true">
+                <input style="top: 885px; " type="email" name="email" required aria-required="true">
+                <input style="top: 990px;"
+                       type="phone" required aria-required="true" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" name="workphone" title="Enter a valid US or international phone number">
+
+                <button id="formbutton"
+                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829; border-style:none;"
+                        type="submit">SUBMIT
+                </button>
+            </form>
+        </div>
+
+        <div class="card fixedcard " id="kt_contactus"><img class="heroImage" draggable="false"
+                                                            src="img/kt_contact_pop.png">
+            <div class="tabcontent" id="contactus" style="display: none;">
+                <img src="img/kt_contact_open_tab.png" style="height: auto; width: 100%;">
+                <a href="tel:7372419950">
+                    <svg style="position: absolute; left: 275px; top: 833px; height: 35px; width: 240px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="sms:7372419950">
+                    <svg style="position: absolute; left: 275px; top: 900px; height: 35px; width: 240px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="mailto:sales@kineticthread.com">
+                    <svg style="position: absolute; left: 185px; top: 970px; height: 35px; width: 420px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/kinetic-thread">
+                    <svg style="position: absolute; left: 265px; top: 1035px; height: 35px; width: 255px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+                <a href="https://www.kineticthread.com" target="_blank">
+                    <svg style="position: absolute; left: 235px; top: 1100px; height: 35px; width: 325px; background-color:rgba(255,255,255,0);"></svg>
+                </a>
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="contactus" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Get In Touch
+                </div>
+            </div>
+        </div>
+-->
+    </div>
+
+</div>
+
+
+
+
+<div class="navfooter">
+</div>
+</div>
+</body>
+
+<script src="./js/afterbody_ktt07.js"></script>
+<script>
+
+    const checkJannerAnswer = function() {
+        const jannerAnswer = (document.querySelector('input[name="group1"]:checked') || {value: ''}).value;
+        if (jannerAnswer === "") {
+            alert('Please select an answer to continue!');
+            return;
+        }
+        document.querySelector('#pgin_jannerquestion').remove();
+        document.querySelector('#pgin_final').className = document.querySelector('#pgin_jannercorrect').className.replace('dormantcard','card fixedcard');
+        if (jannerAnswer === "janner") {
+            document.querySelector('#pgin_jannercorrect').className = document.querySelector('#pgin_jannercorrect').className.replace('dormantcard','card fixedcard');
+        } else {
+            document.querySelector('#pgin_jannerincorrect').className = document.querySelector('#pgin_jannercorrect').className.replace('dormantcard','card fixedcard');
+        }
+
+        cards = document.querySelectorAll(".card");
+        cardCount = cards.length;
+        scaleHeroes();
+        drawNavDots(cardCount, currentCardIndex);
+        setCardVisibility(cards, navIcons);
+
+    }
+
+
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(21,27,77)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            } else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+
+</script>
+
+</html>
