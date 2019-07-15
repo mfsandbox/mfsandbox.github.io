@@ -281,5 +281,5 @@
 
   window.addEventListener("resize", function(event) {scaleHeroes();});
 
-  document.querySelector('#bookserial').value = bookserial;
-  document.querySelector('#bookname').value = bookName.split('.')[0];
+  if (document.querySelector('#bookserial')) {document.querySelector('#bookserial').value = bookserial;}
+  if (document.querySelector('#bookname')) {document.querySelector('#bookname').value = bookName.split('.')[0]}
