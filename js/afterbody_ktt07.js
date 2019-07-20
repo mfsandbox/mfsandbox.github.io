@@ -29,6 +29,8 @@
   const user = url.searchParams.get('u') || "";
   const bookserial = url.searchParams.get('s') || '';
 
+
+
   if (user != "") {
       gtag('set', {'user_id': user});
   }
