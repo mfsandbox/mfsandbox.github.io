@@ -33,6 +33,45 @@
       gtag('set', {'user_id': user});
   }
 
+
+  const addScript = function( src,callback) {
+      const scriptElement = document.createElement( 'script' );
+      scriptElement.setAttribute( 'src', src );
+      scriptElement.onload=callback;
+      document.body.appendChild( scriptElement );
+  }
+
+  const submitJoinForm = function() {
+      if ((document.querySelector('input[name="subscriberKeyword"]:checked') || '') === "") {
+          alert("Please select a profession to proceed!");
+          return;
+      }
+
+      const mobileField = document.querySelector("#mobileNumber");
+      const mobileNumber = mobileField.value.replace(/\D/g,'');
+
+      if (mobileNumber.length != 10 || mobileNumber.slice(0,1) === "1") {
+          alert("Please enter a valid 10 digit phone number!");
+          return;
+      }
+
+      mobileField.value = mobileNumber;
+
+      const joinForm = document.querySelector("#joinform");
+
+      const joinButton = document.querySelector('#joinbutton');
+      joinForm.submit();
+      joinButton.remove();
+      mobileField.disabled = true;
+
+      document.querySelectorAll('input[name="subscriberKeyword"]').forEach(function(item) {item.disabled = true;});
+      const confirmationMessage = `Thanks for signing up!!`;
+      const activityID = `1403746`;
+      const ebRand = (Math.random()+'') * 1000000;
+      const scriptSource = `HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=${activityID}&amp;rnd='${ebRand}'`;
+      addScript(scriptSource,alert(confirmationMessage));
+  }
+
   const getDotInfos = (cardCount, cardIndex, dotRadiusMap) =>
   {
       let perspectiveThreshold = dotRadiusMap.length + 2;
