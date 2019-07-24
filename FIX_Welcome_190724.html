@@ -1,0 +1,518 @@
+<html style="overflow: hidden; touch-action:none;">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: TopolRegular;
+            src: url("fonts/TopolRegular.otf") format('opentype');
+        }
+
+        @font-face {
+            font-family: GT_America_Extended_Regular;
+            src: url("fonts/GT-America-Extended-Regular.ttf") format('truetype');
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Calibri;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Calibri;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Geometr415_Blk;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Source Sans Pro;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Calibri';
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Geometr415_Blk';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .tabCloser {
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: -8%;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 25px;
+            font-family: GT_America_Extended_Regular;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+
+        <div class="card fixedcard dots-light" id="fix_welcome">
+            <img class="heroImage" draggable="false" src="img/FIX_WELCOME_1-01.jpg">
+        </div>
+
+        <div class="card fixedcard" id="fix_benefits">
+            <img class="heroImage" draggable="false" src="img/FIX_BENEFITS_2-01.jpg">
+        </div>
+
+        <div class="card fixedcard" id="fix_website">
+            <img class="heroImage" draggable="false" src="img/FIX_WEBSITE_3-01.jpg">
+            <a href="https://fixvodka.com" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(255,0,255,0);"/>
+
+                </svg>
+            </a>
+        </div>
+
+        <div class="card fixedcard" id="fix_blackandwhite">
+            <img class="heroImage" draggable="false" src="img/FIX_BW_4-01.jpg">
+            <div class="tabcontent" id="fix_blackandwhite_learn" style="display: none;">
+                <img src="img/FIX_PROOF_4A-01.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="fix_blackandwite_workout" style="display: none;">
+                <img src="img/FIX_WORKOUT_4B-01.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="fix_blackandwhite_learn" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    LEARN MORE
+                </div>
+                <div align="center" class="col" data-contentid="fix_blackandwite_workout" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    WORKOUT HARDER
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard dots-light" id="fix_findus">
+            <img class="heroImage" draggable="false" src="img/FIX_FINDUS_5-01.jpg">
+        </div>
+
+        <div class="card fixedcard" id="fix_yoga">
+            <img class="heroImage" draggable="false" src="img/FIX_YOGA_6-01.jpg">
+            <div class="tabcontent" id="fix_yoga_ingredients" style="display: none;">
+                <img src="img/FIX_YOGA_INGREDIENTS_6A-01.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="fix_yoga_recipe" style="display: none;">
+                <img src="img/FIX_YOGA_RECIPE_6B-01.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="fix_yoga_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div align="center" class="col" data-contentid="fix_yoga_recipe" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    RECIPE
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard dots-light" id="fix_dirtyfixth">
+            <img class="heroImage" draggable="false" src="img/FIX_DIRTYFIXTH_7-01.jpg">
+            <div class="tabcontent" id="fix_fixth_ingredients" style="display: none;">
+                <img src="img/FIX_DIRTYFIXTH_INGREDIENTS_7A-01.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="fix_fixth_recipe" style="display: none;">
+                <img src="img/FIX_RECIPE_7B-01.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="fix_fixth_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    INGREDIENTS
+                </div>
+                <div align="center" class="col" data-contentid="fix_fixth_recipe" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    RECIPE
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card fixedcard dots-light" id="fix_fomo">
+            <img class="heroImage" draggable="false" src="img/FIX_FOMO_8-01.jpg">
+            <a href="https://www.instagram.com/fixvodka/" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1034px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(255,255,0,0);"/>
+
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/fixvodka/" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgba(255,255,0,0);"/>
+
+                </svg>
+            </a>
+        </div>
+
+
+        <div class="card fixedcard" id="fix_yourdrink">
+            <img class="heroImage" draggable="false" src="img/FIX_YOURDRINK_9-01.jpg">
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<div class="navfooter">
+</div>
+</div>
+</body>
+
+<script src="./js/afterbody_fix01.js"></script>
+<script>
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "white";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            } else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+
+</script>
+
+</html>
