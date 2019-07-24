@@ -21,6 +21,10 @@
     }
   }
 
+
+
+
+
   function gotoMap() {
     document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=world+market+zip+code+" + document.querySelector("#zipcode").value;
   }
@@ -28,7 +32,6 @@
   const keyword = url.searchParams.get('kw') || "";
   const user = url.searchParams.get('u') || "";
   const bookserial = url.searchParams.get('s') || '';
-
 
 
   if (user != "") {
@@ -94,6 +97,95 @@
           return `<circle cy = '10px' cx = '${dotArrayCenters[dotIndex]}px' r = '${dotInfo.radius}px' fill='${dotInfo.current ? currentRGBA : otherRGBA}'></circle>`;
       })
   }
+
+  const logLinkClick =  function(theLink) {
+      gtag('event', 'button-click', {
+          'event_category': 'engagement',
+          'event_label': theLink.href
+      });
+  }
+
+const toggleTab = function(theTab) {
+      let theCard = theTab.parentElement.parentElement;
+      let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+      let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+      let toggledName = theTab.getAttribute('data-contentid');
+
+      let tabArray = [].slice.call(tabElements);
+      let contentArray = [].slice.call(contentElements);
+
+      //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+      let contentDictionary = contentArray.reduce((accum, curVal) => {
+          accum[curVal.id] = curVal;
+          return accum;
+      }, []);
+
+      let openTabName = contentArray.reduce((accum, curVal) => {
+          return accum += (curVal.style.display != "none" ? curVal.id : "")
+      }, "");
+
+      if (openTabName != toggledName) {
+          openTabName = toggledName
+          gtag('event', 'tab-open', {
+              'event_category': 'engagement',
+              'event_label': toggledName
+          });
+      } else {
+          openTabName = ""
+      }
+
+      let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+      let tabOpacity = 1.00;
+      activeBgColor.opacity = tabOpacity;
+      let inactiveBgColor = d3.hsl(activeBgColor);
+      activeBgColor = d3.hsl(activeBgColor);
+
+      if (openTabName != "") {
+          activeBgColor.l *= 0.8;
+      }
+
+      let contentId = theTab.getAttribute('data-contentid');
+
+      if (openTabName == "") {
+          swipeEnabled = true;
+          document.querySelector(".navfooter").style.display = "";
+          document.querySelectorAll('.navicon').forEach((nav) => {
+              nav.style.display = "";
+          })
+
+      } else {
+          swipeEnabled = false;
+          document.querySelector(".navfooter").style.display = "none";
+          document.querySelectorAll('.navicon').forEach((nav) => {
+              nav.style.display = "none";
+          })
+
+      }
+
+      tabArray.forEach((tabElement) => {
+          let tabName = tabElement.getAttribute('data-contentid');
+          let closer = tabElement.querySelector('.tabCloser');
+          if (tabName == openTabName) {
+              closer.style.display = "";
+              tabElement.style.backgroundColor = activeBgColor;
+              tabElement.style.color = "white";
+              tabElement.style.textDecoration = "none";
+              contentDictionary[tabName].style.display = "";
+          } else {
+              closer.style.display = "none";
+              tabElement.style.backgroundColor = inactiveBgColor;
+              tabElement.style.color = "black";
+              tabElement.style.fontWeight = "";
+              tabElement.style.textDecoration = "underline";
+              contentDictionary[tabName].style.display = "none";
+          }
+
+      })
+
+  }
+
 
   const getDotPanelSvg = (cardCount, cardIndex, dotRGB) => {
 
