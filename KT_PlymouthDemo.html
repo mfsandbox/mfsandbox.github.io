@@ -505,7 +505,8 @@
                     <p style="font-family: Montserrat; font-weight: 600; font-size: 22px; text-align: left; position:absolute; top: 640px; left: 150px; width: 560px; color:rgb(21, 27, 77);">I agree to receive news and invites from Plymouth Gin and other trusted brands from Pernod Ricard, USA. Click here for Terms & Privacy Policy:  <a href="https://bit.ly/30wEhmX" target="_blank">bit.ly/30wEhmX</a></p>
                     <button id="formbutton"
                             style="position:absolute; left:225px; top: 1034px; width: 350px; height: 70px; font-size:30px; color:#ffffff; background-color:rgb(21, 27, 77); font-family:Montserrat; font-weight:600"
-                            type="submit">SIGN UP
+                            type="submit" disabled="true"
+                    >SIGN UP
                     </button>
                 </form>
                 <!--<p style="font-family: Montserrat; font-weight: 600; font-size: 22px; text-align: center; position:absolute; top: 560px; left: 150px; width: 500px; color:rgb(21, 27, 77);">By clicking sign up you agree to receive news and invites from Plymouth Gin and other trusted brands from Pernod Ricard USA. By signing up for Plymouth Gin, you agree to our Terms of Service and Privacy Policy here: <a href="https://bit.ly/30wEhmX" target="_blank">bit.ly/30wEhmX</a></p>-->
@@ -532,7 +533,7 @@
             </a>
         </div>
 
-        <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false" src="img/kt_lead_capture_form_generic.png">
+        <div class="dormantcard" id="kt_lead_capture"><img class="heroImage" draggable="false" src="img/kt_lead_capture_form_generic.png">
             <form action="https://k1a3sx2ong.execute-api.us-east-1.amazonaws.com/default/kt-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
                 <input type="hidden" name="bookname" id ="bookname">
                 <input type="hidden" name="bookserial" id="bookserial">
@@ -551,7 +552,7 @@
         </div>
 
 
-        <div id="kt_contact_us_b2b" class="card fixedcard">
+        <div id="kt_contact_us_b2b" class="dormantcard">
             <img draggable="false" class="heroImage" src="img/kt_contact_events.png">
             <div class="tabcontent" id="contactus" style="display: none;">
                 <img style="height: auto; width: 100%;" src="img/kt_contact_open_tab.png">
@@ -625,6 +626,8 @@
 
         activateCard(document.querySelector("#kt_intro"));
         activateCard(document.querySelector("#kt_jannerquestion"));
+        activateCard(document.querySelector("#kt_lead_capture"));
+        activateCard(document.querySelector("#kt_contact_us_b2b"));
         redrawDeck();
     };
 
