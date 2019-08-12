@@ -2,36 +2,43 @@
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>
-        const googleAnalyticsId = `UA-125650738-3`;
-    </script>
+    <script>const googleAnalyticsId = `UA-125650738-3`;</script>
     <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
         let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
     </script>
 
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
     <script src="https://use.fontawesome.com/e9a878b310.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
     <script src="js/d3-color.v1.min.js"></script>
     <script src="./js/hammer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <style media="screen">
         * {
             box-sizing: border-box;
         }
 
         @font-face {
-            font-family: Geometr415_Blk;
-            src: url("fonts/geometr415_blk.ttf") format('truetype');
+            font-family: 'Myriad_Pro_Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: url('fonts/MYRIADPRO-REGULAR.woff') format('woff');
         }
 
         @font-face {
-            font-family: Calibri;
-            src: url("fonts/Calibri.ttf") format('truetype');
+            font-family: 'Myriad_Pro_Bold';
+            font-style: normal;
+            font-weight: normal;
+            src: url('fonts/MYRIADPRO-BOLD.woff') format('woff');
         }
 
         .cardtable {
@@ -46,7 +53,7 @@
             width: 100%;
             padding-right: 5%;
             padding-left: 5%;
-            font-family: Calibri;
+            font-family: Myriad_Pro_Regular;
             font-size: 75%;
             background-color: white;
             text-align: center;
@@ -60,7 +67,7 @@
             width: 100%;
             padding-right: 10%;
             padding-left: 10%;
-            font-family: Calibri;
+            font-family: Myriad_Pro_Regular;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -98,7 +105,7 @@
 
         .card a button {
             border-width: 0;
-            font-family: Geometr415_Blk;
+            font-family: Myriad_Pro_Regular;
             text-align: center;
             vertical-align: middle;
             font-size: 2.2vh;
@@ -114,7 +121,7 @@
             width: 800px;
             height: 1300px;
             overflow: hidden;
-            font-family: Calibri;
+            font-family: Myriad_Pro_Regular;
         }
 
         .scrollcard {
@@ -141,7 +148,7 @@
 
         .cardback p {
             margin: 10px;
-            font-family: 'Calibri';
+            font-family: 'Myriad_Pro_Regular';
         }
 
         .cardbuttons a {
@@ -150,7 +157,7 @@
             align-items: center;
             flex-grow: 1;
             flex-basis: 0;
-            font-family: 'Geometr415_Blk';
+            font-family: 'Myriad_Pro_Regular';
             font-size: 5vmin;
             text-decoration: none;
             text-transform: uppercase;
@@ -166,6 +173,10 @@
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
+            color: rgb(1,31,116);
+            background-color: white;
+
+
         }
 
         .deck .cardIndexIncrementor {
@@ -175,6 +186,9 @@
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
+            color: rgb(1,31,116);
+            background-color: white;
+
         }
 
         .buttonpanel {
@@ -210,19 +224,22 @@
         }
 
         .tabCloser {
+            font-family: Myriad_Pro_Bold;
+            font-weight: bold;
             font-size: 30px;
             position: absolute;
             text-decoration: none;
             left: 3%;
-            top: -8%;
+            top: 0%;
         }
 
         .col {
             flex: 1;
             border-right: 1px solid #000;
-            background-color: rgba(217, 217, 217, 1.0);
+            background-color: rgba(255,200,0, 1.0);
             line-height: 65px;
             font-size: 30px;
+            font-family: Myriad_Pro_Bold;
             color: black;
             text-decoration: underline;
             position: relative;
@@ -237,6 +254,7 @@
             -webkit-overflow-scrolling: touch;
 
         }
+
         .spinner {
             margin: auto;
             width: 70px;
@@ -269,19 +287,25 @@
         }
 
         @-webkit-keyframes sk-bouncedelay {
-            0%, 80%, 100% { -webkit-transform: scale(0) }
-            40% { -webkit-transform: scale(1.0) }
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
         }
 
         @keyframes sk-bouncedelay {
             0%, 80%, 100% {
                 -webkit-transform: scale(0);
                 transform: scale(0);
-            } 40% {
-                  -webkit-transform: scale(1.0);
-                  transform: scale(1.0);
-              }
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
         }
+
 
         input {
             position:absolute;
@@ -324,37 +348,104 @@
             <div class="bounce3"></div>
         </div>
 
-        <div id="kt_casestudy_intro" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_1_case_study.png">
+        <div class="navicon cardIndexDecrementor"><i class="fa fa-angle-double-left"></i>&nbsp;</div>
+        <div class="navicon cardIndexIncrementor">&nbsp;<i class="fa fa-angle-double-right"></i></div>
+
+        <div id="kt_cover" class="card fixedcard"><img draggable="false" class="heroImage" src="img/kt_powered_by_health_steps.png">
+
         </div>
 
-        <div id="kt_casestudy_thechallenge" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_2_case_study.png">
+        <div id="kt_intro" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_1_cme_intro_card.png">
+
         </div>
 
-        <div id="kt_casestudy_oursolution" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_3_case_study.png">
+        <div id="kt_joinsms" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_5_join_sms.png">
+            <form id="joinform" method="post" action="" target="hidden">
+                <fieldset style="border: 3px groove; border-color: #003087; position: absolute; top: 530px; left:150px; width:500px; font-family: Myriad_Pro_Bold; font-size: 35px; color:#000000;">
+                    <legend align="center">Select your profession</legend>
+
+                    <input type="radio" id="doctor" name="subscriberKeyword" value="TXHSDoctor" style="height:30px; " >
+                    <label for="doctor" style="font-family: Myriad_Pro_Regular;">&nbsp;Doctor</label><br/>
+
+                    <input type="radio" id="nurse" name="subscriberKeyword" value="TXHSNurse" style="height:30px;">
+                    <label for="nurse" style="font-family: Myriad_Pro_Regular;">&nbsp;Nurse</label><br/>
+
+                    <input type="radio" id="dentist" name="subscriberKeyword" value="TXHSDentist" style="height:30px;">
+                    <label for="dentist" style="font-family: Myriad_Pro_Regular;">&nbsp;Dentist</label><br/>
+
+                    <input type="radio" id="socialworker" name="subscriberKeyword" value="TXHSSocialWorker" style="height:30px;">
+                    <label for="socialworker" style="font-family: Myriad_Pro_Regular;">&nbsp;Social Worker</label><br>
+
+
+                    <input type="radio" id="pharmacist" name="subscriberKeyword" value="TXHSPharmacist" style="height:30px;">
+                    <label for="pharmacist" style="font-family: Myriad_Pro_Regular;">&nbsp;Pharmacist</label><br/>
+
+                    <input type="radio" id="general" name="subscriberKeyword" value="TXHSGeneral" style="height:30px;">
+                    <label for="general" style="font-family: Myriad_Pro_Regular;">&nbsp;General</label><br/>
+                </fieldset>
+                <p style="position:absolute; left:165px; top: 1034px; text-align:right; font-family: Myriad_Pro_Regular; font-size: 30px; color:rgb(27,69,147);">Mobile Number:</p>
+                <input type="tel" id="mobileNumber" name="mobileNumber" value="" style="position:absolute; left:375px; top: 1062px; width: 200px; height: 40px; text-align:left; font-family: Myriad_Pro_Regular; font-size: 30px; color:rgb(11,56,140);             border-color: rgb(11,56,140);">
+            </form>
+
+            <svg id="joinbutton" style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;"">
+            <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087;cursor: pointer;"  onclick=""/>
+            <text x="145" y="43" font-family="Myriad_Pro_Bold" font-size="30" fill="white">JOIN
+            </text>
+            </svg>
+
+            <div class="tabcontent" id="kt_joinsms_tab" style="display: none;">
+                <img src="img/txsteps_5b_privacy_policy.png" style="height: auto; width: 100%;">
+                <a href="https://www.dshs.state.tx.us/privacypractices.aspx" target="_blank">
+                    <svg style="position:absolute; left:325px; top: 540px; width: 150px; height: 50px;">
+                        <polygon points="0,0 350,0 350,50 0,50" style="fill: rgba(0,255,255,0)"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_joinsms_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Privacy Policy
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_results" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_4_case_study.png">
+        <div id="kt_adolescent_substance" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_2_cme_course_392.png">
+            <a href="https://www.txhealthsteps.com/392-adolescent-substance-use" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #003087"/>
+                    <text x="120" y="43" font-family="Myriad_Pro_Bold" font-size="30" fill="white">ENROLL&nbsp;>
+                    </text>
+                </svg>
+            </a>
+            <div class="tabcontent" id="kt_adolescent_substance_tab" style="display: none;">
+                <img src="img/txsteps_2b_course_392_overview.png" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="kt_adolescent_substance_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Course Overview
+                </div>
+            </div>
         </div>
 
-        <div id="kt_casestudy_smspower" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_5_case_study.png">
+        <div id="kt_about" class="card fixedcard"><img draggable="false" class="heroImage" src="img/txsteps_4_about_texas_steps.png">
+            <a href="https://www.txhealthsteps.com/293-about-texas-health-steps-online-provider-education" target="_blank">
+                <svg style="position:absolute; left:375px; top: 370px; width: 100px; z-index:11;">
+                    <polygon points="0,0 70,35 0,70" style="fill: rgba(0,0,255,0)"/>
+                </svg>
+            </a>
+            <a href="https://www.txhealthsteps.com/293-about-texas-health-steps-online-provider-education" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; height: 70px;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(255,200,0)"/>
+                    <text x="80" y="43" font-family="Myriad_Pro_Bold" font-size="30" fill="black">LEARN MORE&nbsp;>
+                    </text>
+                </svg>
+            </a>
         </div>
 
-        <div id="kt_casestudy_targetdcoupons" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_6_case_study.png">
-        </div>
-
-        <div id="kt_casestudy_aboutus" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_7_case_study.png">
-        </div>
-
-        <div id="kt_casestudy_signup" class="card fixedcard" >
-            <img draggable="false" class="heroImage" src="img/kt_8_case_study.png">
-        </div>
 
 
         <div class="card fixedcard" id="kt_lead_capture"><img class="heroImage" draggable="false" src="img/kt_lead_capture_form_generic.png">
@@ -369,14 +460,15 @@
                        type="phone" required aria-required="true" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" name="workphone" title="Enter a valid US or international phone number">
 
                 <button id="formbutton"
-                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829; border-style:none; cursor: pointer;"
+                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-size:25px; color:#ffffff; background-color:#e15829; border-style:none; cursor:pointer"
                         type="submit">SUBMIT
                 </button>
             </form>
         </div>
 
-        <div id="kt_casestudy_contactus" class="card fixedcard"><img draggable="false" class="heroImage"
-                                         src="img/kt_9_case_study_contact.png">
+
+        <div id="kt_contact_us_b2b" class="card fixedcard">
+            <img draggable="false" class="heroImage" src="img/kt_contact_banner_campaigns.png">
             <div class="tabcontent" id="contactus" style="display: none;">
                 <img style="height: auto; width: 100%;" src="img/kt_contact_open_tab.png">
                 <a href="tel:7372419950">
@@ -391,10 +483,7 @@
                 <a href="https://www.linkedin.com/company/kinetic-thread">
                     <svg style="position: absolute; left: 265px; top: 1035px; height: 35px; width: 255px; background-color:rgba(255,255,255,0);"></svg>
                 </a>
-                <a href="https://www.linkedin.com/company/kinetic-thread">
-                    <svg style="position: absolute; left: 265px; top: 1035px; height: 35px; width: 255px; background-color:rgba(255,255,255,0);"></svg>
-                </a>
-                <a href=" https://www.kineticthread.com" target="_blank">
+                <a href="https://www.kineticthread.com" target="_blank">
                     <svg style="position: absolute; left: 235px; top: 1100px; height: 35px; width: 325px; background-color:rgba(255,255,255,0);"></svg>
                 </a>
             </div>
@@ -407,12 +496,19 @@
             </div>
         </div>
 
-        <div class="navfooter">
-        </div>
+
     </div>
+
+
+</div>
+
+
+<div class="navfooter">
+</div>
 </div>
 </body>
-<script src="./js/afterbody_ktt07.js"></script>
+
+<script src="./js/afterbody_txsteps02.js"></script>
 <script>
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
@@ -435,18 +531,17 @@
 
         if (openTabName != toggledName) {
             openTabName = toggledName
-        }
-        else {
+        } else {
             openTabName = ""
         }
 
-        let activeBgColor = d3.rgb('rgb(217,217,217)');
+        let activeBgColor = d3.rgb('rgb(255,200,0)');
 
 
         let tabOpacity = 1.00;
         activeBgColor.opacity = tabOpacity;
         let inactiveBgColor = d3.hsl(activeBgColor);
-        activeBgColor = d3.hsl(activeBgColor);
+        //activeBgColor = d3.hsl(activeBgColor);
 
         if (openTabName != "") {
             activeBgColor.l *= 0.8;
@@ -461,8 +556,7 @@
                 nav.style.display = "";
             })
 
-        }
-        else {
+        } else {
             swipeEnabled = false;
             document.querySelector(".navfooter").style.display = "none";
             document.querySelectorAll('.navicon').forEach((nav) => {
@@ -477,11 +571,10 @@
             if (tabName == openTabName) {
                 closer.style.display = "";
                 tabElement.style.backgroundColor = activeBgColor;
-                tabElement.style.color = "white";
+                tabElement.style.color = "black";
                 tabElement.style.textDecoration = "none";
                 contentDictionary[tabName].style.display = "";
-            }
-            else {
+            } else {
                 closer.style.display = "none";
                 tabElement.style.backgroundColor = inactiveBgColor;
                 tabElement.style.color = "black";
