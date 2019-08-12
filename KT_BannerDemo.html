@@ -587,6 +587,10 @@
 
     }
 
+    const disableForm = function() {
+        const theForm = document.querySelector("form");
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+    }
 
     const bookserial = url.searchParams.get('s') || '';
     if (document.querySelector('#bookserial')) {document.querySelector('#bookserial').value = bookserial;}
