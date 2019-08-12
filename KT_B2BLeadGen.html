@@ -452,6 +452,12 @@
         MktoForms2.loadForm("//app-ab23.marketo.com", "452-XUA-690", 1217, marketoLoadFormCallback);
     }
 
+
+    const disableForm = function() {
+        const theForm = document.querySelector("form");
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+    }
+
     function marketoLoadFormCallback(form) {
         form.onSuccess(marketoFormSuccess);
         MktoForms2.lightbox(form).show();
