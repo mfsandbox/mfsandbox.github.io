@@ -236,7 +236,7 @@
         .col {
             flex: 1;
             border-right: 1px solid #000;
-            background-color: rgba(255,200,0, 1.0);
+            background-color: rgba(217, 217, 217, 1.0);
             line-height: 65px;
             font-size: 30px;
             font-family: Myriad_Pro_Bold;
@@ -535,7 +535,7 @@
             openTabName = ""
         }
 
-        let activeBgColor = d3.rgb('rgb(255,200,0)');
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
 
 
         let tabOpacity = 1.00;
@@ -571,7 +571,7 @@
             if (tabName == openTabName) {
                 closer.style.display = "";
                 tabElement.style.backgroundColor = activeBgColor;
-                tabElement.style.color = "black";
+                tabElement.style.color = "white";
                 tabElement.style.textDecoration = "none";
                 contentDictionary[tabName].style.display = "";
             } else {
