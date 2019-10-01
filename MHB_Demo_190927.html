@@ -1,0 +1,604 @@
+<html style="overflow: hidden; touch-action:none;">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>const googleAnalyticsId = `UA-125650738-12`;</script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="./js/hammer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: "Open Sans";
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: "Open Sans";
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: "Open Sans";
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: "Open Sans";
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Open Sans';
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Open Sans';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardIndexDecrementor {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+            color: rgb(1,31,116);
+            background-color: white;
+
+
+        }
+
+        .deck .cardIndexIncrementor {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            font-size: 200%;
+            cursor: pointer;
+            z-index: 10;
+            color: rgb(1,31,116);
+            background-color: white;
+
+        }
+
+        .buttonpanel {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dogear {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+            transform-origin: 100% 100% 0;
+            transition-duration: 1s;
+            transform: scale3d(0, 0, 0);
+        }
+
+        .dogearFixed {
+            position: absolute;
+            bottom: 0%;
+            right: 0%;
+            cursor: pointer;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .tabCloser {
+            font-family: "Open Sans";
+            font-weight: bold;
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 3%;
+            top: 0%;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color:#e6e6e6 ;
+            line-height: 65px;
+            font-size: 30px;
+            font-family: "Open Sans";
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+        input {
+            position:absolute;
+            font-size:25px;
+            border-width: 1px;
+            border-color: black;
+            left:295px;
+            width: 325px;
+            height: 35px;
+        }
+
+        textarea {
+            position:absolute;
+            font-size:25px;
+            border-width: 1px;
+            border-color: black;
+            left:295px;
+            width: 325px;
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<iframe name="hidden" style="display:none;"></iframe>
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+       <!--<div class="navicon cardIndexDecrementor"><i class="fa fa-angle-double-left"></i>&nbsp;</div>
+        <div class="navicon cardIndexIncrementor">&nbsp;<i class="fa fa-angle-double-right"></i></div>-->
+
+        <div id="mhb_brochure" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_virtual_brochure_demo_cover.png">
+        </div>
+
+
+        <div id="mhb_intro" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_parten_intro.png">
+        </div>
+
+        <div id="mhb_partenwelcome" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_welcome_to_parten.png">
+        </div>
+
+        <div id="mhb_luxuryliving" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_modern_luxury_living.png">
+        </div>
+
+        <div id="mhb_amenities" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_showcase_amenities.png">
+            <a href="https://vr.myhouseby.com/parten-tx/" target="_blank">
+            <svg style="position:absolute; left:250px; top: 1134px; width: 350px; height: 70px; cursor: pointer;">
+                <polygon points="0,0 300,0 300,70 0,70" style="fill: #193059;"  onclick=""/>
+                <text x="80" y="43" font-family="Abril Fatface" font-size="30" fill="white">360&deg; VIEW
+                </text>
+            </svg>
+            </a>
+        </div>
+
+        <div id="mhb_community" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_surrounding_community.png">
+        </div>
+
+        <div id="mhb_schools" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_schools.png">
+        </div>
+
+        <div id="mhb_sitemap" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_site_map.png">
+            <div class="tabcontent" id="mhb_sitemap_tab" style="display: none;">
+                <img src="img/mhb_location_opentab.png" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="mhb_sitemap_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                  Location
+                </div>
+            </div>
+        </div>
+
+        <div id="mhb_about_lennar" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_about_lennar_village_builders.png">
+        </div>
+
+        <div id="mhb_get_in_touch" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_get-in%20_touch_parten.png">
+            <P style="position:absolute; left:180px;top:598px; font-family:'Open Sans'; font-size:20px;">First Name:</P>
+            <input style="top: 616px;" type="text" name="firstname" required aria-required="true">
+            <P style="position:absolute; left:180px;top:658px; font-family:'Open Sans'; font-size:20px;">Last Name:</P>
+            <input style="top: 676px;" type="text" name="lastname" required aria-required="true">
+            <P style="position:absolute; left:135px;top:718px; font-family:'Open Sans'; font-size:20px;">Phone Number:</P>
+            <input style="top: 736px; " type="phone" name="phone" required aria-required="true">
+            <P style="position:absolute; left:195px;top:778px; font-family:'Open Sans'; font-size:20px;">Message:</P>
+            <textarea style="top: 796px" cols="19" rows="9"></textarea>
+            <svg id="submitbutton" style="position:absolute; left:305px; top: 1134px; width: 300px; height: 70px; cursor: pointer;">
+                <polygon points="0,0 220,0 220,70 0,70" style="fill: #93a5b3;"  onclick=""/>
+                <text x="60" y="43" font-family="Abril Fatface" font-size="30" fill="white">SUBMIT
+                </text>
+            </svg>
+
+        </div>
+
+        <div id="mhb_joinsms" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_get_parten_progress_by_text.png">
+            <svg id="joinbutton" style="position:absolute; left:250px; top: 1134px; width: 300px; height: 70px; cursor: pointer;">
+            <polygon points="0,0 300,0 300,70 0,70" style="fill: #93a5b3;"  onclick=""/>
+            <text x="115" y="43" font-family="Abril Fatface" font-size="30" fill="white">JOIN
+            </text>
+            </svg>
+        </div>
+
+
+        <div id="mhb_contact_us" class="card fixedcard"><img draggable="false" class="heroImage" src="img/mhb_contact_us.png">
+
+                <svg style="position:absolute; left:225px; top: 785px; width: 350px; height: 100px;">
+                    <a href="tel:5129499901" target="_blank">
+                    <polygon points="0,0 350,0 350,35 0,35" style="fill: rgba(255,200,0,0)"/>
+                    </a>
+
+
+                </svg>
+            <svg style="position:absolute; left:225px; top: 895px; width: 350px; height: 100px;">
+                <a href="sms:5129499901" target="_blank">
+                    <polygon points="0,0 350,0 350,35 0,35" style="fill: rgba(255,200,0,0)"/>
+                </a>
+
+
+            </svg>
+
+
+            <a href="mailto:myhouse@myhouseby.com" target="_blank">
+                <svg style="position:absolute; left:175px; top: 980px; width: 450px; height: 50px;">
+                    <polygon points="0,0 450,0 450,50 0,50" style="fill: rgba(255,200,0,0)"/>
+                </svg>
+            </a>
+
+
+                <svg style="position:absolute; left:270px; top: 1103px; width: 40px; height: 40px;">
+                    <a href="https://www.facebook.com/myHouseby/" target="_blank">
+                    <polygon points="0,0 40,0 40,40 0,40" style="fill: rgba(255,200,0,0)"/>
+                    </a>
+                </svg>
+
+
+            <svg style="position:absolute; left:338px; top: 1103px; width: 40px; height: 40px;">
+                <a href="https://www.linkedin.com/company/myhouseby/" target="_blank">
+                    <polygon points="0,0 40,0 40,40 0,40" style="fill: rgba(255,200,0,0)"/>
+                </a>
+            </svg>
+
+            <svg style="position:absolute; left:412px; top: 1103px; width: 40px; height: 40px;">
+                <a href="https://twitter.com/myHouseby" target="_blank">
+                    <polygon points="0,0 40,0 40,40 0,40" style="fill: rgba(255,200,0,0)"/>
+                </a>
+            </svg>
+
+
+            <svg style="position:absolute; left:488px; top: 1103px; width: 40px; height: 40px;">
+                <a href="https://www.instagram.com/myhouseby/" target="_blank">
+                    <polygon points="0,0 40,0 40,40 0,40" style="fill: rgba(255,200,0,0)"/>
+                </a>
+            </svg>
+
+            <div class="tabcontent" id="mhb_contactus_tab" style="display: none;">
+                <form action="https://ny6g4wjjn5.execute-api.us-east-1.amazonaws.com/default/mhb-leads-email" method="post"  target="hidden" onsubmit="disableForm(); alert('Thank you for your submission!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+
+                    <input type="hidden" name="bookname" id ="bookname">
+                    <input type="hidden" name="bookserial" id="bookserial">
+
+                <img src="img/mhb_contactus_opentab.png" style="height: auto; width: 100%;">
+
+                <P style="position:absolute; left:180px;top:598px; font-family:'Open Sans'; font-size:20px;">First Name:</P>
+                <input style="top: 616px;" type="text" name="firstname" required aria-required="true">
+
+                <P style="position:absolute; left:181px;top:658px; font-family:'Open Sans'; font-size:20px;">Last Name:</P>
+                <input style="top: 676px;" type="text" name="lastname" required aria-required="true">
+
+                <P style="position:absolute; left:127px;top:718px; font-family:'Open Sans'; font-size:20px;">Company Name:</P>
+                <input style="top: 736px;" type="text" name="companyname" required aria-required="true">
+
+                <P style="position:absolute; left:135px;top:778px; font-family:'Open Sans'; font-size:20px;">Phone Number:</P>
+                <input style="top: 796px; " type="phone" name="phone" required aria-required="true" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" title="Enter a valid US or international phone number">
+
+                <P style="position:absolute; left:195px;top:838px; font-family:'Open Sans'; font-size:20px;">Message:</P>
+                <textarea style="top: 856px" cols="19" rows="8" name="message"></textarea>
+
+                    <!--
+                <svg id="submitbutton" style="position:absolute; left:305px; top: 1134px; width: 300px; height: 70px; cursor: pointer;">
+                    <polygon points="0,0 220,0 220,70 0,70" style="fill: #1F3D51;"  onclick=""/>
+                    <text x="55" y="43" font-family="Abril Fatface" font-size="30" fill="white">SUBMIT
+                    </text>
+                </svg>
+-->
+                    <button id="formbutton"
+                            style="position:absolute; left:305px; top: 1134px; width: 220px; height: 70px; font-family:'Abril Fatface'; font-size:30px; color:#ffffff; background-color:#1F3D51; border-style:none;"
+                            type="submit">SUBMIT
+                    </button>
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="mhb_contactus_tab" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Get In Touch
+                </div>
+            </div>
+
+        </div>
+
+
+
+</div>
+
+
+<div class="navfooter">
+</div>
+</div>
+</body>
+
+<script src="./js/afterbody_mhb_01.js"></script>
+<script>
+
+    function disableForm() {
+        const theForm = document.querySelector("form");
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+    }
+
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('#e6e6e6');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+        tabArray.forEach((tabElement) => {
+            let tabName = tabElement.getAttribute('data-contentid');
+            let closer = tabElement.querySelector('.tabCloser');
+            if (tabName == openTabName) {
+                closer.style.display = "";
+                tabElement.style.backgroundColor = activeBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.textDecoration = "none";
+                contentDictionary[tabName].style.display = "";
+            } else {
+                closer.style.display = "none";
+                tabElement.style.backgroundColor = inactiveBgColor;
+                tabElement.style.color = "black";
+                tabElement.style.fontWeight = "";
+                tabElement.style.textDecoration = "underline";
+                contentDictionary[tabName].style.display = "none";
+            }
+
+        })
+
+    }
+
+    document.querySelector('#bookserial').value = bookserial;
+    document.querySelector('#bookname').value = bookName.split('.')[0];
+
+</script>
+
+</html>
