@@ -2,7 +2,7 @@
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>const googleAnalyticsId = `UA-125650738-14`;</script>
+    <script>const googleAnalyticsId = `UA-125650738-13`;</script>
     <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -28,10 +28,15 @@
         }
 
         @font-face {
-            font-family: 'HighwayGothic';
+            font-family: 'BrandonLight';
             font-style: normal;
             font-weight: normal;
-            src: url('fonts/HighwayGothic.ttf');
+            src: url('fonts/BrandonText-Light.otf');
+        }
+
+        @font-face {
+            font-family: 'BrandonBold';
+            src: url('fonts/BrandonText-Bold.otf')
         }
 
 
@@ -221,22 +226,22 @@
         }
 
         .tabCloser {
-            font-family: HighwayGothic;
+            font-family: BrandonBold;
             font-weight: bold;
             font-size: 30px;
             position: absolute;
             text-decoration: none;
-            left: 3%;
+            left: 195px;
             top: 0%;
         }
 
         .col {
             flex: 1;
             border-right: 1px solid #000;
-            background-color: #EDAD37;
+            background-color: rgba(217, 217, 217, 1.0);
             line-height: 65px;
             font-size: 30px;
-            font-family: HighwayGothic;
+            font-family: BrandonLight;
             color: black;
             text-decoration: underline;
             position: relative;
@@ -319,167 +324,134 @@
             <div class="bounce3"></div>
         </div>
 
+        <!--
         <div class="navicon cardIndexDecrementor">&nbsp;<i class="fa fa-angle-double-left"></i>&nbsp;&hairsp;</div>
         <div class="navicon cardIndexIncrementor">&hairsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</div>
+        -->
 
-        <div id="susto_intro" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                          src="img/SUSTO_Welcome_1.png">
+
+        <div id="woom_intro" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                    src="img/woom_one.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+
+
         </div>
 
+        <div id="woom_why" class="card fixedcard"><img draggable="false" class="heroImage"
+                                                       src="img/woom_two.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+            <div class="tabcontent" id="woom_why_balance" style="display: none;">
 
-        <div id="susto_about" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                          src="img/SUSTO_About_2.png">
-        </div>
+                <img src="img/woom_2a.png" style="height: auto; width: 100%;">
 
 
-        <div id="susto_twofridas" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                         src="img/SUSTO_TheTwoFridas_3.png">
-
-            <div class="tabcontent" id="susto_twofridas_makeit" style="display: none;">
-                <img src="img/SUSTO_TheTwoFridas_Recipe_3a.png" style="height: auto; width: 100%;">
             </div>
-            <div class="tabcontent" id="susto_twofridas_shareit" style="display: none;">
 
-                <img src="img/SUSTO_TheTwoFridas_3b.png" style="height: auto; width: 100%;">
-                <a href="https://www.pinterest.com/pin/create/button/?url=https://susto-cosmos.com/Susto_TwoFridas_191015b.html&media=https%3A%2F%2Fsusto-cosmos.com%2Fimg%2FSUSTO_TheTwoFridas_Recipe_3a.png&description=Two Fridas by Susto Mezcal.  Text Susto to 50448 for more great recipes." target="_blank">
-                    <svg style="position:absolute; left:225px; top: 479px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <image href="/img/pinterestRGBwhite.png" x="70" y="8" width="50px" height="50px"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">PIN</text>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://susto-cosmos.com/Susto_TwoFridas_191015c.html" target="_blank">
-                    <svg style="position:absolute; left:225px; top: 579px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <image href="/img/facebookRGBwhite.png" x="70" y="8" width="50px" height="50px"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">POST</text>
-                    </svg>
-                </a>
+            <div class="tabcontent" id="woom_why_pedal" style="display: none;">
 
-                <a id="tweet" href="https://twitter.com/intent/tweet?hashtags=sustomezcal&original_referer=https://susto-cosmos.com/SUSTO_Welcome_191015.html&ref_src=twsrc%5Etfw&text=Two Fridas cocktail recipe by Susto Mezcal.  https://bit.ly/2OWA5u2. Text Susto to 50448 for more great recipes.&tw_p=tweetbutton">
-                    <svg style="position:absolute; left:225px; top: 679px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">TWEET</text>
-                        <image href="/img/twitterRGBwhite.svg" x="70" y="8" width="50px" height="50px"/>
-                    </svg>
-                </a>
+                <img src="img/woom_2b.png" style="height: auto; width: 100%;">
+
 
             </div>
 
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="susto_twofridas_makeit" data-opened="false"
+                <div align="center" class="col" data-contentid="woom_why_balance" data-opened="false"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    MAKE IT
+                    <div class="tabCloser" style="display: none; ">&#9747;</div>
+                    BALANCE
                 </div>
-                <div align="center" class="col" data-contentid="susto_twofridas_shareit" data-opened="false"
+                <div align="center" class="col" data-contentid="woom_why_pedal" data-opened="false"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    SHARE IT
+                    <div class="tabCloser" style="display: none; ">&#9747;</div>
+                    PEDAL
                 </div>
             </div>
         </div>
 
-        <div id="susto_ourmezcalero" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                            src="img/SUSTO_OurMezcalero_4.png">
-        </div>
-
-        <div id="susto_lunallena" class="card fixedcard"><img draggable="false" class="heroImage" src="img/SUSTO_LunaLlena_5.png">
-            <div class="tabcontent" id="susto_lunallena_makeit" style="display: none;">
-                <img src="img/SUSTO_LunaLlena_Recipe_5a.png" style="height: auto; width: 100%;">
-            </div>
-            <div class="tabcontent" id="susto_lunallena_shareit" style="display: none;">
-
-                <img src="img/SUSTO_LunaLlena_5b.png" style="height: auto; width: 100%;">
-                <a href="https://www.pinterest.com/pin/create/button/?url=https://susto-cosmos.com/Susto_Luna_Llena_191015.html&media=https%3A%2F%2Fsusto-cosmos.com%2Fimg%2FSUSTO_LunaLlena_Recipe_5a.png&description=Luna Llena by Susto Mezcal.  Text Susto to 50448 for more great recipes." target="_blank">
-                    <svg style="position:absolute; left:225px; top: 479px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <image href="/img/pinterestRGBwhite.png" x="70" y="8" width="50px" height="50px"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">PIN</text>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://susto-cosmos.com/Susto_Luna_Llena_191015.html" target="_blank">
-                    <svg style="position:absolute; left:225px; top: 579px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <image href="/img/facebookRGBwhite.png" x="70" y="8" width="50px" height="50px"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">POST</text>
-                    </svg>
-                </a>
-
-                <a id="tweet" href="https://twitter.com/intent/tweet?hashtags=sustomezcal&original_referer=https://susto-cosmos.com/SUSTO_Welcome_191015.html&ref_src=twsrc%5Etfw&text=Luna Llena cocktail recipe by Susto Mezcal.  https://bit.ly/33Cv7ag. Text Susto to 50448 for more great recipes.&tw_p=tweetbutton">
-                    <svg style="position:absolute; left:225px; top: 679px; width: 350px; z-index:11;">
-                        <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(36,52,57)"/>
-                        <text x="170" y="48" font-family="HighwayGothic" font-size="40" fill="WHITE">TWEET</text>
-                        <image href="/img/twitterRGBwhite.svg" x="70" y="8" width="50px" height="50px"/>
-                    </svg>
-                </a>
-
-            </div>
-
-            <div class="tab-grid">
-                <div align="center" class="col" data-contentid="susto_lunallena_makeit" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    MAKE IT
-                </div>
-                <div align="center" class="col" data-contentid="susto_lunallena_shareit" data-opened="false"
-                     onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none;">&#9747;</div>
-                    SHARE IT
-                </div>
-            </div>
-
-        </div>
-
-
-        <div id="susto_wheretofind" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                                src="img/SUSTO_WhereToFind_6.png">
-            <a href="https://sustomezcal.com/locations" target="_blank">
+        <div id="woom_ages" class="card fixedcard"><img draggable="false" class="heroImage"
+                                                        src="img/woom_three.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+            <a href="https://us.woombikes.com/" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: RGBA(242,101,106,0.92)"/>
-                    <text x="105" y="43" font-family="HighwayGothic" font-size="25" fill="#F3EAD5">FIND A BOTTLE
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(235,8,19)"/>
+                    <text x="85" y="43" font-family="BrandonBold" font-size="25" fill="white">See All of our Bikes
                     </text>
                 </svg>
             </a>
         </div>
 
-        <div id="susto_merch" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                     src="img/SUSTO_Merch_7.png">
-            <a href="https://merch.sustomezcal.com" target="_blank">
+        <div id="woom_discount" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                       src="img/woom_four.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+            <a href="https://maps.google.com/?q=2311+W+Rundberg+Lane+#100,Austin,TX,78758" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill:RGBA(168,99,20,0.92)"/>
-                    <text x="115" y="43" font-family="HighwayGothic" font-size="25" fill="WHITE">SHOP MERCH</text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(235,8,19)"/>
+                    <text x="85" y="43" font-family="BrandonBold" font-size="25" fill="white">Visit our Showroom
+                    </text>
                 </svg>
             </a>
+
         </div>
 
+        <div id="woom_newsletter" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                         src="img/woom_five.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+            <form action="https://woombikesus.com" method="post" target="hidden"
+                  onsubmit="disableForm(); alert('Thank you for subscribing!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
+                <input type="hidden" name="bookname" id ="bookname">
+                <input type="hidden" name="bookserial" id="bookserial">
+                <p style="font-family:BrandonLight; font-size:30px; color:white; position:absolute; top: 300px; left:150px;">
+                    First Name:</p>
+                <input style="font-family:BrandonLight; font-size:30px;position:absolute; top: 380px; left:150px; width:500px; height:45px;"
+                       type="text" required aria-required="true">
 
-        <div id="susto_merch2" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                      src="img/SUSTO_SM_8.png">
-            <a href="https://www.instagram.com/sustomezcal/" target="_blank">
+                <p style="font-family:BrandonLight; font-size:30px; color:white; position:absolute; top: 500px; left:150px;">
+                    Email Address:</p>
+                <input style="font-family:BrandonLight; font-size:30px;position:absolute; top: 580px; left:150px; width:500px; height:45px;"
+                       type="email" required aria-required="true">
+                <button id="formbutton"
+                        style="position:absolute; left:240px; top: 1124px; width: 325px; height: 70px; font-family:BrandonBold; font-size:25px; color:#000000; background-color:rgb(220,220,220); border-style:none;"
+                        type="submit">Subscribe
+                </button>
+            </form>
+        </div>
+
+        <div id="woom_share" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
+                                                                    src="img/woom_six.png">
+            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
+                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
+            </svg>
+            <a href="https://www.facebook.com/woombikesUSA/" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1049px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: RGBA(248,241,222,0.92)"/>
-                    <text x="115" y="43" font-family="HighwayGothic" font-size="25" fill="black">INSTAGRAM</text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(59,	89,	152	)"/>
+                    <text x="120" y="43" font-family="BrandonBold" font-size="25" fill="white">Facebook
+                    </text>
                 </svg>
             </a>
-            <a href="https://www.facebook.com/sustomezcal/" target="_blank">
+            <a href="https://www.instagram.com/woombikesusa/" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: RGBA(248,241,222,0.92)"/>
-                    <text x="115" y="43" font-family="HighwayGothic" font-size="25" fill="black">FACEBOOK</text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(246,	44,	32	)"/>
+                    <text x="120" y="43" font-family="BrandonBold" font-size="25" fill="white">Instagram
+                    </text>
                 </svg>
             </a>
         </div>
-
-        <!--
-                <div id="susto_merch" class="card fixedcard dots-light">
-                <a name="gonzo" data-pin-do="buttonPin" data-pin-tall="true" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"></a>
-                </div>
-
-
-                <div id="susto_merch" class="card fixedcard dots-light">
-                    <a style='display:inline-block;text-indent:29px;background-repeat: no-repeat;background-color:rgb(230, 0, 35);background-image:  url("img/pinterestRGB.svg")' href="">Save</a>
-                </div>
-        --->
 
     </div>
 
@@ -491,8 +463,14 @@
 </div>
 </body>
 
-<script src="./js/afterbody_susto01.js"></script>
+<script src="./js/afterbody_woom01.js"></script>
 <script>
+
+    function disableForm() {
+        const theForm = document.querySelector("form");
+        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
+    }
+
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
         let tabElements = theTab.parentElement.querySelectorAll(`.col`);
@@ -518,7 +496,7 @@
             openTabName = ""
         }
 
-        let activeBgColor = d3.rgb('#edad37');
+        let activeBgColor = d3.rgb(217, 217, 217);
 
 
         let tabOpacity = 1.00;
@@ -554,7 +532,8 @@
             if (tabName == openTabName) {
                 closer.style.display = "";
                 tabElement.style.backgroundColor = activeBgColor;
-                tabElement.style.color = "black";
+                tabElement.style.color = "rgba(0,0,0,0)";
+                tabElement.querySelector(".tabCloser").style.color = "black";
                 tabElement.style.textDecoration = "none";
                 contentDictionary[tabName].style.display = "";
             } else {
@@ -569,6 +548,8 @@
         })
 
     }
+    document.querySelector('#bookserial').value = bookserial;
+    document.querySelector('#bookname').value = bookName.split('.')[0];
 
 </script>
 
