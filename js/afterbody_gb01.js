@@ -26,8 +26,9 @@
   }
 
   const keyword = url.searchParams.get('kw') || "";
-
   const user = url.searchParams.get('u') || "";
+  const bookserial = url.searchParams.get('s') || '';
+  const mobileNumber = url.searchParams.get('m') || '';
 
   if (user != "") {
       gtag('set', {'user_id': user});

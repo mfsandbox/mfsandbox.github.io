@@ -323,8 +323,8 @@
 
         </div>
 
-        <div id="gb_livefest" class="dormantcard dots-light"><img draggable="false" class="heroImage"
-                                                                  src="img/gb_TextLiveFest.png">
+        <div id="gb_motivethanks" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_motive_thanks.png">
 
             <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
             <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
@@ -336,13 +336,13 @@
 
             <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
             <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
-
             <!-- <a href="sms:50448?&body=GBMAIN">-->
             <form id="joinform" method="post" action="https://sumo-api.kineticthread.com/prod/inbound-sms?method=smsub"
                   target="hidden">
-                <input type="hidden" name="mobileNumber" id="mobileNumber">
+                <label for="mobileNumber" style="position:absolute; top:355px;left:225px;font-family:Roboto Slab; font-weight:bold; font-size: 30px; color:white">Mobile:</label>
+                <input type="tel" name="mobileNumber" id="mobileNumber" required aria-required="true" style="position:absolute; left:350px;top:350px; width:200px; font-family:Roboto Slab; font-size: 30px;">
                 <input type="hidden" name="subscriberKeyword" value="GBMAIN">
-                <svg id="joinbutton" style="position:absolute; left:225px; top: 380px; z-index:11;" class="cardButton"
+                <svg id="joinbutton" style="position:absolute; left:225px; top: 425px; z-index:11;" class="cardButton"
                      onclick="submitJoinForm()">
                     <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(216,89,52)"></polygon>
                     <text x="45" y="48" fill="WHITE" font-family="Roboto Slab" font-weight="bold">SIGN UP NOW</text>
@@ -502,10 +502,20 @@
     const submitJoinForm = function () {
         const joinForm = document.querySelector("#joinform");
         const joinButton = document.querySelector('#joinbutton');
+
+        const mobileField = document.querySelector("#mobileNumber");
+        const mobileNumber = mobileField.value.replace(/\D/g, '');
+
+        if (mobileNumber.length != 10 || mobileNumber.slice(0, 1) === "1") {
+            alert("Please enter a valid 10 digit phone number!");
+            return;
+        }
+
+        mobileField.value = mobileNumber;
         joinForm.submit();
         joinButton.remove();
+        mobileField.disabled = true;
         alert('Thanks for signing up!');
-
     }
 
     const activateCard = function (theCard) {
@@ -639,7 +649,5 @@
 
     }
 
-
-    document.querySelector('#mobileNumber').value = mobileNumber;
 </script>
 </html>
