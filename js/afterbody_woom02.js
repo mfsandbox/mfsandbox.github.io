@@ -22,12 +22,12 @@ if (Number.isInteger(urlCardNumber)) {
 }
 
 function gotoMap() {
-    document.querySelector("#zipcodelink").href = "https://www.google.com/maps/search/?api=1&query=world+market+zip+code+" + document.querySelector("#zipcode").value;
+
 }
 
 const keyword = url.searchParams.get('kw') || "";
-
 const user = url.searchParams.get('u') || "";
+const bookserial = url.searchParams.get('s') || '';
 
 if (user != "") {
     gtag('set', {'user_id': user});

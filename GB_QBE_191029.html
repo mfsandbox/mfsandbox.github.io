@@ -1,0 +1,624 @@
+<html style="overflow: hidden; touch-action:none;">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+        const googleAnalyticsId = `UA-125650738-3`;
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        let bookName = 'garrisonbrothers20190115';
+    </script>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://use.fontawesome.com/e9a878b310.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/d3-color.v1.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <style media="screen">
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .cardtable {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .header {
+            height: 5%;
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            font-family: Roboto+Condensed;
+            font-size: 75%;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            margin-top: 2%;
+            height: auto;
+            width: 100%;
+            padding-right: 10%;
+            padding-left: 10%;
+            font-family: Roboto+Condensed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p {
+            font-size: 30px;
+            font-family: 'Roboto+Condensed';
+        }
+
+        .footer a {
+            color: black;
+        }
+
+        .navicon {
+            color: rgba(79, 114, 190, 0.9);
+        }
+
+        .navfooter {
+            position: absolute;
+            top: 0px;
+            height: 2vh;
+            width: 100%;
+            text-align: center;
+        }
+
+        .deck {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            margin: 0;
+        }
+
+        .card a button {
+            border-width: 0;
+            font-family: Roboto+Condensed;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2.2vh;
+            color: white;
+            position: absolute;
+            height: 5%;
+            top: 94.9%;
+            width: 70%;
+            left: 15%;
+        }
+
+        .fixedcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+            font-family: Roboto Condensed;
+        }
+
+        .scrollcard {
+            overflow: scroll;
+        }
+
+        .flipcard {
+            width: 800px;
+            height: 1300px;
+            overflow: hidden;
+        }
+
+        .cardfront {
+            overflow: inherit;
+            height: inherit;
+            width: inherit;
+        }
+
+        .cardback {
+            overflow: scroll;
+            height: inherit;
+            width: inherit;
+        }
+
+
+        .dormantcard {
+            display: none;
+        }
+
+        .cardback p {
+            margin: 10px;
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold'
+        }
+
+        .cardbuttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-basis: 0;
+            font-family: 'Roboto Condensed';
+            font-style: 'Bold';
+            font-size: 5vmin;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            height: 10vmin;
+            background-color: black;
+        }
+
+        .deck .cardButton {
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            width: 350px;
+            height: 75px;
+            font-size: 38px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .tab-grid {
+            display: flex;
+            position: absolute;
+            width: 100%;
+            top: 1235px;
+        }
+
+        .col {
+            flex: 1;
+            border-right: 1px solid #000;
+            background-color: rgba(217, 217, 217, 1.0);
+            line-height: 65px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .cardIndexDecrementor {
+            position: absolute;
+            top: 46%;
+            left: 2%;
+            height: 75px;
+            width: 75px;
+        }
+
+
+        .cardIndexIncrementor {
+            position: absolute;
+            top: 46%;
+            right: 2%;
+            height: 75px;
+            width: 75px;
+        }
+
+        .tabCloser {
+            font-weight: bold;
+            font-size: 30px;
+            position: absolute;
+            text-decoration: none;
+            left: 48%;
+            top: 0%;
+        }
+
+        .tabcontent {
+            height: 100%;
+            overflow: scroll;
+            margin: 0;
+            position: absolute;
+            top: 0px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .spinner {
+            margin: auto;
+            width: 70px;
+            position: fixed;
+            text-align: center;
+            z-index: 99;
+            left: 40%;
+            top: 47%;
+        }
+
+        .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #333;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            40% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+            }
+        }
+
+    </style>
+    <script src="./js/header_ktt01.js"></script>
+
+</head>
+<body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
+<div class="cardtable">
+
+    <div class="deck">
+
+        <div class="spinner" z-index="99">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+
+        <div class="card fixedcard dots-light" id="gb_confirm21"><img class="heroImage" draggable="false"
+                                                                      src="img/gb_AgeGate.png">
+
+            <svg style="position:absolute; left:50px; top: 1134px; width: 300px; height: 70px; cursor: pointer;"
+                 onclick="over21();">
+                <polygon points="0,0 300,0 300,70 0,70" style="fill: rgb(255,255,255)"/>
+                <text x="125" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="black">YES
+                </text>
+            </svg>
+            <svg style="position:absolute; left:450px; top: 1134px; width: 300px; height: 70px; cursor: pointer;"
+                 onclick="under21();">
+                <polygon points="0,0 300,0 300,70 0,70" style="fill: rgb(255,255,255)"/>
+                <text x="135" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="black">NO
+                </text>
+            </svg>
+        </div>
+
+        <div id="gb_under21" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                 src="img/gb_AgeGate-No.png">
+
+        </div>
+
+        <div id="gb_livefest" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_TextLiveFest.png">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+        </div>
+
+        <div id="gb_smsoptin" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_sms_OptIn.png">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+            <svg style="position:absolute; left:225px; top: 380px; z-index:11;" class="cardButton">
+                <polygon points="0,0 350,0 350,70 0,70" style="fill: RGB(216,	89,	52	)"></polygon>
+                <text x="45" y="48" fill="WHITE" font-family="Roboto Slab" font-weight="bold">SIGN UP NOW</text>
+            </svg>
+        </div>
+
+
+        <div id="gb_ourbabies" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                   src="img/gb_OurStory.png">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+            <div class="tabcontent" id="gb_ourbabies_tab"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_OurBabies.png">
+                <a href="https://www.garrisonbros.com/our-babies/small-batch" target="_blank">
+                    <svg style="position:absolute; left:80px; top: 25px; height:375px; width:220px; z-index:11; "></svg>
+                </a>
+                <a href="https://www.garrisonbros.com/our-babies/balmorhea" target="_blank">
+                    <svg style="position:absolute; left:80px; top: 478px; height:375px; width:220px; z-index:11; "></svg>
+                </a>
+
+                <a href="https://www.garrisonbros.com/our-babies/boot-flask" target="_blank">
+                    <svg style="position:absolute; left:80px; top: 911px; height:314px; width:220px; z-index:11; "></svg>
+                </a>
+
+                <a href="https://www.garrisonbros.com/our-babies/single-barrel" target="_blank">
+                    <svg style="position:absolute; left:480px; top: 25px; height:375px; width:220px; z-index:11; "></svg>
+                </a>
+                <a href="https://www.garrisonbros.com/our-babies/cowboy" target="_blank">
+                    <svg style="position:absolute; left:480px; top: 478px; height:375px; width:220px; z-index:11; "></svg>
+                </a>
+
+                <a href="https://www.garrisonbros.com/our-babies/estacado" target="_blank">
+                    <svg style="position:absolute; left:480px; top: 911px; height:314px; width:220px; z-index:11; "></svg>
+                </a>
+
+
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="gb_ourbabies_tab" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    OUR BABIES
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div id="gb_swag" class="dormantcard dots-light">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+            <img draggable="false" class="heroImage"
+                 src="img/gb_Swag1.png">
+            <div class="tabcontent" id="gb_swag_wearables"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+                <img draggable="false" class="heroImage"
+                     src="img/gb_wearables_Swag3.png">
+                <a href="http://store.garrisonbros.com/wearables/" target="_blank">
+                    <svg style="position:absolute; left:250px; top: 1134px; width: 300px; height: 70px; background-color: rgba(255,255,255)">
+                        <text x="65" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="black">
+                            WEARABLES
+                        </text>
+                    </svg>
+                </a>
+
+            </div>
+            <div class="tabcontent" id="gb_swag_drygoods"
+                 style="display: none; background-color: black; width: 100%; height: 100%; ">
+
+                <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+                <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+                <img draggable="false" class="heroImage"
+                     src="img/gb_drygoods_Swag2.png">
+                <a href="http://store.garrisonbros.com/" target="_blank">
+                    <svg style="position:absolute; left:250px; top: 934px; width: 300px; height: 70px; background-color: rgba(255,255,255)">
+                        <text x="70" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="black">
+                            DRY GOODS
+                        </text>
+                    </svg>
+                </a>
+
+            </div>
+            <div class="tab-grid">
+                <div data-opened="false" data-contentid="gb_swag_wearables" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    WEARABLES
+                </div>
+                <div data-opened="false" data-contentid="gb_swag_drygoods" class="col" align="center"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    DRY GOODS
+                </div>
+            </div>
+
+        </div>
+
+        <div id="gb_followus" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                  src="img/gb_FollowUs.png">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+            <a href="https://www.facebook.com/garrisonbros" target="_blank">
+                <svg style="position:absolute; left:50px; top: 1190px; width: 300px; height: 70px; cursor: pointer; background-color:RGB(216,89,52)">
+
+                    <text x="80" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="white">
+                        FACEBOOK
+                    </text>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/garrisonbros" target="_blank">
+                <svg style="position:absolute; left:450px; top: 1190px; width: 300px; height: 70px; cursor: pointer;background-color:RGB(216,89,52)">
+
+                    <text x="60" y="45" font-family="Roboto Slab" font-weight="bold" font-size="30" fill="white">
+                        INSTAGRAM
+                    </text>
+                </svg>
+            </a>
+        </div>
+
+        <div id="gb_where_to_buy" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+                                                                      src="img/gb_where_to_buy.png">
+
+            <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
+            <img class="cardIndexIncrementor" src="img/GB_RightArrow.svg">
+
+            <a href="https://www.garrisonbros.com/find-it" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1160px; z-index:11; background-color: black"
+                     class="cardButton">
+                    <text x="82" y="48" fill="white" font-family="Roboto Slab" font-weight="bold" font-weight="bold"
+                          font-size="30">LOCATE NOW
+                    </text>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+    <div class="navfooter"></div>
+</div>
+
+
+</body>
+<script src="./js/afterbody_gb01.js"></script>
+<script>
+
+    const activateCard = function (theCard) {
+        theCard.className = theCard.className.replace('dormantcard', 'card fixedcard');
+        theCard.querySelectorAll(".cardIndexDecrementor").forEach(
+            (decrementor) => {
+                decrementor.addEventListener('click', function (event) {
+                    decrementCardIndex();
+                    setCardVisibility(cards, navIcons);
+                })
+            }
+        )
+
+        theCard.querySelectorAll(".cardIndexIncrementor").forEach(
+            (incrementor) => {
+                incrementor.addEventListener('click', function (event) {
+                    incrementCardIndex();
+                    setCardVisibility(cards, navIcons);
+                })
+            }
+        )
+    };
+
+    const redrawDeck = function () {
+        cards = document.querySelectorAll(".card");
+        cardCount = cards.length;
+        scaleHeroes();
+        drawNavDots(cardCount, currentCardIndex);
+        setCardVisibility(cards, navIcons);
+    };
+
+    const under21 = function () {
+        document.querySelectorAll(".card").forEach(function (item) {
+            item.remove();
+        });
+        activateCard(document.querySelector("#gb_under21"));
+        redrawDeck();
+    };
+
+
+    const over21 = function () {
+        document.querySelectorAll(".card").forEach(function (item) {
+            item.remove();
+        });
+        document.querySelectorAll(".dormantcard").forEach(function (item) {
+            if (item.id != 'gb_under21') {
+                activateCard(item);
+            }
+        })
+        redrawDeck();
+
+    };
+
+
+    function toggleTab(theTab) {
+        let theCard = theTab.parentElement.parentElement;
+        let tabElements = theTab.parentElement.querySelectorAll(`.col`);
+        let contentElements = theTab.parentElement.parentElement.querySelectorAll(`.tabcontent`);
+        let toggledName = theTab.getAttribute('data-contentid');
+
+        let tabArray = [].slice.call(tabElements);
+        let contentArray = [].slice.call(contentElements);
+
+        //let tabDictionary = tabArray.reduce((accum, curVal) =>{accum[curVal.getAttribute('data-contentid')] = curVal; return accum;},[]);
+        let contentDictionary = contentArray.reduce((accum, curVal) => {
+            accum[curVal.id] = curVal;
+            return accum;
+        }, []);
+
+        let openTabName = contentArray.reduce((accum, curVal) => {
+            return accum += (curVal.style.display != "none" ? curVal.id : "")
+        }, "");
+
+        if (openTabName != toggledName) {
+            openTabName = toggledName
+        } else {
+            openTabName = ""
+        }
+
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
+
+
+        let tabOpacity = 1.00;
+        activeBgColor.opacity = tabOpacity;
+        let inactiveBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
+
+        if (openTabName != "") {
+            activeBgColor.l *= 0.8;
+        }
+
+        let contentId = theTab.getAttribute('data-contentid');
+
+        if (openTabName == "") {
+            swipeEnabled = true;
+            document.querySelector(".navfooter").style.display = "";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "";
+            })
+
+        } else {
+            swipeEnabled = false;
+            document.querySelector(".navfooter").style.display = "none";
+            document.querySelectorAll('.navicon').forEach((nav) => {
+                nav.style.display = "none";
+            })
+
+        }
+
+
+        tabArray.forEach((tabElement) => {
+                let tabName = tabElement.getAttribute('data-contentid');
+                let closer = tabElement.querySelector('.tabCloser');
+                if (tabName == openTabName) {
+                    closer.style.display = "";
+                    tabElement.style.backgroundColor = activeBgColor;
+                    tabElement.style.color = "rgba(0,0,0,0)";
+                    tabElement.querySelector(".tabCloser").style.color = "black";
+                    tabElement.style.textDecoration = "none";
+                    contentDictionary[tabName].style.display = "";
+                } else {
+                    closer.style.display = "none";
+                    tabElement.style.backgroundColor = inactiveBgColor;
+                    tabElement.style.color = "black";
+                    tabElement.style.fontWeight = "";
+                    tabElement.style.textDecoration = "underline";
+                    contentDictionary[tabName].style.display = "none";
+                }
+            }
+        )
+
+    }
+</script>
+</html>
