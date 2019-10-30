@@ -2,7 +2,7 @@
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>const googleAnalyticsId = `UA-125650738-13`;</script>
+    <script>const googleAnalyticsId = `UA-125650738-4`;</script>
     <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,6 +13,7 @@
 
         gtag('js', new Date());
         let bookName = location.pathname.split('/').slice(-1)[0].split('.htm')[0];
+
     </script>
 
     <meta charset="utf-8"/>
@@ -28,24 +29,14 @@
         }
 
         @font-face {
-            font-family: 'BrandonLight';
-            font-style: normal;
-            font-weight: normal;
-            src: url('fonts/BrandonText-Light.otf');
+            font-family: TopolRegular;
+            src: url("fonts/TopolRegular.otf") format('opentype');
         }
 
         @font-face {
-            font-family: 'BrandonBold';
-            src: url('fonts/BrandonText-Bold.otf')
+            font-family: GT_America_Extended_Regular;
+            src: url("fonts/GT-America-Extended-Regular.ttf") format('truetype');
         }
-
-        @font-face {
-            font-family: 'BrandonMedium';
-            src: url('fonts/BrandonText-Medium.otf')
-        }
-
-
-
 
         .cardtable {
             position: relative;
@@ -59,7 +50,7 @@
             width: 100%;
             padding-right: 5%;
             padding-left: 5%;
-            font-family: Myriad_Pro_Regular;
+            font-family: Calibri;
             font-size: 75%;
             background-color: white;
             text-align: center;
@@ -73,7 +64,7 @@
             width: 100%;
             padding-right: 10%;
             padding-left: 10%;
-            font-family: Myriad_Pro_Regular;
+            font-family: Calibri;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -111,7 +102,7 @@
 
         .card a button {
             border-width: 0;
-            font-family: Myriad_Pro_Regular;
+            font-family: Geometr415_Blk;
             text-align: center;
             vertical-align: middle;
             font-size: 2.2vh;
@@ -127,7 +118,7 @@
             width: 800px;
             height: 1300px;
             overflow: hidden;
-            font-family: Myriad_Pro_Regular;
+            font-family: Source Sans Pro;
         }
 
         .scrollcard {
@@ -154,7 +145,7 @@
 
         .cardback p {
             margin: 10px;
-            font-family: 'Myriad_Pro_Regular';
+            font-family: 'Calibri';
         }
 
         .cardbuttons a {
@@ -163,41 +154,31 @@
             align-items: center;
             flex-grow: 1;
             flex-basis: 0;
-            font-family: 'Myriad_Pro_Regular';
+            font-family: 'Geometr415_Blk';
             font-size: 5vmin;
             text-decoration: none;
             text-transform: uppercase;
             color: white;
             height: 10vmin;
             background-color: black;
-            border-radius: 25px;
         }
 
         .deck .cardIndexDecrementor {
             position: absolute;
-            top: 46%;
-            left: 2%;
+            top: 50%;
+            left: 0%;
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
-            color: #505050;
-            background-color: rgba(237, 173, 54, 0.75);
-            border-radius: 25px;
-
-
         }
 
         .deck .cardIndexIncrementor {
             position: absolute;
-            top: 46%;
-            right: 2%;
+            top: 50%;
+            right: 0%;
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
-            color: #505050;
-            background-color: rgba(237, 173, 54, 0.75);
-            border-radius: 25px;
-
         }
 
         .buttonpanel {
@@ -233,13 +214,11 @@
         }
 
         .tabCloser {
-            font-family: BrandonBold;
-            font-weight: bold;
             font-size: 30px;
             position: absolute;
             text-decoration: none;
-            left: 195px;
-            top: 0%;
+            left: 3%;
+            top: -8%;
         }
 
         .col {
@@ -248,7 +227,7 @@
             background-color: rgba(217, 217, 217, 1.0);
             line-height: 65px;
             font-size: 30px;
-            font-family: BrandonMedium;
+            font-family: GT_America_Extended_Regular;
             color: black;
             text-decoration: underline;
             position: relative;
@@ -320,7 +299,6 @@
 
 </head>
 <body scroll="no" style="margin:0;overflow: hidden; position: fixed;">
-<iframe name="hidden" style="display:none;"></iframe>
 <div class="cardtable">
 
     <div class="deck">
@@ -331,153 +309,145 @@
             <div class="bounce3"></div>
         </div>
 
-        <!--
-        <div class="navicon cardIndexDecrementor">&nbsp;<i class="fa fa-angle-double-left"></i>&nbsp;&hairsp;</div>
-        <div class="navicon cardIndexIncrementor">&hairsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</div>
-        -->
 
 
-        <div id="woom_intro" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                    src="img/woom_one.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-
-
+        <div class="card fixedcard dots-light" id="glv_welcome">
+            <img class="heroImage" draggable="false" src="img/glv_welcome_2.jpg">
         </div>
 
-        <div id="woom_why" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                       src="img/woom_two.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-            <div class="tabcontent" id="woom_why_balance" style="display: none;">
-
-                <img src="img/woom_2a.jpg" style="height: auto; width: 100%;">
-
+        <div class="card fixedcard dots-light" id="glv_strawberry">
+            <img class="heroImage" draggable="false" src="img/glv_strawberry23.jpg">
+            <div class="tabcontent" id="glv_strawberry_ingredients" style="display: none;">
+                <img src="img/glv_strawberry23_ingredients.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_strawberry_makeit" style="display: none;">
+                <img src="img/glv_strawberry23_imakeit.jpg" style="height: auto; width: 100%;">
 
             </div>
-
-            <div class="tabcontent" id="woom_why_pedal" style="display: none;">
-
-                <img src="img/woom_2b.jpg" style="height: auto; width: 100%;">
-
-
-            </div>
-
             <div class="tab-grid">
-                <div align="center" class="col" data-contentid="woom_why_balance" data-opened="false"
+                <div align="center" class="col" data-contentid="glv_strawberry_ingredients" data-opened="false"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none; ">&#9747;</div>
-                    BALANCE BIKE
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
                 </div>
-                <div align="center" class="col" data-contentid="woom_why_pedal" data-opened="false"
+                <div align="center" class="col" data-contentid="glv_strawberry_makeit" data-opened="false"
                      onclick="toggleTab(this);">
-                    <div class="tabCloser" style="display: none; ">&#9747;</div>
-                    PEDAL BIKE
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
                 </div>
             </div>
         </div>
 
-        <div id="woom_ages" class="card fixedcard"><img draggable="false" class="heroImage"
-                                                        src="img/woom_three.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-            <a href="https://us.woombikes.com/" target="_blank">
+        <div class="card fixedcard dots-light" id="glv_brand_story">
+            <img class="heroImage" draggable="false" src="img/glv_brand_story2.jpg">
+            <a href="http://www.goodnightlovingvodka.com" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(235,8,19)"/>
-                    <text x="85" y="43" font-family="BrandonBold" font-size="25" fill="white">See All of our Bikes
-                    </text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #611013"/>
+                    <text x="92" y="43" font-family="TopolRegular" font-size="25" fill="white">GET TO KNOW US</text>
                 </svg>
             </a>
         </div>
 
-        <div id="woom_discount" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                       src="img/woom_four.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-            <a href="https://maps.google.com/?q=2311+W+Rundberg+Lane+#100,Austin,TX,78758" target="_blank">
+
+        <div class="card fixedcard dots-light" id="glv_lemongrove">
+            <img class="heroImage" draggable="false" src="img/glv_lemon_grove.jpg">
+            <div class="tabcontent" id="glv_lemongrove_ingredients" style="display: none;">
+                <img src="img/glv_lemon_grove_ingredients.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_lemongrove_makeit" style="display: none;">
+                <img src="img/glv_lemon_grove_makeit.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="glv_lemongrove_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="glv_lemongrove_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+        <div class="card fixedcard" id="glv_tastingroom">
+            <img class="heroImage" draggable="false" src="img/glv_tastingroom.jpg">
+            <a href="https://goodnightlovingvodka.com/#Visit" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(235,8,19)"/>
-                    <text x="85" y="43" font-family="BrandonBold" font-size="25" fill="white">Visit our Showroom
-                    </text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(89,140,196)"/>
+                    <text x="132" y="43" font-family="TopolRegular" font-size="25" fill="white">JOIN US</text>
                 </svg>
             </a>
-
         </div>
 
-        <div id="woom_newsletter" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                         src="img/woom_five.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-            <form action="https://jran7fnjrc.execute-api.us-east-1.amazonaws.com/default/woom-leads-email" method="post" target="hidden"
-                  onsubmit="disableForm(); alert('Thank you for subscribing!');incrementCardIndex(); setCardVisibility(cards, navIcons)">
-                <input type="hidden" name="bookname" id ="bookname">
-                <input type="hidden" name="bookserial" id="bookserial">
-                <p style="font-family:BrandonLight; font-size:30px; color:white; position:absolute; top: 300px; left:150px;">
-                    First Name:</p>
-                <input name="firstname" style="font-family:BrandonLight; font-size:30px;position:absolute; top: 380px; left:150px; width:500px; height:45px;"
-                       type="text" required aria-required="true">
-
-                <p style="font-family:BrandonLight; font-size:30px; color:white; position:absolute; top: 500px; left:150px;">
-                    Email Address:</p>
-                <input name="email" style="font-family:BrandonLight; font-size:30px;position:absolute; top: 580px; left:150px; width:500px; height:45px;"
-                       type="email" required aria-required="true">
-                <button id="formbutton"
-                        style="position:absolute; left:240px; top: 724px; width: 325px; height: 70px; font-family:BrandonBold; font-size:25px; color:#000000; background-color:rgb(250,250,250); border-style:none;"
-                        type="submit">Subscribe
-                </button>
-            </form>
+        <div class="card fixedcard dots-light" id="glv_delivered">
+            <img class="heroImage" draggable="false" src="img/glv_delivered.jpg">
+            <a href=" https://drizly.com/liquor/vodka/goodnight-loving-vodka/p93527" target="_blank">
+                <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(81,105,91)"/>
+                    <text x="92" y="43" font-family="TopolRegular" font-size="25" fill="white">GET IT DELIVERED</text>
+                </svg>
+            </a>
         </div>
 
-        <div id="woom_share" class="card fixedcard dots-light"><img draggable="false" class="heroImage"
-                                                                    src="img/woom_six.png">
-            <svg style="position:absolute; left:0px; top: 620px; width: 800px; z-index:11;">
-                <circle class="cardIndexDecrementor" cx="60px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-                <circle class="cardIndexIncrementor" cx="747px" cy="30px" r="30px" style="fill: rgba(0,0,0,0)"></circle>
-            </svg>
-            <a href="https://www.facebook.com/woombikesUSA/" target="_blank">
+        <div class="card fixedcard dots-light" id="glv_lemongrove">
+            <img class="heroImage" draggable="false" src="img/glv_disconap.jpg">
+            <div class="tabcontent" id="glv_disconap_ingredients" style="display: none;">
+                <img src="img/glv_disconap_ingredients.jpg" style="height: auto; width: 100%;">
+            </div>
+            <div class="tabcontent" id="glv_disconap_makeit" style="display: none;">
+                <img src="img/glv_disconap_makeit.jpg" style="height: auto; width: 100%;">
+
+            </div>
+            <div class="tab-grid">
+                <div align="center" class="col" data-contentid="glv_disconap_ingredients" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Ingredients
+                </div>
+                <div align="center" class="col" data-contentid="glv_disconap_makeit" data-opened="false"
+                     onclick="toggleTab(this);">
+                    <div class="tabCloser" style="display: none;">&#9747;</div>
+                    Make It
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card fixedcard" id="glv_follow_us_on_social">
+            <img class="heroImage" draggable="false" src="img/glv_follow_us_on_social2.jpg">
+            <a href="https://www.instagram.com/goodnightlovingvodka/" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1049px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(59,	89,	152	)"/>
-                    <text x="120" y="43" font-family="BrandonBold" font-size="25" fill="white">Facebook
-                    </text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #D89E8D"/>
+                    <text x="130" y="43" font-family="TopolRegular" font-size="25" fill="white">INSTAGRAM</text>
                 </svg>
             </a>
-            <a href="https://www.instagram.com/woombikesusa/" target="_blank">
+            <a href="https://www.facebook.com/goodnightlovingvodka/" target="_blank">
                 <svg style="position:absolute; left:225px; top: 1134px; width: 350px; z-index:11;">
-                    <polygon points="0,0 350,0 350,70 0,70" style="fill: rgb(246,	44,	32	)"/>
-                    <text x="120" y="43" font-family="BrandonBold" font-size="25" fill="white">Instagram
-                    </text>
+                    <polygon points="0,0 350,0 350,70 0,70" style="fill: #1E2859"/>
+                    <text x="130" y="43" font-family="TopolRegular" font-size="25" fill="white">FACEBOOK</text>
                 </svg>
             </a>
         </div>
+
+
 
     </div>
 
 
-</div>
+    </div>
 
 
 <div class="navfooter">
 </div>
+</div>
 </body>
 
-<script src="js/afterbody_woom02.js"></script>
+<script src="./js/afterbody_ktt05.js"></script>
 <script>
-
-    function disableForm() {
-        const theForm = document.querySelector("form");
-        theForm.querySelectorAll("button").forEach(function(item) {item.style.display = 'none'});
-    }
-
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
         let tabElements = theTab.parentElement.querySelectorAll(`.col`);
@@ -503,13 +473,13 @@
             openTabName = ""
         }
 
-        let activeBgColor = d3.rgb(217, 217, 217);
+        let activeBgColor = d3.rgb('rgb(217,217,217)');
 
 
         let tabOpacity = 1.00;
         activeBgColor.opacity = tabOpacity;
         let inactiveBgColor = d3.hsl(activeBgColor);
-        //activeBgColor = d3.hsl(activeBgColor);
+        activeBgColor = d3.hsl(activeBgColor);
 
         if (openTabName != "") {
             activeBgColor.l *= 0.8;
@@ -539,8 +509,7 @@
             if (tabName == openTabName) {
                 closer.style.display = "";
                 tabElement.style.backgroundColor = activeBgColor;
-                tabElement.style.color = "rgba(0,0,0,0)";
-                tabElement.querySelector(".tabCloser").style.color = "black";
+                tabElement.style.color = "white";
                 tabElement.style.textDecoration = "none";
                 contentDictionary[tabName].style.display = "";
             } else {
@@ -555,8 +524,6 @@
         })
 
     }
-    document.querySelector('#bookserial').value = bookserial;
-    document.querySelector('#bookname').value = bookName.split('.')[0];
 
 </script>
 
