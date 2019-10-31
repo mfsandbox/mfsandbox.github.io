@@ -162,23 +162,31 @@
             height: 10vmin;
             background-color: black;
         }
-
         .deck .cardIndexDecrementor {
             position: absolute;
-            top: 50%;
-            left: 0%;
+            top: 46%;
+            left: 1%;
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
+            color: #000000;
+            background-color: rgba(143	,152,	165,0.8	);
+            border-radius: 25px;
+
+
         }
 
         .deck .cardIndexIncrementor {
             position: absolute;
-            top: 50%;
-            right: 0%;
+            top: 46%;
+            right: 1%;
             font-size: 200%;
             cursor: pointer;
             z-index: 10;
+            color: #000000;
+            background-color: rgba(143,	152,	165,	 0.8);
+            border-radius: 25px;
+
         }
 
         .buttonpanel {
@@ -309,6 +317,8 @@
             <div class="bounce3"></div>
         </div>
 
+        <div class="navicon cardIndexDecrementor">&nbsp;<i class="fa fa-angle-double-left"></i>&nbsp;&hairsp;</div>
+        <div class="navicon cardIndexIncrementor">&hairsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</div>
 
 
         <div class="card fixedcard dots-light" id="glv_welcome">
@@ -435,6 +445,12 @@
 
 
 
+        <div class="card fixedcard" id="glv_kt_f1">
+            <img class="heroImage" draggable="false" src="img/GLV_KT_F1.jpg">
+        </div>"
+
+
+
     </div>
 
 
@@ -446,7 +462,7 @@
 </div>
 </body>
 
-<script src="./js/afterbody_ktt05.js"></script>
+<script src="./js/afterbody_glv01.js"></script>
 <script>
     function toggleTab(theTab) {
         let theCard = theTab.parentElement.parentElement;
