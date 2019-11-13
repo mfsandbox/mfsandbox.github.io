@@ -1,3 +1,6 @@
+const smamAdwordsId = 'AW-880349605';
+const smamConversionLabel = 'buelCOqbhLEBEKWj5KMD';
+
 var deck = document.querySelector(".deck");
 var currentCardIndex = 0;
 var cards = document.querySelectorAll(".card");
@@ -76,7 +79,11 @@ const submitJoinForm = function () {
     addScript(scriptSource, alert(confirmationMessage));
     gtag('event', 'sign-up', {
         'event_category': 'engagement',
-        'event_label': selectedKeyword
+        'event_label': selectedKeyword,
+        'send_to' : googleAnalyticsId
+    });
+    gtag('event', 'conversion', {
+        'send_to': `${smamAdwordsId}/${smamConversionLabel}`
     });
 }
 
@@ -334,4 +341,6 @@ document.body.addEventListener("touchmove",
 window.addEventListener("resize", function (event) {
     scaleHeroes();
 });
+
+gtag('config',smamAdwordsId);
 
