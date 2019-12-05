@@ -323,7 +323,7 @@
 
         </div>
 
-        <div id="gb_livefest" class="dormantcard dots-light"><img draggable="false" class="heroImage"
+        <div id="gb_livefest" class="dormantcard dots-light" data-expires="12/7/2019"><img draggable="false" class="heroImage"
                                                                   src="img/gb_TextLiveFest.png">
 
             <img class="cardIndexDecrementor" src="img/GB_LeftArrow.svg">
@@ -552,7 +552,11 @@
         });
         document.querySelectorAll(".dormantcard").forEach(function (item) {
             if (item.id != 'gb_under21') {
-                activateCard(item);
+
+                const expireDate = new Date(item.getAttribute('data-expires')||'1/1/2100');
+                const nowDate = Date.now();
+
+                if ((expireDate - nowDate) > 0) activateCard(item);
             }
         })
         redrawDeck();
